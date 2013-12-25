@@ -1,4 +1,4 @@
-package com.neusoft.cas;
+package com.neusoft.cas.widget;
 
 import android.os.Bundle;
 import android.app.Activity;

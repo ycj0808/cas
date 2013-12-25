@@ -1,4 +1,4 @@
-package com.neusoft.cas;
+package com.neusoft.cas.widget;
 
 import net.simonvt.menudrawer.MenuDrawer;
 import net.simonvt.menudrawer.Position;
