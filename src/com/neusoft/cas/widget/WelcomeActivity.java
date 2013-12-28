@@ -23,12 +23,15 @@ public class WelcomeActivity extends Activity {
 			public void run() {
 				try {
 					//判断是否是第一次使用此应用
-					firstBoot=myPreference.getPrefBoolean(ConstantUtils.FirstLogin, true);
+					firstBoot=myPreference.getPrefBoolean(ConstantUtils.FIRSTLOGIN, true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}finally{
 					if (firstBoot) {
+						myPreference.setPrefBoolean(ConstantUtils.FIRSTLOGIN, false);
+						System.out.println(myPreference.getPrefBoolean(ConstantUtils.FIRSTLOGIN, true));
 						//第一次使用
+						JumpToActivity(GuideActivity.class);
 						
 					}else{
 						JumpToActivity(MainActivity.class);
@@ -36,7 +39,7 @@ public class WelcomeActivity extends Activity {
 				}
 				
 			}
-		});
+		}).start();
 	}
 	
 	/**
@@ -50,5 +53,6 @@ public class WelcomeActivity extends Activity {
 		Intent intent = new Intent();
 		intent.setClass(this, cls);
 		startActivity(intent);
+		finish();
 	}
 }

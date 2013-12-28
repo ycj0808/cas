@@ -2,6 +2,7 @@ package com.neusoft.cas.widget;
 
 import java.util.ArrayList;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
@@ -58,6 +60,14 @@ public class GuideActivity extends Activity {
 		open = (ImageView) findViewById(R.id.open);
 		viewPager.setAdapter(new GuidePageAdapter());
 		viewPager.setOnPageChangeListener(new GuidePageChangeListener());
+		open.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent=new Intent(GuideActivity.this, MainActivity.class);
+				startActivity(intent);
+				finish();
+			}
+		});
 	}
 
 	/** 指引页面Adapter */

@@ -24,9 +24,8 @@ public class SharedPreferencesUtils {
 
 	public SharedPreferencesUtils(Context context) {
 		packageName = "settings";
-		sharedPreference = context.getSharedPreferences(packageName,
-				Context.MODE_PRIVATE);
-	}
+		sharedPreference = context.getSharedPreferences(packageName,context.MODE_PRIVATE); 
+	} 
 
 	public static synchronized SharedPreferencesUtils getInstance(
 			Context context) {
@@ -53,7 +52,7 @@ public class SharedPreferencesUtils {
 	 * @param value
 	 */
 	public void setPrefString(final String key, final String value) {
-		sharedPreference.edit().putString(key, value);
+		sharedPreference.edit().putString(key, value).commit();
 	}
 
 	/**
@@ -84,7 +83,7 @@ public class SharedPreferencesUtils {
 	 * @param value
 	 */
 	public void setPrefBoolean(final String key, final boolean value) {
-		sharedPreference.edit().putBoolean(key, value);
+		sharedPreference.edit().putBoolean(key, value).commit();
 	}
 
 	/**
@@ -165,6 +164,6 @@ public class SharedPreferencesUtils {
 	 * @param key
 	 */
 	public void removeShare(final String key) {
-		sharedPreference.edit().remove(key);
+		sharedPreference.edit().remove(key).commit();
 	}
 }

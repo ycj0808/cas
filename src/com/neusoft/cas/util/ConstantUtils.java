@@ -7,6 +7,6 @@ package com.neusoft.cas.util;
  */
 public class ConstantUtils {
 
-	public static String FirstLogin="FirstLogin";
+	public static String FIRSTLOGIN="FirstLogin";
 	
 }
