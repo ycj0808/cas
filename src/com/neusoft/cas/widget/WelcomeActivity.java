@@ -7,15 +7,22 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.ImageView;
 
 public class WelcomeActivity extends Activity {
 	
 	private boolean firstBoot = true;
 	private Context mContext;
 	private SharedPreferencesUtils myPreference;
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		ImageView iv = new ImageView(this);
+		iv.setBackgroundResource(R.drawable.start);
+	    iv.setLayoutParams(new LayoutParams(getWindowManager().getDefaultDisplay().getWidth(), getWindowManager().getDefaultDisplay().getHeight()));
+		setContentView(iv);
 		mContext=this;
 		myPreference=SharedPreferencesUtils.getInstance(mContext);
 		new Thread(new Runnable(){
@@ -24,6 +31,7 @@ public class WelcomeActivity extends Activity {
 				try {
 					//判断是否是第一次使用此应用
 					firstBoot=myPreference.getPrefBoolean(ConstantUtils.FIRSTLOGIN, true);
+					Thread.sleep(2000);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}finally{
