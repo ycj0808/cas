@@ -12,7 +12,7 @@ public class MainActivity extends BaseActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getSupportMenuInflater().inflate(R.menu.main, menu);
+		//getSupportMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 

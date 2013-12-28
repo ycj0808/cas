@@ -25,7 +25,9 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 		mInflater=LayoutInflater.from(this);
 		// 获取actionBar,并设置相关特性
 		ActionBar actionBar = getSupportActionBar();
-//		actionBar.setDisplayHomeAsUpEnabled(true);
+		//设置是否显示返回按钮
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setIcon(android.R.drawable.ic_menu_save);
 		// 添加MenuDrawer
 		mDrawer = MenuDrawer.attach(this, MenuDrawer.Type.BEHIND,
 				Position.LEFT, MenuDrawer.MENU_DRAG_WINDOW);
@@ -34,12 +36,14 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 		menu.getListView().setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				mDrawer.setActiveView(view);
+				//mDrawer.setActiveView(view);
 				mDrawer.closeMenu();    
 			}
 		});
-		mDrawer.setSlideDrawable(R.drawable.ic_drawer);
-		mDrawer.setDrawerIndicatorEnabled(true);
+		//设置返回按钮的图标
+//		mDrawer.setSlideDrawable(R.drawable.ic_back_holo_dark);
+		//设置返回按钮，指示器是否可用
+//		mDrawer.setDrawerIndicatorEnabled(false);
 		mDrawer.setTouchMode(MenuDrawer.TOUCH_MODE_FULLSCREEN);
 	}
 
