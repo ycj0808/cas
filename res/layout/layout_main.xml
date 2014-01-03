@@ -1,19 +1,31 @@
-<RelativeLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:customerSwitch="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
 
-	<com.ycj.android.widget.switchview.SwitchButton 
-	    xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/switchBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right|center"/>
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" 
+        android:visibility="visible">
+        <!--<com.ycj.android.widget.switchview.SwitchButton
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/switchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center" />-->
+           	<com.ycj.android.widget.pulltorefresh.PullAndLoadListView 
+           	    android:id="@+id/msg_list_item"
+                android:listSelector="#fff8f8f8"
+                android:drawSelectorOnTop="false"
+                android:background="#fff8f8f8"
+                android:layout_width="0dip" 
+                android:layout_height="0dip"
+                android:cacheColorHint="#fff8f8f8"
+                android:dividerHeight="0.0dip"
+                android:layout_weight="1"/>
+       </LinearLayout>
+
+      <include
+        android:id="@+id/placeholder_loading"
+        layout="@layout/layout_loading_indicator"
+        android:visibility="gone" />
+</merge>

@@ -30,14 +30,14 @@ public class WelcomeActivity extends Activity {
 			public void run() {
 				try {
 					//判断是否是第一次使用此应用
-					firstBoot=myPreference.getPrefBoolean(ConstantUtils.FIRSTLOGIN, true);
+					firstBoot=myPreference.getPrefBoolean(ConstantUtils.FIRST_LOGIN, true);
 					Thread.sleep(2000);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}finally{
 					if (firstBoot) {
-						myPreference.setPrefBoolean(ConstantUtils.FIRSTLOGIN, false);
-						System.out.println(myPreference.getPrefBoolean(ConstantUtils.FIRSTLOGIN, true));
+						myPreference.setPrefBoolean(ConstantUtils.FIRST_LOGIN, false);
+						System.out.println(myPreference.getPrefBoolean(ConstantUtils.FIRST_LOGIN, true));
 						//第一次使用
 						JumpToActivity(GuideActivity.class);
 						
