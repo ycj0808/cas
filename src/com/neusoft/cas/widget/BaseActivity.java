@@ -3,22 +3,28 @@ package com.neusoft.cas.widget;
 
 import net.simonvt.menudrawer.MenuDrawer;
 import net.simonvt.menudrawer.Position;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.neusoft.cas.receiver.BroadcastReceiverHelper;
+import com.neusoft.cas.util.ConstantUtils;
+import com.ycj.android.common.utils.LogUtils;
 
 public abstract class BaseActivity extends SherlockFragmentActivity {
 
 	private MenuDrawer mDrawer;
 	private LayoutInflater mInflater;
-
+	private BroadcastReceiverHelper receiver;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -66,4 +72,86 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 		return super.onOptionsItemSelected(item);
 	}
 	
+	@Override
+	protected void onStart() {
+		// 注册广播接收器
+		receiver = new BroadcastReceiverHelper(this,handler);
+		receiver.registerAction(ConnectivityManager.CONNECTIVITY_ACTION);
+		super.onStart();
+	}
+
+	@Override
+	protected void onStop() {
+		// 取消广播接收器
+		unregisterReceiver(receiver);
+		super.onStop();
+	}
+	/**
+	 * 处理网络是否连接
+	 */
+	private Handler handler = new Handler() {
+		@Override
+		public void handleMessage(android.os.Message msg) {
+			super.handleMessage(msg);
+			switch (msg.what) {
+			case ConstantUtils.NOT_HAS_NET:
+				setNotHasNetWork();
+				Toast.makeText(getApplicationContext(), "无网络连接",Toast.LENGTH_SHORT).show();
+				break;
+			case ConstantUtils.HAS_WIFI:
+				setHasWifi();//设置Wifi可用
+				break;
+			case ConstantUtils.HAS_MOBILE:
+				setHasMOBILE();//设置手机网络可用
+				break;
+			}
+		};
+	};
+	/**
+	  * @Title:  设置网络不可用
+	  * @Description: TODO
+	  * @param     设定文件
+	  * @return void    返回类型
+	  * @throws
+	  */
+	private void setNotHasNetWork(){
+		ConstantUtils.IS_MOBILE=false;
+		ConstantUtils.IS_WIFI=false;
+		logNetState();
+	}
+	/**
+	  * @Title: 设置Wifi可用
+	  * @Description: TODO
+	  * @param     设定文件
+	  * @return void    返回类型
+	  * @throws
+	  */
+	private void setHasWifi(){
+		ConstantUtils.IS_WIFI=true;
+		ConstantUtils.IS_MOBILE=false;
+		logNetState();
+	}
+	/**
+	  * @Title: 设置手机网络可用
+	  * @Description: TODO
+	  * @param     设定文件
+	  * @return void    返回类型
+	  * @throws
+	  */
+	private void setHasMOBILE(){
+		ConstantUtils.IS_WIFI=false;
+		ConstantUtils.IS_MOBILE=true;
+		logNetState();
+	}
+	/**
+	  * @Title: 打印当前的
+	  * @Description: TODO
+	  * @param     设定文件
+	  * @return void    返回类型
+	  * @throws
+	 */
+	private void logNetState(){
+		LogUtils.i(String.valueOf(ConstantUtils.IS_WIFI));
+		LogUtils.i(String.valueOf(ConstantUtils.IS_MOBILE));
+	}
 }
