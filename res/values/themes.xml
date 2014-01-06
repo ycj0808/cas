@@ -25,6 +25,5 @@
     </style>
     
     <style name="CasTheme.Sherlock.ActionBar" parent="Theme.Sherlock.Light.DarkActionBar">
-     	
     </style>
 </resources>

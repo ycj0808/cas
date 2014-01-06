@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <style name="AppBaseTheme" parent="android:Theme.Light">
     </style>
     <!-- Application theme. -->
@@ -72,5 +72,4 @@
         <item name="mdActiveIndicator">@drawable/menu_arrow_bottom</item>
         <item name="mdMenuSize">64dp</item>
     </style>
-     
 </resources>
