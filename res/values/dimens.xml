@@ -8,4 +8,7 @@
     <dimen name="content_primary_size">18.0sp</dimen>
     <dimen name="page_loading_indicator_left_padding">6.0dip</dimen>
     
+    <!-- navBar title -->
+    <dimen name="navbar_title_size">16.0sp</dimen>
+    <dimen name="navbar_height">50dp</dimen>
 </resources>

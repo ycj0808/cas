@@ -102,7 +102,7 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 				setHasWifi();//设置Wifi可用
 				break;
 			case ConstantUtils.HAS_MOBILE:
-				setHasMOBILE();//设置手机网络可用
+				setHasMobile();//设置手机网络可用
 				break;
 			}
 		};
@@ -138,7 +138,7 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 	  * @return void    返回类型
 	  * @throws
 	  */
-	private void setHasMOBILE(){
+	private void setHasMobile(){
 		ConstantUtils.IS_WIFI=false;
 		ConstantUtils.IS_MOBILE=true;
 		logNetState();

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/top_register_navbar"
+        layout="@layout/layout_top_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/layout_register_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/layout_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <EditText
+                    android:id="@+id/edit_register_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/common_editbox_selector"
+                    android:hint="@string/hint_register_name"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="65dp"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/lab_register_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/edit_register_name"
+                    android:layout_alignLeft="@+id/edit_register_name"
+                    android:layout_alignTop="@+id/edit_register_name"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:text="@string/lab_username"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/edit_register_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_below="@+id/edit_register_name"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/common_editbox_selector"
+                    android:hint="@string/hint_register_email"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="65dp"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/lab_register_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/edit_register_email"
+                    android:layout_alignLeft="@+id/edit_register_email"
+                    android:layout_alignTop="@+id/edit_register_email"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:text="@string/lab_email"
+                    android:textSize="14sp" />
+                <EditText
+                    android:id="@+id/edit_register_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_below="@+id/edit_register_email"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/common_editbox_selector"
+                    android:hint="@string/hint_register_phone"
+                    android:inputType="phone"
+                    android:paddingLeft="65dp"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/lab_register_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/edit_register_phone"
+                    android:layout_alignLeft="@+id/edit_register_phone"
+                    android:layout_alignTop="@+id/edit_register_phone"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:text="@string/lab_phone"
+                    android:textSize="14sp" />
+                
+                
+                  <EditText
+                    android:id="@+id/edit_register_office_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_below="@+id/edit_register_phone"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/common_editbox_selector"
+                    android:hint="@string/hint_register_office_phone"
+                    android:inputType="phone"
+                    android:paddingLeft="65dp"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/lab_register_office_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/edit_register_office_phone"
+                    android:layout_alignLeft="@+id/edit_register_office_phone"
+                    android:layout_alignTop="@+id/edit_register_office_phone"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:text="@string/lab_office_tel"
+                    android:textSize="14sp" />  
+                <EditText
+                    android:id="@+id/edit_register_qq"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_below="@+id/edit_register_office_phone"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/common_editbox_selector"
+                    android:hint="@string/hint_register_qq"
+                    android:inputType="phone"
+                    android:paddingLeft="65dp"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/lab_register_qq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/edit_register_qq"
+                    android:layout_alignLeft="@+id/edit_register_qq"
+                    android:layout_alignTop="@+id/edit_register_qq"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:text="@string/lab_qq"
+                    android:textSize="14sp" /> 
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/btn_red_bg"
+                android:text="@string/btn_submit" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
