@@ -26,7 +26,7 @@
                 <EditText
                     android:id="@+id/edit_register_name"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="@dimen/register_editbox_height"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="20dp"
@@ -53,7 +53,7 @@
                 <EditText
                     android:id="@+id/edit_register_email"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="@dimen/register_editbox_height"
                     android:layout_below="@+id/edit_register_name"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
@@ -76,10 +76,11 @@
                     android:paddingLeft="5dp"
                     android:text="@string/lab_email"
                     android:textSize="14sp" />
+
                 <EditText
                     android:id="@+id/edit_register_phone"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="@dimen/register_editbox_height"
                     android:layout_below="@+id/edit_register_email"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
@@ -102,12 +103,11 @@
                     android:paddingLeft="5dp"
                     android:text="@string/lab_phone"
                     android:textSize="14sp" />
-                
-                
-                  <EditText
+
+                <EditText
                     android:id="@+id/edit_register_office_phone"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="@dimen/register_editbox_height"
                     android:layout_below="@+id/edit_register_phone"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
@@ -129,11 +129,12 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="5dp"
                     android:text="@string/lab_office_tel"
-                    android:textSize="14sp" />  
+                    android:textSize="14sp" />
+
                 <EditText
                     android:id="@+id/edit_register_qq"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="@dimen/register_editbox_height"
                     android:layout_below="@+id/edit_register_office_phone"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
@@ -155,7 +156,114 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="5dp"
                     android:text="@string/lab_qq"
-                    android:textSize="14sp" /> 
+                    android:textSize="14sp" />
+
+                <RelativeLayout
+                    android:id="@+id/layout_unit1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lab_register_qq"
+                    android:layout_marginTop="@dimen/register_layout_layout_margin_top"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" >
+
+                    <TextView
+                        android:id="@+id/lab_unit1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/lab_unit1" />
+
+                    <Spinner
+                        android:id="@+id/mySpinner01"
+                        android:layout_width="@dimen/register_spinner_width"
+                        android:layout_height="@dimen/register_spinner_height"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_toRightOf="@+id/lab_unit1"
+                        android:background="@drawable/spinner_select_bg" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_unit2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_unit1"
+                    android:layout_marginTop="@dimen/register_layout_layout_margin_top"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" >
+
+                    <TextView
+                        android:id="@+id/lab_unit2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/lab_unit2" />
+
+                    <Spinner
+                        android:id="@+id/mySpinner02"
+                        android:layout_width="@dimen/register_spinner_width"
+                        android:layout_height="@dimen/register_spinner_height"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_toRightOf="@+id/lab_unit2"
+                        android:background="@drawable/spinner_select_bg" />
+                </RelativeLayout>
+                 <RelativeLayout
+                    android:id="@+id/layout_unit3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_unit2"
+                     android:layout_marginTop="@dimen/register_layout_layout_margin_top"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" >
+
+                    <TextView
+                        android:id="@+id/lab_unit3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/lab_unit3" />
+
+                    <Spinner
+                        android:id="@+id/mySpinner03"
+                        android:layout_width="@dimen/register_spinner_width"
+                        android:layout_height="@dimen/register_spinner_height"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_toRightOf="@+id/lab_unit3"
+                        android:background="@drawable/spinner_select_bg" />
+                </RelativeLayout>
+                
+                 <RelativeLayout
+                    android:id="@+id/layout_role"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_unit3"
+                    android:layout_marginTop="@dimen/register_layout_layout_margin_top"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" >
+
+                    <TextView
+                        android:id="@+id/lab_role"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/lab_role" />
+
+                    <Spinner
+                        android:id="@+id/mySpinner04"
+                        android:layout_width="@dimen/register_spinner_width"
+                        android:layout_height="@dimen/register_spinner_height"
+                        android:layout_marginLeft="33dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_toRightOf="@+id/lab_role"
+                        android:background="@drawable/spinner_select_bg" />
+                </RelativeLayout>
             </RelativeLayout>
 
             <Button

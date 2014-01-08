@@ -20,6 +20,10 @@ public class ConstantUtils {
 	
 	public static boolean IS_WIFI=false;//Wifi可用
 	public static boolean IS_MOBILE=false;//手机网络可用
-	/********************用于监听网络连接的常量-start********************/
+	/********************用于监听网络连接的常量-end********************/
 	
+	/********************注册加载数据常量-start********************/
+	public final static int LADING_DATA=1001;
+	
+	/********************注册加载数据常量-end********************/
 }

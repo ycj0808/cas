@@ -50,6 +50,8 @@
         <activity android:name="com.neusoft.cas.widget.GuideActivity"
             	  android:launchMode="singleInstance"
             	  android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:name="com.neusoft.cas.widget.RegisterActivity" 
+            android:theme="@style/Theme.Sherlock.Light.NoActionBar"/>
     </application>
 
 </manifest>

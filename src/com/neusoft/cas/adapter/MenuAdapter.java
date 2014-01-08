@@ -67,7 +67,8 @@ public class MenuAdapter extends BaseAdapter {
 
 	@Override
 	public boolean isEnabled(int position) {
-		return getItem(position) instanceof Item;
+//		return getItem(position) instanceof Item;
+		return getItem(position) instanceof Category;
 	}
 
 	@Override
@@ -91,13 +92,13 @@ public class MenuAdapter extends BaseAdapter {
 			}
 			TextView tv = (TextView) v;
 			tv.setText(((Item) item).mTitle);
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+			/*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
 				tv.setCompoundDrawablesRelativeWithIntrinsicBounds(
 						((Item) item).mIconRes, 0, 0, 0);
 			} else {
 				tv.setCompoundDrawablesWithIntrinsicBounds(
 						((Item) item).mIconRes, 0, 0, 0);
-			}
+			}*/
 		}
 		v.setTag(R.id.mdActiveViewPosition, position);
 		if (position == mActivePosition) {

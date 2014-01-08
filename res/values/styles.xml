@@ -28,10 +28,10 @@
     <style name="MenuDrawer.Widget.Category">
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">?android:attr/textColorSecondaryInverse</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textAllCaps" tools:ignore="NewApi">true</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingLeft">30dp</item>
         <item name="android:paddingStart" tools:ignore="NewApi">16dp</item>
         <item name="android:background">@drawable/md__category_background</item>
         <item name="android:singleLine">true</item>
@@ -42,7 +42,7 @@
         <item name="android:background">@drawable/md__list_selector_holo_dark</item>
         <item name="android:textAppearance">?android:attr/textAppearance</item>
         <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">32dp</item>
         <item name="android:paddingStart" tools:ignore="NewApi">16dp</item>

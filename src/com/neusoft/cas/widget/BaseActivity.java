@@ -3,6 +3,7 @@ package com.neusoft.cas.widget;
 
 import net.simonvt.menudrawer.MenuDrawer;
 import net.simonvt.menudrawer.Position;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -43,7 +44,15 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				//mDrawer.setActiveView(view);
-				mDrawer.closeMenu();    
+				mDrawer.closeMenu();
+				switch (position) {
+				case 1:
+					jumpToActivity(RegisterActivity.class);
+					break;
+
+				default:
+					break;
+				}
 			}
 		});
 		//设置返回按钮的图标
@@ -153,5 +162,16 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 	private void logNetState(){
 		LogUtils.i(String.valueOf(ConstantUtils.IS_WIFI));
 		LogUtils.i(String.valueOf(ConstantUtils.IS_MOBILE));
+	}
+	/**
+	  * @Title: 跳转
+	  * @Description: TODO
+	  * @param @param cls    设定文件
+	  * @return void    返回类型
+	  * @throws
+	 */
+	protected void jumpToActivity(Class cls){
+		Intent intent=new Intent(BaseActivity.this,cls);
+		startActivity(intent);
 	}
 }
