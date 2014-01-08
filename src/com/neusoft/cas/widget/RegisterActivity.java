@@ -5,22 +5,33 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.longevitysoft.android.util.Stringer;
 import com.longevitysoft.android.xml.plist.PListXMLHandler;
 import com.longevitysoft.android.xml.plist.PListXMLParser;
 import com.longevitysoft.android.xml.plist.domain.Array;
 import com.longevitysoft.android.xml.plist.domain.Dict;
 import com.longevitysoft.android.xml.plist.domain.PList;
+import com.neusoft.cas.domain.Role;
 import com.neusoft.cas.domain.Unit;
 import com.neusoft.cas.util.ConstantUtils;
+import com.ycj.android.common.utils.LogUtils;
 import com.ycj.android.ui.utils.DialogUtils;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,11 +51,16 @@ public class RegisterActivity extends BaseMonitorActivity{
 	private Spinner unit2_spinner;
 	private Spinner unit3_spinner;
 	private Spinner role_spinner;
+	private String unit1_id="0";//一级部门ID
+	private String unit2_id="0";//二级部门ID
+	private String unit3_id="0";//三级部门ID
+	private String role_id="0";//角色ID
 	private ArrayAdapter<Unit> adapter01;
 	private ArrayAdapter<Unit> adapter02;
 	private ArrayAdapter<Unit> adapter03;
-	private ArrayAdapter<Unit> adapter04;
+	private ArrayAdapter<Role> adapter04;
 	private Map<String, List<Unit>> map = new HashMap<String, List<Unit>>();
+	private List<Role> role_list=new ArrayList<Role>();
 	private List<Unit> unit1_list = new ArrayList<Unit>();
 	private Dialog dialog;
 	private Context mContext;
@@ -58,6 +74,7 @@ public class RegisterActivity extends BaseMonitorActivity{
 		TextView dialog_content=(TextView) view.findViewById(R.id.message);
 		dialog_content.setText(R.string.lab_loading_data);
 		dialog=DialogUtils.showProgressBar(mContext, view);
+		loadUnitSpinner();
 	}
 	 /**
 	  * @Title:初始化控件  
@@ -73,7 +90,7 @@ public class RegisterActivity extends BaseMonitorActivity{
 		edit_phone=(EditText) findViewById(R.id.edit_register_phone);
 		edit_office_phone=(EditText) findViewById(R.id.edit_register_office_phone);
 		edit_qq=(EditText) findViewById(R.id.edit_register_qq);
-		btn_register=(Button) findViewById(R.id.btn_register);
+		btn_register=(Button) findViewById(R.id.btn_submit);
 		navBar_title=(TextView) findViewById(R.id.navbar_title);
 		navBar_title.setText(R.string.register_title);
 		unit1_spinner=(Spinner) findViewById(R.id.mySpinner01);
@@ -97,6 +114,56 @@ public class RegisterActivity extends BaseMonitorActivity{
 				
 			}
 		});
+		//一级部门spinner监听事件
+		unit1_spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> adapterview, View view,int i, long l) {
+			    unit1_id=((Unit)unit1_spinner.getSelectedItem()).getUnit_id();
+			    LogUtils.i("一级部门:"+unit1_id);
+				List<Unit> unit2_list=map.get(unit1_id);
+				if(unit2_list==null){
+					unit2_list=new ArrayList<Unit>();
+					unit2_list.add(new Unit("0","请选择"));
+				}
+				adapter02=new ArrayAdapter<Unit>(RegisterActivity.this, android.R.layout.simple_spinner_item,unit2_list);
+				adapter02.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+				unit2_spinner.setAdapter(adapter02);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> adapterview) {
+			}
+		});
+		//二级部门spinner监听事件
+		unit2_spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> adapterview, View view,int i, long l) {
+				unit2_id=((Unit)unit2_spinner.getSelectedItem()).getUnit_id();
+				LogUtils.i("二级部门:"+unit2_id);
+				List<Unit> unit3_list=map.get(unit2_id);
+				if(unit3_list==null){
+					unit3_list=new ArrayList<Unit>();
+					unit3_list.add(new Unit("0","请选择"));
+				}
+				adapter03=new ArrayAdapter<Unit>(RegisterActivity.this, android.R.layout.simple_spinner_item,unit3_list);
+				adapter03.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+				unit3_spinner.setAdapter(adapter03);
+			}
+			@Override
+			public void onNothingSelected(AdapterView<?> adapterview) {
+			}
+		});
+		//三级部门spinner监听事件
+		unit3_spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> adapterview, View view,int i, long l) {
+				unit3_id=((Unit)unit3_spinner.getSelectedItem()).getUnit_id();
+				LogUtils.i("三级部门:"+unit3_id);
+			}
+			@Override
+			public void onNothingSelected(AdapterView<?> adapterview) {
+			}
+		});
 	}
 	
 	protected void loadUnitSpinner() {
@@ -106,15 +173,17 @@ public class RegisterActivity extends BaseMonitorActivity{
 				PListXMLParser parser = new PListXMLParser();// 基于SAX的实现
 				PListXMLHandler handler = new PListXMLHandler();
 				parser.setHandler(handler);
+				String role_json="";
 				try {
 					parser.parse(getAssets().open("unit.plist"));// unit.plist是你要解析的文件，该文件需放在assets文件夹下
+					role_json=Stringer.convert(getAssets().open("role.json")).getBuilder().toString();
 				} catch (IllegalStateException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				PList actualPList = ((PListXMLHandler) parser.getHandler())
-						.getPlist();
+				
+				PList actualPList = ((PListXMLHandler) parser.getHandler()).getPlist();
 				Array root_array1 = (Array) actualPList.getRootElement();
 				unit1_list.add(new Unit("0","请选择"));
 				for (int i = 0; i < root_array1.size(); i++) {
@@ -147,6 +216,22 @@ public class RegisterActivity extends BaseMonitorActivity{
 					map.put(dict.getConfiguration("unitId").getValue(),
 							unit2_list);
 				}
+				role_list.add(new Role("0","请选择"));
+				LogUtils.i(role_json);
+				if(!TextUtils.isEmpty(role_json)){
+					JSONObject jsonObject;
+					try {
+						jsonObject = new JSONObject(role_json);
+						JSONArray jsonArray =jsonObject.getJSONArray("role");
+						for(int i=0;i<jsonArray.length();i++){
+							JSONObject object=jsonArray.getJSONObject(i);
+							role_list.add(new Role(object.getString("role_id"), object.getString("role_name")));
+						}
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+					
+				}
 				myhandler.sendEmptyMessage(ConstantUtils.LADING_DATA);
 			}
 		}).start();
@@ -159,8 +244,14 @@ public class RegisterActivity extends BaseMonitorActivity{
 			switch (msg.what) {
 			case ConstantUtils.LADING_DATA:
 				adapter01=new ArrayAdapter<Unit>(RegisterActivity.this, android.R.layout.simple_spinner_item,unit1_list);
-				adapter01.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+				adapter01.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 				unit1_spinner.setAdapter(adapter01);
+				adapter04=new ArrayAdapter<Role>(RegisterActivity.this, android.R.layout.simple_spinner_item,role_list);
+				adapter04.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+				role_spinner.setAdapter(adapter04);
+				if(dialog!=null&dialog.isShowing()){
+					dialog.dismiss();
+				}
 				break;
 			}
 		};

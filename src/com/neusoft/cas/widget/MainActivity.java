@@ -63,19 +63,19 @@ public class MainActivity extends BaseActivity {
 			}
 		});
 		//读取上次更新时间
-		mListView.setLastUpdated(myPreference.getPrefString(ConstantUtils.LAST_UPDATE_TIME, ""));
-		String param="eap_username=admin&eap_password=1&eap_authentication=true";
+//		mListView.setLastUpdated(myPreference.getPrefString(ConstantUtils.LAST_UPDATE_TIME, ""));
+//		String param="eap_username=admin&eap_password=1&eap_authentication=true";
 //		new Thread(request).start();
-		mTask=new MyTask();
-		mTask.execute(param);
+//		mTask=new MyTask();
+//		mTask.execute(param);
 		
-		String jsonStr="{ user.name: cxhjhgjhg, sex: man }";
-		try {
-			org.json.JSONObject jsonObj=new JSONObject(jsonStr);
-			LogUtils.i(jsonObj.getString("user.name"));
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+//		String jsonStr="{ user.name: cxhjhgjhg, sex: man }";
+//		try {
+//			org.json.JSONObject jsonObj=new JSONObject(jsonStr);
+//			LogUtils.i(jsonObj.getString("user.name"));
+//		} catch (JSONException e) {
+//			e.printStackTrace();
+//		}
 	}
 	/**
 	  * @Title:刷新

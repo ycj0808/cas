@@ -34,7 +34,7 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 		ActionBar actionBar = getSupportActionBar();
 		//设置是否显示返回按钮
 		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setIcon(android.R.drawable.ic_menu_save);
+		actionBar.setIcon(R.drawable.ic_menu_home);
 		// 添加MenuDrawer
 		mDrawer = MenuDrawer.attach(this, MenuDrawer.Type.BEHIND,
 				Position.LEFT, MenuDrawer.MENU_DRAG_WINDOW);
@@ -44,10 +44,22 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				//mDrawer.setActiveView(view);
-				mDrawer.closeMenu();
+				mDrawer.closeMenu(); 
 				switch (position) {
 				case 1:
-					jumpToActivity(RegisterActivity.class);
+					new Thread(new Runnable(){
+						@Override
+						public void run() {
+							try {
+								Thread.sleep(250);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}finally{
+								jumpToActivity(RegisterActivity.class);
+							}
+						}
+					}).start();
+					
 					break;
 
 				default:

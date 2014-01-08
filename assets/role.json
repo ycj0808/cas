@@ -1,0 +1,20 @@
+﻿    {
+        "role": [
+            {
+                "role_id": "busiroleid000018", 
+                "role_name": "现场写卡技术人员"
+            }, 
+            {
+                "role_id": "busiroleid000019", 
+                "role_name": "营业厅人员"
+            }, 
+            {
+                "role_id": "busiroleid000020", 
+                "role_name": "卡数据管理人员"
+            }, 
+            {
+                "role_id": "busiroleid000021", 
+                "role_name": "集客人员"
+            }
+        ]
+    }
