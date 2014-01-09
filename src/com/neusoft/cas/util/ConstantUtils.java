@@ -7,9 +7,12 @@ package com.neusoft.cas.util;
  */
 public class ConstantUtils {
 	/********************用于sharePreference的常量-start********************/
-	public static String FIRST_LOGIN="FirstLogin";
-	public static String LAST_UPDATE_TIME="last_update_time";
-	public static String SESSION_ID="jsessionid";
+	public final static String FIRST_LOGIN="FirstLogin";
+	public final static String LAST_UPDATE_TIME="last_update_time";
+	public final static String SESSION_ID="jsessionid";
+	public final static String REMEMBER_PASSWORD="rem_password";
+	public final static String LOGIN_ACCOUNT="login_account";
+	public final static String LOGIN_PASSWORD="login_password";
 	
 	/********************用于sharePreference的常量-end********************/
 	
@@ -23,7 +26,13 @@ public class ConstantUtils {
 	/********************用于监听网络连接的常量-end********************/
 	
 	/********************注册加载数据常量-start********************/
-	public final static int LADING_DATA=1001;
+	public final static int LADING_DATA=1001;//加载数据
 	
+	/********************注册加载数据常量-end********************/
+	
+	/********************注册加载数据常量-start********************/
+	public final static int LOGIN_ERROR1=2001;//用户名或密码为空
+	public final static int LOGIN_ERROR2=2002;//用户名或密码不正确
+	public final static int LOGIN_ERROR3=2003;//
 	/********************注册加载数据常量-end********************/
 }

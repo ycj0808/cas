@@ -1,0 +1,2738 @@
+{
+    "response": [
+        {
+            "unit_id": "unit110000",
+            "unit_name": "北京",
+            "units": [
+                {
+                    "unit_id": "unit110100",
+                    "unit_name": "北京(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit110111",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit110112",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit110113",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit110114",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit110115",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "unit_id": "unit120000",
+            "unit_name": "天津",
+            "units": [
+                {
+                    "unit_id": "unit120100",
+                    "unit_name": "天津(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit120111",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit120112",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit120113",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit120114",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit120115",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "unit_id": "unit130000",
+            "unit_name": "河北",
+            "units": [
+                {
+                    "unit_id": "unit130010",
+                    "unit_name": "河北(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit130011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit130012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit130013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit130014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit130015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit130100",
+                    "unit_name": "石家庄",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit130200",
+                    "unit_name": "唐山",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit130300",
+                    "unit_name": "秦皇岛",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit130400",
+                    "unit_name": "邯郸",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit130500",
+                    "unit_name": "邢台",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit130600",
+                    "unit_name": "保定",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit130700",
+                    "unit_name": "张家口",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit130800",
+                    "unit_name": "承德",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit130900",
+                    "unit_name": "沧州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit131000",
+                    "unit_name": "廊坊",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit131100",
+                    "unit_name": "衡水",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit140000",
+            "unit_name": "山西",
+            "units": [
+                {
+                    "unit_id": "unit140010",
+                    "unit_name": "山西(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit140011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit140012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit140013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit140014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit140015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit140100",
+                    "unit_name": "太原",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit140200",
+                    "unit_name": "大同",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit140300",
+                    "unit_name": "阳泉",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit140400",
+                    "unit_name": "长治",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit140500",
+                    "unit_name": "晋城",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit140600",
+                    "unit_name": "朔州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit140700",
+                    "unit_name": "晋中",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit140800",
+                    "unit_name": "运城",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit140900",
+                    "unit_name": "忻州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit141000",
+                    "unit_name": "临汾",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit141100",
+                    "unit_name": "吕梁",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit150000",
+            "unit_name": "内蒙古",
+            "units": [
+                {
+                    "unit_id": "unit150010",
+                    "unit_name": "内蒙古(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit150011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit150012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit150013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit150014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit150015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit150100",
+                    "unit_name": "呼和浩特",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit150200",
+                    "unit_name": "包头",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit150300",
+                    "unit_name": "乌海",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit150400",
+                    "unit_name": "赤峰",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit150500",
+                    "unit_name": "通辽",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit150600",
+                    "unit_name": "鄂尔多斯",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit150702",
+                    "unit_name": "海拉尔",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit150800",
+                    "unit_name": "巴彦淖尔",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit150900",
+                    "unit_name": "乌兰察布",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit152200",
+                    "unit_name": "兴安盟",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit152500",
+                    "unit_name": "锡林郭勒盟",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit152900",
+                    "unit_name": "阿拉善盟",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit210000",
+            "unit_name": "辽宁",
+            "units": [
+                {
+                    "unit_id": "unit210010",
+                    "unit_name": "辽宁(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit210011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit210012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit210013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit210014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit210015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit210100",
+                    "unit_name": "沈阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit210200",
+                    "unit_name": "大连",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit210300",
+                    "unit_name": "鞍山",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit210400",
+                    "unit_name": "抚顺",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit210500",
+                    "unit_name": "本溪",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit210600",
+                    "unit_name": "丹东",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit210700",
+                    "unit_name": "锦州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit210800",
+                    "unit_name": "营口",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit210900",
+                    "unit_name": "阜新",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit211000",
+                    "unit_name": "辽阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit211100",
+                    "unit_name": "盘锦",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit211200",
+                    "unit_name": "铁岭",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit211300",
+                    "unit_name": "朝阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit211400",
+                    "unit_name": "葫芦岛",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit220000",
+            "unit_name": "吉林",
+            "units": [
+                {
+                    "unit_id": "unit220010",
+                    "unit_name": "吉林(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit220011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit220012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit220013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit220014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit220015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit220100",
+                    "unit_name": "长春",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit220200",
+                    "unit_name": "吉林",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit220300",
+                    "unit_name": "四平",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit220400",
+                    "unit_name": "辽源",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit220500",
+                    "unit_name": "通化",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit220600",
+                    "unit_name": "白山",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit220700",
+                    "unit_name": "松原",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit220800",
+                    "unit_name": "白城",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit222400",
+                    "unit_name": "延边",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit230000",
+            "unit_name": "黑龙江",
+            "units": [
+                {
+                    "unit_id": "unit230010",
+                    "unit_name": "黑龙江(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit230011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit230012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit230013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit230014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit230015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit230100",
+                    "unit_name": "哈尔滨",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit230200",
+                    "unit_name": "齐齐哈尔",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit230300",
+                    "unit_name": "鸡西",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit230400",
+                    "unit_name": "鹤岗",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit230500",
+                    "unit_name": "双鸭山",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit230600",
+                    "unit_name": "大庆",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit230700",
+                    "unit_name": "伊春",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit230800",
+                    "unit_name": "佳木斯",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit230900",
+                    "unit_name": "七台河",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit231000",
+                    "unit_name": "牡丹江",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit231100",
+                    "unit_name": "黑河",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit231200",
+                    "unit_name": "绥化",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit232700",
+                    "unit_name": "大兴安岭",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit310000",
+            "unit_name": "上海",
+            "units": [
+                {
+                    "unit_id": "unit310100",
+                    "unit_name": "上海(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit310111",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit310112",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit310113",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit310114",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit310115",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "unit_id": "unit320000",
+            "unit_name": "江苏",
+            "units": [
+                {
+                    "unit_id": "unit320010",
+                    "unit_name": "江苏(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit320011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit320012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit320013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit320014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit320015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit320100",
+                    "unit_name": "南京",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit320200",
+                    "unit_name": "无锡",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit320300",
+                    "unit_name": "徐州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit320400",
+                    "unit_name": "常州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit320500",
+                    "unit_name": "苏州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit320600",
+                    "unit_name": "南通",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit320700",
+                    "unit_name": "连云港",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit320800",
+                    "unit_name": "淮安",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit320900",
+                    "unit_name": "盐城",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit321000",
+                    "unit_name": "扬州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit321100",
+                    "unit_name": "镇江",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit321200",
+                    "unit_name": "泰州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit321300",
+                    "unit_name": "宿迁",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit330000",
+            "unit_name": "浙江",
+            "units": [
+                {
+                    "unit_id": "unit330010",
+                    "unit_name": "浙江(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit330011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit330012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit330013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit330014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit330015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit330100",
+                    "unit_name": "杭州",
+                    "units": [
+                        {
+                            "unit_id": "unit330111",
+                            "unit_name": "市场营销部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit330200",
+                    "unit_name": "宁波",
+                    "units": [
+                        {
+                            "unit_id": "unit330211",
+                            "unit_name": "市场营销部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit330300",
+                    "unit_name": "温州",
+                    "units": [
+                        {
+                            "unit_id": "unit330311",
+                            "unit_name": "市场营销部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit330400",
+                    "unit_name": "嘉兴",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit330500",
+                    "unit_name": "湖州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit330600",
+                    "unit_name": "绍兴",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit330700",
+                    "unit_name": "金华",
+                    "units": [
+                        {
+                            "unit_id": "unit330711",
+                            "unit_name": "市场营销部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit330800",
+                    "unit_name": "衢州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit330900",
+                    "unit_name": "舟山",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit331000",
+                    "unit_name": "台州",
+                    "units": [
+                        {
+                            "unit_id": "unit331011",
+                            "unit_name": "市场营销部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit331100",
+                    "unit_name": "丽水",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit340000",
+            "unit_name": "安徽",
+            "units": [
+                {
+                    "unit_id": "unit340010",
+                    "unit_name": "安徽(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit340011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit340012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit340013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit340014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit340015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit340100",
+                    "unit_name": "合肥",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit340200",
+                    "unit_name": "芜湖",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit340300",
+                    "unit_name": "蚌埠",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit340400",
+                    "unit_name": "淮南",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit340500",
+                    "unit_name": "马鞍山",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit340600",
+                    "unit_name": "淮北",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit340700",
+                    "unit_name": "铜陵",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit340800",
+                    "unit_name": "安庆",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit341000",
+                    "unit_name": "黄山",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit341100",
+                    "unit_name": "滁州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit341200",
+                    "unit_name": "阜阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit341300",
+                    "unit_name": "宿州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit341400",
+                    "unit_name": "巢湖",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit341500",
+                    "unit_name": "六安",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit341600",
+                    "unit_name": "亳州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit341700",
+                    "unit_name": "池州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit341800",
+                    "unit_name": "宣城",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit350000",
+            "unit_name": "福建",
+            "units": [
+                {
+                    "unit_id": "unit350010",
+                    "unit_name": "福建(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit350011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit350012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit350013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit350014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit350015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit350100",
+                    "unit_name": "福州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit350200",
+                    "unit_name": "厦门",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit350300",
+                    "unit_name": "莆田",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit350400",
+                    "unit_name": "三明",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit350500",
+                    "unit_name": "泉州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit350600",
+                    "unit_name": "漳州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit350700",
+                    "unit_name": "南平",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit350800",
+                    "unit_name": "龙岩",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit350900",
+                    "unit_name": "宁德",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit360000",
+            "unit_name": "江西",
+            "units": [
+                {
+                    "unit_id": "unit360010",
+                    "unit_name": "江西(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit360011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit360012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit360013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit360014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit360015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit360100",
+                    "unit_name": "南昌",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit360200",
+                    "unit_name": "景德镇",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit360300",
+                    "unit_name": "萍乡",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit360400",
+                    "unit_name": "九江",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit360500",
+                    "unit_name": "新余",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit360600",
+                    "unit_name": "鹰潭",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit360700",
+                    "unit_name": "赣州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit360800",
+                    "unit_name": "吉安",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit360900",
+                    "unit_name": "宜春",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit361000",
+                    "unit_name": "抚州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit361100",
+                    "unit_name": "上饶",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit370000",
+            "unit_name": "山东",
+            "units": [
+                {
+                    "unit_id": "unit370010",
+                    "unit_name": "山东(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit370011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit370012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit370013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit370014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit370015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit370100",
+                    "unit_name": "济南",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit370200",
+                    "unit_name": "青岛",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit370300",
+                    "unit_name": "淄博",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit370400",
+                    "unit_name": "枣庄",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit370500",
+                    "unit_name": "东营",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit370600",
+                    "unit_name": "烟台",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit370700",
+                    "unit_name": "潍坊",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit370800",
+                    "unit_name": "济宁",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit370900",
+                    "unit_name": "泰安",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit371000",
+                    "unit_name": "威海",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit371100",
+                    "unit_name": "日照",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit371200",
+                    "unit_name": "莱芜",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit371300",
+                    "unit_name": "临沂",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit371400",
+                    "unit_name": "德州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit371500",
+                    "unit_name": "聊城",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit371600",
+                    "unit_name": "滨州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit371700",
+                    "unit_name": "菏泽",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit410000",
+            "unit_name": "河南",
+            "units": [
+                {
+                    "unit_id": "unit410010",
+                    "unit_name": "河南(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit410011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit410012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit410013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit410014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit410015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit410100",
+                    "unit_name": "郑州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit410200",
+                    "unit_name": "开封",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit410300",
+                    "unit_name": "洛阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit410400",
+                    "unit_name": "平顶山",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit410500",
+                    "unit_name": "安阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit410600",
+                    "unit_name": "鹤壁",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit410700",
+                    "unit_name": "新乡",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit410800",
+                    "unit_name": "焦作",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit410881",
+                    "unit_name": "济源",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit410900",
+                    "unit_name": "濮阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit411000",
+                    "unit_name": "许昌",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit411100",
+                    "unit_name": "漯河",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit411200",
+                    "unit_name": "三门峡",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit411300",
+                    "unit_name": "南阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit411400",
+                    "unit_name": "商丘",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit411500",
+                    "unit_name": "信阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit411600",
+                    "unit_name": "周口",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit411700",
+                    "unit_name": "驻马店",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit420000",
+            "unit_name": "湖北",
+            "units": [
+                {
+                    "unit_id": "unit420010",
+                    "unit_name": "湖北(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit420011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit420012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit420013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit420014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit420015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit420100",
+                    "unit_name": "武汉",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit420103",
+                    "unit_name": "江汉",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit420200",
+                    "unit_name": "黄石",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit420300",
+                    "unit_name": "十堰",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit420500",
+                    "unit_name": "宜昌",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit420600",
+                    "unit_name": "襄樊",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit420700",
+                    "unit_name": "鄂州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit420800",
+                    "unit_name": "荆门",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit420900",
+                    "unit_name": "孝感",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit421000",
+                    "unit_name": "荆州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit421100",
+                    "unit_name": "黄冈",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit421200",
+                    "unit_name": "咸宁",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit421300",
+                    "unit_name": "随州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit422800",
+                    "unit_name": "恩施",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit430000",
+            "unit_name": "湖南",
+            "units": [
+                {
+                    "unit_id": "unit430010",
+                    "unit_name": "湖南(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit430011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit430012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit430013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit430014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit430015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit430100",
+                    "unit_name": "长沙",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit430200",
+                    "unit_name": "株洲",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit430300",
+                    "unit_name": "湘潭",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit430400",
+                    "unit_name": "衡阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit430500",
+                    "unit_name": "邵阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit430600",
+                    "unit_name": "岳阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit430700",
+                    "unit_name": "常德",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit430800",
+                    "unit_name": "张家界",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit430900",
+                    "unit_name": "益阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit431000",
+                    "unit_name": "郴州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit431100",
+                    "unit_name": "永州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit431200",
+                    "unit_name": "怀化",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit431300",
+                    "unit_name": "娄底",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit433101",
+                    "unit_name": "吉首",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit440000",
+            "unit_name": "广东",
+            "units": [
+                {
+                    "unit_id": "unit440010",
+                    "unit_name": "广东(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit440011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit440012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit440013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit440014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit440015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit440100",
+                    "unit_name": "广州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit440200",
+                    "unit_name": "韶关",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit440300",
+                    "unit_name": "深圳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit440400",
+                    "unit_name": "珠海",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit440500",
+                    "unit_name": "汕头",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit440600",
+                    "unit_name": "佛山",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit440700",
+                    "unit_name": "江门",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit440800",
+                    "unit_name": "湛江",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit440900",
+                    "unit_name": "茂名",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit441200",
+                    "unit_name": "肇庆",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit441300",
+                    "unit_name": "惠州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit441400",
+                    "unit_name": "梅州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit441500",
+                    "unit_name": "汕尾",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit441600",
+                    "unit_name": "河源",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit441700",
+                    "unit_name": "阳江",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit441800",
+                    "unit_name": "清远",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit441900",
+                    "unit_name": "东莞",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit442000",
+                    "unit_name": "中山",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit445100",
+                    "unit_name": "潮州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit445200",
+                    "unit_name": "揭阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit445300",
+                    "unit_name": "云浮",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit450000",
+            "unit_name": "广西",
+            "units": [
+                {
+                    "unit_id": "unit450010",
+                    "unit_name": "广西(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit450011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit450012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit450013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit450014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit450015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit450100",
+                    "unit_name": "南宁",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit450200",
+                    "unit_name": "柳州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit450300",
+                    "unit_name": "桂林",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit450400",
+                    "unit_name": "梧州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit450500",
+                    "unit_name": "北海",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit450600",
+                    "unit_name": "防城港",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit450700",
+                    "unit_name": "钦州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit450800",
+                    "unit_name": "贵港",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit450900",
+                    "unit_name": "玉林",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit451000",
+                    "unit_name": "百色",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit451100",
+                    "unit_name": "贺州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit451200",
+                    "unit_name": "河池",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit451300",
+                    "unit_name": "来宾",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit451400",
+                    "unit_name": "崇左",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit460000",
+            "unit_name": "海南",
+            "units": [
+                {
+                    "unit_id": "unit460010",
+                    "unit_name": "海南(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit460011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit460012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit460013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit460014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit460015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit460100",
+                    "unit_name": "海口",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit500000",
+            "unit_name": "重庆",
+            "units": [
+                {
+                    "unit_id": "unit500100",
+                    "unit_name": "重庆(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit500111",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit500112",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit500113",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit500114",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit500115",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "unit_id": "unit510000",
+            "unit_name": "四川",
+            "units": [
+                {
+                    "unit_id": "unit510010",
+                    "unit_name": "四川(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit510011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit510012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit510013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit510014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit510015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit510100",
+                    "unit_name": "成都",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit510300",
+                    "unit_name": "自贡",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit510400",
+                    "unit_name": "攀枝花",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit510500",
+                    "unit_name": "泸州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit510600",
+                    "unit_name": "德阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit510700",
+                    "unit_name": "绵阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit510800",
+                    "unit_name": "广元",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit510900",
+                    "unit_name": "遂宁",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit511000",
+                    "unit_name": "内江",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit511100",
+                    "unit_name": "乐山",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit511300",
+                    "unit_name": "南充",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit511400",
+                    "unit_name": "眉山",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit511500",
+                    "unit_name": "宜宾",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit511600",
+                    "unit_name": "广安",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit511700",
+                    "unit_name": "达州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit511800",
+                    "unit_name": "雅安",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit511900",
+                    "unit_name": "巴中",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit512000",
+                    "unit_name": "资阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit513200",
+                    "unit_name": "阿坝",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit513300",
+                    "unit_name": "甘孜",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit513401",
+                    "unit_name": "西昌",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit520000",
+            "unit_name": "贵州",
+            "units": [
+                {
+                    "unit_id": "unit520010",
+                    "unit_name": "贵州(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit520011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit520012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit520013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit520014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit520015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit520100",
+                    "unit_name": "贵阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit520200",
+                    "unit_name": "六盘水",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit520300",
+                    "unit_name": "遵义",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit520400",
+                    "unit_name": "安顺",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit522200",
+                    "unit_name": "铜仁",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit522300",
+                    "unit_name": "黔西南",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit522400",
+                    "unit_name": "毕节",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit522600",
+                    "unit_name": "黔东南",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit522700",
+                    "unit_name": "黔南",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit530000",
+            "unit_name": "云南",
+            "units": [
+                {
+                    "unit_id": "unit530010",
+                    "unit_name": "云南(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit530011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit530012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit530013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit530014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit530015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit530100",
+                    "unit_name": "昆明",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit530300",
+                    "unit_name": "曲靖",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit530400",
+                    "unit_name": "玉溪",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit530500",
+                    "unit_name": "保山",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit530600",
+                    "unit_name": "昭通",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit530700",
+                    "unit_name": "丽江",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit530821",
+                    "unit_name": "普洱",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit530900",
+                    "unit_name": "临沧",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit532300",
+                    "unit_name": "楚雄",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit532500",
+                    "unit_name": "红河",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit532600",
+                    "unit_name": "文山",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit532800",
+                    "unit_name": "版纳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit532900",
+                    "unit_name": "大理",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit533100",
+                    "unit_name": "德宏",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit533300",
+                    "unit_name": "怒江",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit533400",
+                    "unit_name": "迪庆",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit540000",
+            "unit_name": "西藏",
+            "units": [
+                {
+                    "unit_id": "unit540010",
+                    "unit_name": "西藏(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit540011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit540012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit540013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit540014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit540015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit540100",
+                    "unit_name": "拉萨",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit542100",
+                    "unit_name": "昌都",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit542200",
+                    "unit_name": "山南",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit542300",
+                    "unit_name": "日喀则",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit542400",
+                    "unit_name": "那曲",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit542500",
+                    "unit_name": "阿里",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit542600",
+                    "unit_name": "林芝",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit610000",
+            "unit_name": "陕西",
+            "units": [
+                {
+                    "unit_id": "unit610010",
+                    "unit_name": "陕西(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit610011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit610012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit610013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit610014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit610015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit610100",
+                    "unit_name": "西安",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit610200",
+                    "unit_name": "铜川",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit610300",
+                    "unit_name": "宝鸡",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit610400",
+                    "unit_name": "咸阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit610500",
+                    "unit_name": "渭南",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit610600",
+                    "unit_name": "延安",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit610700",
+                    "unit_name": "汉中",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit610800",
+                    "unit_name": "榆林",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit610900",
+                    "unit_name": "安康",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit611000",
+                    "unit_name": "商洛",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit620000",
+            "unit_name": "甘肃",
+            "units": [
+                {
+                    "unit_id": "unit620010",
+                    "unit_name": "甘肃(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit620011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit620012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit620013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit620014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit620015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit620100",
+                    "unit_name": "兰州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit620200",
+                    "unit_name": "嘉峪关",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit620300",
+                    "unit_name": "金昌",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit620400",
+                    "unit_name": "白银",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit620500",
+                    "unit_name": "天水",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit620600",
+                    "unit_name": "武威",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit620700",
+                    "unit_name": "张掖",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit620800",
+                    "unit_name": "平凉",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit620900",
+                    "unit_name": "酒泉",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit621000",
+                    "unit_name": "庆阳",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit621100",
+                    "unit_name": "定西",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit621200",
+                    "unit_name": "陇南",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit622900",
+                    "unit_name": "临夏",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit623000",
+                    "unit_name": "甘南",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit630000",
+            "unit_name": "青海",
+            "units": [
+                {
+                    "unit_id": "unit630010",
+                    "unit_name": "青海(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit630011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit630012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit630013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit630014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit630015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit630100",
+                    "unit_name": "西宁",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit632100",
+                    "unit_name": "海东",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit632200",
+                    "unit_name": "海北",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit632300",
+                    "unit_name": "黄南",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit632500",
+                    "unit_name": "海南",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit632600",
+                    "unit_name": "果洛",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit632700",
+                    "unit_name": "玉树",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit632800",
+                    "unit_name": "海西",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit632801",
+                    "unit_name": "格尔木",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit640000",
+            "unit_name": "宁夏",
+            "units": [
+                {
+                    "unit_id": "unit640010",
+                    "unit_name": "宁夏(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit640011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit640012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit640013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit640014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit640015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit640100",
+                    "unit_name": "银川",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit640200",
+                    "unit_name": "石嘴山",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit640300",
+                    "unit_name": "吴忠",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit640400",
+                    "unit_name": "固原",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit640500",
+                    "unit_name": "中卫",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit650000",
+            "unit_name": "新疆",
+            "units": [
+                {
+                    "unit_id": "unit650010",
+                    "unit_name": "新疆(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit650011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit650012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit650013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit650014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit650015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                },
+                {
+                    "unit_id": "unit650100",
+                    "unit_name": "乌鲁木齐",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit650200",
+                    "unit_name": "克拉玛依",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit652100",
+                    "unit_name": "吐鲁番",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit652200",
+                    "unit_name": "哈密",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit652300",
+                    "unit_name": "昌吉",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit652701",
+                    "unit_name": "博乐",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit652801",
+                    "unit_name": "库尔勒",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit652900",
+                    "unit_name": "阿克苏",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit653000",
+                    "unit_name": "克州",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit653100",
+                    "unit_name": "喀什",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit653200",
+                    "unit_name": "和田",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit654000",
+                    "unit_name": "伊犁",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit654003",
+                    "unit_name": "奎屯",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit654200",
+                    "unit_name": "塔城",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit654300",
+                    "unit_name": "阿勒泰",
+                    "units": []
+                },
+                {
+                    "unit_id": "unit659001",
+                    "unit_name": "石河子",
+                    "units": []
+                }
+            ]
+        },
+        {
+            "unit_id": "unit810000",
+            "unit_name": "香港",
+            "units": [
+                {
+                    "unit_id": "unit810010",
+                    "unit_name": "香港(省分)",
+                    "units": [
+                        {
+                            "unit_id": "unit810011",
+                            "unit_name": "市场营销部"
+                        },
+                        {
+                            "unit_id": "unit810012",
+                            "unit_name": "物资采购部"
+                        },
+                        {
+                            "unit_id": "unit810013",
+                            "unit_name": "电子商务部"
+                        },
+                        {
+                            "unit_id": "unit810014",
+                            "unit_name": "集客部"
+                        },
+                        {
+                            "unit_id": "unit810015",
+                            "unit_name": "产品创新部"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

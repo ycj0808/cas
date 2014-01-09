@@ -52,6 +52,8 @@
             	  android:theme="@android:style/Theme.NoTitleBar"/>
         <activity android:name="com.neusoft.cas.widget.RegisterActivity" 
             android:theme="@style/Theme.Sherlock.Light.NoActionBar"/>
+        <activity android:name="com.neusoft.cas.widget.LoginActivity" 
+            android:theme="@style/Theme.Sherlock.Light.NoActionBar"/>
     </application>
 
 </manifest>

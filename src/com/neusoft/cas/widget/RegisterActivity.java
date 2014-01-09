@@ -64,6 +64,7 @@ public class RegisterActivity extends BaseMonitorActivity{
 	private List<Unit> unit1_list = new ArrayList<Unit>();
 	private Dialog dialog;
 	private Context mContext;
+	private String json_str="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -74,7 +75,8 @@ public class RegisterActivity extends BaseMonitorActivity{
 		TextView dialog_content=(TextView) view.findViewById(R.id.message);
 		dialog_content.setText(R.string.lab_loading_data);
 		dialog=DialogUtils.showProgressBar(mContext, view);
-		loadUnitSpinner();
+		//loadUnitSpinner();
+		loadUnitData();
 	}
 	 /**
 	  * @Title:初始化控件  
@@ -120,11 +122,12 @@ public class RegisterActivity extends BaseMonitorActivity{
 			public void onItemSelected(AdapterView<?> adapterview, View view,int i, long l) {
 			    unit1_id=((Unit)unit1_spinner.getSelectedItem()).getUnit_id();
 			    LogUtils.i("一级部门:"+unit1_id);
-				List<Unit> unit2_list=map.get(unit1_id);
-				if(unit2_list==null){
-					unit2_list=new ArrayList<Unit>();
-					unit2_list.add(new Unit("0","请选择"));
-				}
+//				List<Unit> unit2_list=map.get(unit1_id);
+//				if(unit2_list==null){
+//					unit2_list=new ArrayList<Unit>();
+//					unit2_list.add(new Unit("0","请选择"));
+//				}
+			    List<Unit> unit2_list=getListUnitByParentUnitId(unit1_id);
 				adapter02=new ArrayAdapter<Unit>(RegisterActivity.this, android.R.layout.simple_spinner_item,unit2_list);
 				adapter02.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 				unit2_spinner.setAdapter(adapter02);
@@ -140,11 +143,12 @@ public class RegisterActivity extends BaseMonitorActivity{
 			public void onItemSelected(AdapterView<?> adapterview, View view,int i, long l) {
 				unit2_id=((Unit)unit2_spinner.getSelectedItem()).getUnit_id();
 				LogUtils.i("二级部门:"+unit2_id);
-				List<Unit> unit3_list=map.get(unit2_id);
-				if(unit3_list==null){
-					unit3_list=new ArrayList<Unit>();
-					unit3_list.add(new Unit("0","请选择"));
-				}
+//				List<Unit> unit3_list=map.get(unit2_id);
+//				if(unit3_list==null){
+//					unit3_list=new ArrayList<Unit>();
+//					unit3_list.add(new Unit("0","请选择"));
+//				}
+				List<Unit> unit3_list=getListUnitByParentUnitId(unit1_id,unit2_id);
 				adapter03=new ArrayAdapter<Unit>(RegisterActivity.this, android.R.layout.simple_spinner_item,unit3_list);
 				adapter03.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 				unit3_spinner.setAdapter(adapter03);
@@ -166,7 +170,8 @@ public class RegisterActivity extends BaseMonitorActivity{
 		});
 	}
 	
-	protected void loadUnitSpinner() {
+	//解析plist数据
+	/*protected void loadUnitSpinner() {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -235,8 +240,141 @@ public class RegisterActivity extends BaseMonitorActivity{
 				myhandler.sendEmptyMessage(ConstantUtils.LADING_DATA);
 			}
 		}).start();
-	}
+	}*/
 	
+	/**
+	  * @Title: 获取数据
+	  * @Description: TODO
+	  * @param     设定文件
+	  * @return void    返回类型
+	  * @throws
+	  */
+	protected void loadUnitData(){
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				unit1_list.add(new Unit("0","请选择"));
+				String role_json="";
+				try {
+					json_str=Stringer.convert(getAssets().open("unit.json")).getBuilder().toString();
+					role_json=Stringer.convert(getAssets().open("role.json")).getBuilder().toString();
+				    JSONObject object=new JSONObject(json_str);
+				    JSONArray array=object.getJSONArray("response");
+				    for(int i=0;i<array.length();i++){
+				    	JSONObject obj=array.getJSONObject(i);
+				    	unit1_list.add(new Unit(obj.getString("unit_id"), obj.getString("unit_name")));
+				    }
+				    
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				role_list.add(new Role("0","请选择"));
+				LogUtils.i(role_json);
+				if(!TextUtils.isEmpty(role_json)){
+					JSONObject jsonObject;
+					try {
+						jsonObject = new JSONObject(role_json);
+						JSONArray jsonArray =jsonObject.getJSONArray("role");
+						for(int i=0;i<jsonArray.length();i++){
+							JSONObject object=jsonArray.getJSONObject(i);
+							role_list.add(new Role(object.getString("role_id"), object.getString("role_name")));
+						}
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+					
+				}
+				myhandler.sendEmptyMessage(1001);
+			}
+		}).start();
+	}
+	/**
+	  * @Title: 根据第二级查询 
+	  * @Description: TODO
+	  * @param @param unitId
+	  * @param @return    设定文件
+	  * @return List<Unit>    返回类型
+	  * @throws
+	  */
+	public List<Unit> getListUnitByParentUnitId(String unitId){
+		List<Unit> list=new ArrayList<Unit>();
+		list.add(new Unit("0", "请选择"));
+		JSONObject obj;
+		JSONArray arr;
+		if(!TextUtils.isEmpty(json_str)){
+			JSONArray array = null;
+			try {
+				obj=new JSONObject(json_str);
+				arr=obj.getJSONArray("response");
+				for(int i=0;i<arr.length();i++){
+					JSONObject object=arr.getJSONObject(i);
+					if(object.getString("unit_id").equals(unitId)){
+						array=object.getJSONArray("units");
+						break;
+					}
+				}
+				if(array!=null){
+					for(int j=0;j<array.length();j++){
+						JSONObject object=array.getJSONObject(j);
+						list.add(new Unit(object.getString("unit_id"),object.getString("unit_name")));
+					}
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	 /**
+	  * @Title: 根据第一级和第二级查询
+	  * @Description: TODO
+	  * @param @param unitId1
+	  * @param @param unitId2
+	  * @param @return    设定文件
+	  * @return List<Unit>    返回类型
+	  * @throws
+	  */
+	public List<Unit> getListUnitByParentUnitId(String unitId1,String unitId2){
+		List<Unit> list=new ArrayList<Unit>();
+		list.add(new Unit("0", "请选择"));
+		JSONObject obj;
+		JSONArray arr;
+		if(!TextUtils.isEmpty(json_str)){
+			JSONArray array1 = null;
+			JSONArray array2 = null;
+			try {
+				obj=new JSONObject(json_str);
+				arr=obj.getJSONArray("response");
+				for(int i=0;i<arr.length();i++){
+					JSONObject object=arr.getJSONObject(i);
+					if(object.getString("unit_id").equals(unitId1)){
+						array1=object.getJSONArray("units");
+						break;
+					}
+				}
+				if(array1!=null){
+					for(int j=0;j<array1.length();j++){
+						JSONObject object=array1.getJSONObject(j);
+						if(object.getString("unit_id").equals(unitId2)){
+							array2=object.getJSONArray("units");
+							break;
+						}
+					}
+				}
+				if(array2!=null){
+					for(int k=0;k<array2.length();k++){
+						JSONObject object=array2.getJSONObject(k);
+						list.add(new Unit(object.getString("unit_id"), object.getString("unit_name")));
+					}
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
 	public Handler myhandler = new Handler() {
 		@Override
 		public void handleMessage(android.os.Message msg) {

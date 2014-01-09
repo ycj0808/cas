@@ -42,7 +42,7 @@ public class WelcomeActivity extends Activity {
 						JumpToActivity(GuideActivity.class);
 						
 					}else{
-						JumpToActivity(MainActivity.class);
+						JumpToActivity(LoginActivity.class);
 					}
 				}
 				

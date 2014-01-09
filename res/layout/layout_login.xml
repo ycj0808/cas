@@ -66,6 +66,19 @@
             android:paddingLeft="5dp"
             android:text="@string/lab_password"
             android:textSize="18sp" />
+
+        <CheckBox
+            android:id="@+id/rem_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_login_password"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:textSize="14sp"
+            android:text="@string/lab_rem_password"
+            android:button="@drawable/checkbox_bg_select"
+            />
     </RelativeLayout>
 
     <Button
@@ -75,8 +88,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="15dp"
-        android:text="@string/btn_login" 
-        android:background="@drawable/btn_red_bg"/>
+        android:background="@drawable/btn_red_bg"
+        android:text="@string/btn_login" />
 
     <Button
         android:id="@+id/btn_register"
@@ -85,7 +98,16 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="15dp"
-        android:text="@string/btn_register" 
-        android:background="@drawable/btn_white_gray_bg"/>
-
+        android:background="@drawable/btn_white_gray_bg"
+        android:text="@string/btn_register" />
+	<TextView 
+	    android:id="@+id/forgot_password"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="right"
+	    android:layout_marginRight="10dp"
+	    android:layout_marginTop="10dp"
+	    android:onClick="forgotPwd"
+	    android:textSize="@dimen/login_forgot_pwd_size"
+	    android:text="@string/lab_forgot_password"/>
 </LinearLayout>

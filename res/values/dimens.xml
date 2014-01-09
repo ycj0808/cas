@@ -19,4 +19,6 @@
     <dimen name="register_spinner_text_role_margin_left">33dp</dimen>
     <dimen name="register_spinner_text_unit_margin_left">10dp</dimen>
     <dimen name="register_layout_layout_margin_top">3dp</dimen>
+    
+    <dimen name="login_forgot_pwd_size">15sp</dimen>
 </resources>
