@@ -13,7 +13,9 @@ import android.content.DialogInterface.OnKeyListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -89,18 +91,27 @@ public class LoginActivity extends BaseMonitorActivity {
 		dialog= new AlertDialog.Builder(mContext).create();
 		dialog.setCanceledOnTouchOutside(false);
 	}
-	
+	/**
+	  * @Title: 设置自动登陆
+	  * @Description: TODO
+	  * @param     设定文件
+	  * @return void    返回类型
+	  * @throws
+	  */
 	public void autoLogin(){
 		if(!TextUtils.isEmpty(login_account)&&!TextUtils.isEmpty(login_password)){
 			login_password=SecurityUtils.decryptBASE64(login_password);
 			edit_login_account.setText(login_account);
 			edit_login_password.setText(login_password);
+			if(dialog!=null&!dialog.isShowing()){
+				dialog.show();
+				dialog.setContentView(view);
+			}
+			new Thread(login_thread).start();
+		}else{
+			btn_login.setEnabled(false);
 		}
-		if(dialog!=null&!dialog.isShowing()){
-			dialog.show();
-			dialog.setContentView(view);
-		}
-		new Thread(login_thread).start();
+		
 	}
 
 	Runnable login_thread = new Runnable() {
@@ -170,6 +181,7 @@ public class LoginActivity extends BaseMonitorActivity {
 				jumpToActivity(ForgotPasswordActivity.class);
 			}
 		});
+		//dialog运行时,设置监听按键事件
 		dialog.setOnKeyListener(new OnKeyListener() {
 			@Override
 			public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
@@ -178,6 +190,20 @@ public class LoginActivity extends BaseMonitorActivity {
 				     stop=false;
 				 }
 				return false;
+			}
+		});
+		//登陆账号
+		edit_login_account.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,int after) {
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
 			}
 		});
 	}
