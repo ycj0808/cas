@@ -102,6 +102,7 @@ public class LoginActivity extends BaseMonitorActivity {
 				String decode_str=SecurityUtils.decryptBASE64(encode_str);
 				LogUtils.i(decode_str);
 				ToastUtils.showToast(LoginActivity.this, decode_str);
+				jumpToActivity(MainActivity.class);
 			}
 		});
 		// 注册监听事件
@@ -143,7 +144,7 @@ public class LoginActivity extends BaseMonitorActivity {
 	 * @throws
 	 */
 	public void forgotPwd(View v) {
-
+		
 	}
 	
 	private Handler myHandler = new Handler() {
