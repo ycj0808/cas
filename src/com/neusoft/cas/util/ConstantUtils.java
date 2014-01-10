@@ -33,6 +33,7 @@ public class ConstantUtils {
 	/********************注册加载数据常量-start********************/
 	public final static int LOGIN_ERROR1=2001;//用户名或密码为空
 	public final static int LOGIN_ERROR2=2002;//用户名或密码不正确
-	public final static int LOGIN_ERROR3=2003;//
+	public final static int LOGIN_ERROR3=2003;//无网络
+	public final static int LOGIN_SUCCESS=2004;//登陆成功
 	/********************注册加载数据常量-end********************/
 }

@@ -101,13 +101,13 @@
         android:background="@drawable/btn_white_gray_bg"
         android:text="@string/btn_register" />
 	<TextView 
-	    android:id="@+id/forgot_password"
+	    android:id="@+id/txt_forgot_password"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_gravity="right"
 	    android:layout_marginRight="10dp"
-	    android:layout_marginTop="10dp"
-	    android:onClick="forgotPwd"
+	    android:layout_marginTop="13dp"
+	    android:onClick="forgot_pwd"
 	    android:textSize="@dimen/login_forgot_pwd_size"
 	    android:text="@string/lab_forgot_password"/>
 </LinearLayout>

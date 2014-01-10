@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,6 +21,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.neusoft.cas.receiver.BroadcastReceiverHelper;
 import com.neusoft.cas.util.ConstantUtils;
 import com.ycj.android.common.utils.LogUtils;
+import com.ycj.android.ui.utils.ToastUtils;
 
 public abstract class BaseActivity extends SherlockFragmentActivity {
 
@@ -59,11 +61,24 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 							}
 						}
 					}).start();
-					
 					break;
-
-				default:
+				case 2:
 					break;
+				case 3:
+					break;
+				case 4:	
+				    break;
+				case 6:	
+				    break; 
+				case 8:
+					break;
+				case 9:
+					break;
+				case 11:	
+				    break;
+				case 13:	
+					Toast.makeText(getApplicationContext(), "退出",Toast.LENGTH_SHORT).show();
+				    break;
 				}
 			}
 		});

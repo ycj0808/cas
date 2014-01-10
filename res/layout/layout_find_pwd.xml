@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+     <include
+        android:id="@+id/top_find_pwd_navbar"
+        layout="@layout/layout_top_bar" />
+	  <RelativeLayout
+        android:id="@+id/layout_find_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/edit_find_pwd_account"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/common_editbox_selector"
+            android:hint="@string/hint_find_pwd_account"
+            android:inputType="text"
+            android:singleLine="true"
+            android:textSize="16sp" />
+        
+        <Button
+        android:id="@+id/btn_find_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/edit_find_pwd_account"
+        android:background="@drawable/btn_red_bg"
+        android:textColor="@color/white"
+        android:text="@string/lab_find_pwd" />
+    </RelativeLayout>
+</LinearLayout>

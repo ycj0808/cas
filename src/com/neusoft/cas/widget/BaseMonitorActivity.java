@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.widget.Toast;
 
 /**
@@ -21,7 +22,6 @@ import android.widget.Toast;
 public class BaseMonitorActivity extends Activity {
 
 	private BroadcastReceiverHelper receiver;//监听广播
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -115,4 +115,5 @@ public class BaseMonitorActivity extends Activity {
 		LogUtils.i(String.valueOf(ConstantUtils.IS_WIFI));
 		LogUtils.i(String.valueOf(ConstantUtils.IS_MOBILE));
 	}
+	
 }
