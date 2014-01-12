@@ -73,6 +73,18 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 				case 8:
 					break;
 				case 9:
+					new Thread(new Runnable(){
+						@Override
+						public void run() {
+							try {
+								Thread.sleep(250);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}finally{
+								jumpToActivity(ForgotPasswordActivity.class);
+							}
+						}
+					}).start();
 					break;
 				case 11:	
 				    break;

@@ -108,8 +108,6 @@ public class LoginActivity extends BaseMonitorActivity {
 				dialog.setContentView(view);
 			}
 			new Thread(login_thread).start();
-		}else{
-			btn_login.setEnabled(false);
 		}
 		
 	}
