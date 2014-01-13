@@ -2,7 +2,15 @@ package com.neusoft.cas.adapter;
 
 import java.util.List;
 import java.util.Map;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.neusoft.cas.domain.CasData;
 import com.neusoft.cas.widget.R;
+import com.ycj.android.common.utils.DateUtils;
+import com.ycj.android.common.utils.LogUtils;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +21,8 @@ import android.widget.TextView;
 public class InfoFirstAdapter extends BaseAdapter {
 
 	private Context mContext;
-	private List<Map<String,Object>> list_info;
-	public InfoFirstAdapter(Context context,List<Map<String,Object>> list_info) {
+	public InfoFirstAdapter(Context context) {
 		this.mContext=context;
-		this.list_info=list_info;
 	}
 
 	/**
@@ -28,8 +34,8 @@ public class InfoFirstAdapter extends BaseAdapter {
 	  */
 	@Override
 	public int getCount() {
-		if(list_info!=null&&list_info.size()>0){
-			return list_info.size();
+		if(CasData.list_info!=null&&CasData.list_info.size()>0){
+			return CasData.list_info.size();
 		}else{
 			return 0;
 		}
@@ -38,8 +44,8 @@ public class InfoFirstAdapter extends BaseAdapter {
 	
 	@Override
 	public Object getItem(int position) {
-		if(list_info!=null){
-			return list_info.get(position);
+		if(CasData.list_info!=null){
+			return CasData.list_info.get(position);
 		}else{
 			return null;
 		}
@@ -47,13 +53,14 @@ public class InfoFirstAdapter extends BaseAdapter {
 	
 	@Override
 	public long getItemId(int position) {
-		if(list_info!=null){
+		if(CasData.list_info!=null){
 			return position;
 		}else{
 			return 0;
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder viewHolder=null;
@@ -66,11 +73,21 @@ public class InfoFirstAdapter extends BaseAdapter {
 		}else{
 			viewHolder=(ViewHolder) convertView.getTag();
 		}
-		if(list_info!=null){
-			Map<String,Object> map=list_info.get(position);
-					
-			viewHolder.Item_info_title.setText(map.get("authDesc").toString());
-			viewHolder.Item_info_time.setText(map.get("authId").toString());
+		if(CasData.list_info!=null){
+			Map<String,Object> map=CasData.list_info.get(position);
+			String jsonStr=map.get("csinfot").toString();
+			try {
+				JSONObject obj=new JSONObject(jsonStr);
+				viewHolder.Item_info_title.setText(obj.getString("keywords"));
+				viewHolder.Item_info_time.setText(DateUtils.getDateFromLongTime(Long.valueOf(obj.getLong("publishTime"))));
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+//			viewHolder.Item_info_title.setText(map1.get("keywords").toString());
+//			if(map1.get("publishTime")!=null){
+//				viewHolder.Item_info_time.setText(DateUtils.getDateFromLongTime(Long.valueOf(map1.get("publishTime").toString())));
+//			}
+			
 		}
 		return convertView;
 	}

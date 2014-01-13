@@ -113,6 +113,7 @@ public class LoginActivity extends BaseMonitorActivity {
 		if (!TextUtils.isEmpty(login_account)
 				&& !TextUtils.isEmpty(login_password)) {
 			login_password = SecurityUtils.decryptBASE64(login_password);
+			LogUtils.i(login_password);
 			edit_login_account.setText(login_account);
 			edit_login_password.setText(login_password);
 			if (dialog != null & !dialog.isShowing()) {
