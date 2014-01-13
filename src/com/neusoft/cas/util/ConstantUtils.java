@@ -23,6 +23,10 @@ public class ConstantUtils {
 	
 	public static boolean IS_WIFI=false;//Wifi可用
 	public static boolean IS_MOBILE=false;//手机网络可用
+	
+	public static String STR_COMMON_URL="http://10.4.127.65:8080/framework/unieapServices/rest/";
+	public static String STR_LOGIN_URL="http://10.4.127.65:8080/framework/techcomp/ria/commonProcessor!login.action";
+	public static String STR_BASE_URL="http://10.4.127.65:8080/framework/";
 	/********************用于监听网络连接的常量-end********************/
 	
 	/********************注册加载数据常量-start********************/

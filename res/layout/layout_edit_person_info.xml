@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/layout_edit_person_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/edit_person_info_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/register_editbox_height"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/common_editbox_selector"
+            android:hint="@string/hint_register_name"
+            android:inputType="textPersonName"
+            android:paddingLeft="65dp"
+            android:singleLine="true"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/lab_person_info_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/edit_person_info_name"
+            android:layout_alignLeft="@+id/edit_person_info_name"
+            android:layout_alignTop="@+id/edit_person_info_name"
+            android:layout_marginRight="15dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:text="@string/lab_username"
+            android:textAlignment="gravity"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/edit_person_info_email"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/register_editbox_height"
+            android:layout_below="@+id/edit_person_info_name"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/common_editbox_selector"
+            android:hint="@string/hint_register_email"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="65dp"
+            android:singleLine="true"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/lab_person_info_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/edit_person_info_email"
+            android:layout_alignLeft="@+id/edit_person_info_email"
+            android:layout_alignTop="@+id/edit_person_info_email"
+            android:layout_marginRight="15dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:text="@string/lab_email"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/edit_person_info_phone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/register_editbox_height"
+            android:layout_below="@+id/edit_person_info_email"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/common_editbox_selector"
+            android:hint="@string/hint_register_phone"
+            android:inputType="phone"
+            android:paddingLeft="65dp"
+            android:singleLine="true"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/lab_person_info_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/edit_person_info_phone"
+            android:layout_alignLeft="@+id/edit_person_info_phone"
+            android:layout_alignTop="@+id/edit_person_info_phone"
+            android:layout_marginRight="15dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:text="@string/lab_phone"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/edit_person_info_office_phone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/register_editbox_height"
+            android:layout_below="@+id/edit_person_info_phone"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/common_editbox_selector"
+            android:hint="@string/hint_register_office_phone"
+            android:inputType="phone"
+            android:paddingLeft="65dp"
+            android:singleLine="true"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/lab_person_info_office_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/edit_person_info_office_phone"
+            android:layout_alignLeft="@+id/edit_person_info_office_phone"
+            android:layout_alignTop="@+id/edit_person_info_office_phone"
+            android:layout_marginRight="15dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:text="@string/lab_office_tel"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/edit_person_info_qq"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/register_editbox_height"
+            android:layout_below="@+id/edit_person_info_office_phone"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/common_editbox_selector"
+            android:hint="@string/hint_register_qq"
+            android:inputType="phone"
+            android:paddingLeft="65dp"
+            android:singleLine="true"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/lab_person_info_qq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/edit_person_info_qq"
+            android:layout_alignLeft="@+id/edit_person_info_qq"
+            android:layout_alignTop="@+id/edit_person_info_qq"
+            android:layout_marginRight="15dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:text="@string/lab_qq"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_edit_person_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/btn_red_bg"
+        android:text="@string/btn_edit" />
+
+</LinearLayout>

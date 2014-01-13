@@ -46,6 +46,7 @@ public class MainActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		initView();
+		LogUtils.i(myPreference.getPrefString(ConstantUtils.SESSION_ID, ""));
 	}
 
 	/**

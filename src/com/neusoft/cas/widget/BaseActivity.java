@@ -45,7 +45,6 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 		menu.getListView().setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				//mDrawer.setActiveView(view);
 				mDrawer.closeMenu(); 
 				switch (position) {
 				case 1:
@@ -57,7 +56,7 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}finally{
-								jumpToActivity(RegisterActivity.class);
+								//jumpToActivity(RegisterActivity.class);
 							}
 						}
 					}).start();
@@ -71,6 +70,18 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 				case 6:	
 				    break; 
 				case 8:
+					new Thread(new Runnable(){
+						@Override
+						public void run() {
+							try {
+								Thread.sleep(250);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}finally{
+								jumpToActivity(EditPersonInfoActivity.class);
+							}
+						}
+					}).start();
 					break;
 				case 9:
 					new Thread(new Runnable(){
@@ -86,7 +97,7 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 						}
 					}).start();
 					break;
-				case 11:	
+				case 11:
 				    break;
 				case 13:	
 					Toast.makeText(getApplicationContext(), "退出",Toast.LENGTH_SHORT).show();

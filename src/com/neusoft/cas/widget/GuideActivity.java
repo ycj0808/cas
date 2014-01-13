@@ -63,7 +63,7 @@ public class GuideActivity extends Activity {
 		open.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent=new Intent(GuideActivity.this, MainActivity.class);
+				Intent intent=new Intent(GuideActivity.this, LoginActivity.class);
 				startActivity(intent);
 				finish();
 			}

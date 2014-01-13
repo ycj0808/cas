@@ -1,6 +1,12 @@
 package com.neusoft.cas.widget;
+
+import java.util.Map;
+
+import net.simonvt.menudrawer.MenuDrawer;
+
 import com.neusoft.cas.util.ConstantUtils;
 import com.neusoft.cas.util.SharedPreferencesUtils;
+import com.ycj.android.common.utils.HttpUtils;
 import com.ycj.android.common.utils.LogUtils;
 import com.ycj.android.common.utils.SecurityUtils;
 import com.ycj.android.ui.utils.ToastUtils;
@@ -13,6 +19,7 @@ import android.content.DialogInterface.OnKeyListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -52,7 +59,8 @@ public class LoginActivity extends BaseMonitorActivity {
 	private View view;
 	private EditText edit_login_account;
 	private EditText edit_login_password;
-	private boolean stop=true;//登陆开关,if true,则正常,if false,则停止
+	private boolean stop = true;// 登陆开关,if true,则正常,if false,则停止
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -74,61 +82,83 @@ public class LoginActivity extends BaseMonitorActivity {
 		myPreference = SharedPreferencesUtils.getInstance(mContext);
 		rem_password = myPreference.getPrefBoolean(
 				ConstantUtils.REMEMBER_PASSWORD, false);
-		login_account = myPreference.getPrefString(ConstantUtils.LOGIN_ACCOUNT,"");
-		login_password = myPreference.getPrefString(ConstantUtils.LOGIN_PASSWORD, "");
+		login_account = myPreference.getPrefString(ConstantUtils.LOGIN_ACCOUNT,
+				"");
+		login_password = myPreference.getPrefString(
+				ConstantUtils.LOGIN_PASSWORD, "");
 		navBar_title = (TextView) findViewById(R.id.navbar_title);
 		navBar_title.setText(R.string.login_title);
 		btn_login = (Button) findViewById(R.id.btn_login);
 		btn_register = (Button) findViewById(R.id.btn_register);
 		checkBox = (CheckBox) findViewById(R.id.rem_password);
 		checkBox.setChecked(rem_password);
-		edit_login_account=(EditText) findViewById(R.id.edit_login_account);
-		edit_login_password=(EditText) findViewById(R.id.edit_login_password);
-		txt_forgot_password=(TextView) findViewById(R.id.txt_forgot_password);
-		view=View.inflate(mContext, R.layout.layout_progress, null);
-		dialog_content=(TextView) view.findViewById(R.id.message);
-		dialog_content.setText(R.string.lab_loading_data);
-		dialog= new AlertDialog.Builder(mContext).create();
+		edit_login_account = (EditText) findViewById(R.id.edit_login_account);
+		edit_login_password = (EditText) findViewById(R.id.edit_login_password);
+		txt_forgot_password = (TextView) findViewById(R.id.txt_forgot_password);
+		view = View.inflate(mContext, R.layout.layout_progress, null);
+		dialog_content = (TextView) view.findViewById(R.id.message);
+		dialog_content.setText(R.string.lab_logining);
+		dialog = new AlertDialog.Builder(mContext).create();
 		dialog.setCanceledOnTouchOutside(false);
 	}
+
 	/**
-	  * @Title: 设置自动登陆
-	  * @Description: TODO
-	  * @param     设定文件
-	  * @return void    返回类型
-	  * @throws
-	  */
-	public void autoLogin(){
-		if(!TextUtils.isEmpty(login_account)&&!TextUtils.isEmpty(login_password)){
-			login_password=SecurityUtils.decryptBASE64(login_password);
+	 * @Title: 设置自动登陆
+	 * @Description: TODO
+	 * @param 设定文件
+	 * @return void 返回类型
+	 * @throws
+	 */
+	public void autoLogin() {
+		if (!TextUtils.isEmpty(login_account)
+				&& !TextUtils.isEmpty(login_password)) {
+			login_password = SecurityUtils.decryptBASE64(login_password);
 			edit_login_account.setText(login_account);
 			edit_login_password.setText(login_password);
-			if(dialog!=null&!dialog.isShowing()){
+			if (dialog != null & !dialog.isShowing()) {
 				dialog.show();
 				dialog.setContentView(view);
 			}
 			new Thread(login_thread).start();
 		}
-		
+
 	}
 
 	Runnable login_thread = new Runnable() {
 		@Override
 		public void run() {
-			login_account=edit_login_account.getText().toString();
-			login_password=edit_login_password.getText().toString();
-			if(TextUtils.isEmpty(login_account)||TextUtils.isEmpty(login_password)){
+			login_account = edit_login_account.getText().toString();
+			login_password = edit_login_password.getText().toString();
+			if (TextUtils.isEmpty(login_account)
+					|| TextUtils.isEmpty(login_password)) {
 				myHandler.sendEmptyMessage(ConstantUtils.LOGIN_ERROR1);
-			}else{
-				try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				if(stop){
-					myHandler.sendEmptyMessage(ConstantUtils.LOGIN_SUCCESS);
-				}else{
-					stop=true;
+			} else {
+				// try {
+				// Thread.sleep(3000);
+				// } catch (InterruptedException e) {
+				// e.printStackTrace();
+				// }
+				String url = ConstantUtils.STR_LOGIN_URL;
+				String params = "eap_username=" + login_account
+						+ "&eap_password=" + login_password
+						+ "&eap_authentication=true";
+				Map<String,Object> map= HttpUtils.sendLoginGet(url, params);
+				String result=map.get("result").toString();
+				if (!TextUtils.isEmpty(result)&&result.equals("success")) {
+					if (stop) {
+						myPreference.setPrefString(ConstantUtils.SESSION_ID,
+								map.get("jsessionid").toString());
+						myHandler.sendEmptyMessage(ConstantUtils.LOGIN_SUCCESS);
+					} else {
+						stop = true;
+					}
+				} else {
+					Message msg=new Message();
+					msg.what=ConstantUtils.LOGIN_ERROR2;
+					Bundle bundle=new Bundle();
+					bundle.putString("fail_info", map.get("fail_info").toString());
+					msg.setData(bundle);
+					myHandler.sendMessage(msg);
 				}
 			}
 		}
@@ -146,7 +176,7 @@ public class LoginActivity extends BaseMonitorActivity {
 		btn_login.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(dialog!=null&!dialog.isShowing()){
+				if (dialog != null & !dialog.isShowing()) {
 					dialog.show();
 					dialog.setContentView(view);
 				}
@@ -163,15 +193,17 @@ public class LoginActivity extends BaseMonitorActivity {
 		// 记住密码的CheckBox的变更监听事件
 		checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
-			public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-				myPreference.setPrefBoolean(ConstantUtils.REMEMBER_PASSWORD,isChecked);
-				if(!isChecked){
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				myPreference.setPrefBoolean(ConstantUtils.REMEMBER_PASSWORD,
+						isChecked);
+				if (!isChecked) {
 					myPreference.removeShare(ConstantUtils.LOGIN_PASSWORD);
 					LogUtils.i("remove password");
 				}
 			}
 		});
-		//找回密码的监听事件
+		// 找回密码的监听事件
 		txt_forgot_password.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -179,27 +211,30 @@ public class LoginActivity extends BaseMonitorActivity {
 				jumpToActivity(ForgotPasswordActivity.class);
 			}
 		});
-		//dialog运行时,设置监听按键事件
+		// dialog运行时,设置监听按键事件
 		dialog.setOnKeyListener(new OnKeyListener() {
 			@Override
-			public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-				 if (keyCode==KeyEvent.KEYCODE_BACK){
-					 LogUtils.i("设置stop开关");
-				     stop=false;
-				 }
+			public boolean onKey(DialogInterface dialog, int keyCode,
+					KeyEvent event) {
+				if (keyCode == KeyEvent.KEYCODE_BACK) {
+					LogUtils.i("设置stop开关");
+					stop = false;
+				}
 				return false;
 			}
 		});
-		//登陆账号
+		// 登陆账号
 		edit_login_account.addTextChangedListener(new TextWatcher() {
 			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
 			}
-			
+
 			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,int after) {
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
 			}
-			
+
 			@Override
 			public void afterTextChanged(Editable s) {
 			}
@@ -217,7 +252,7 @@ public class LoginActivity extends BaseMonitorActivity {
 		Intent intent = new Intent(LoginActivity.this, cls);
 		startActivity(intent);
 	}
-	
+
 	private Handler myHandler = new Handler() {
 		@Override
 		public void handleMessage(android.os.Message msg) {
@@ -225,16 +260,26 @@ public class LoginActivity extends BaseMonitorActivity {
 			switch (msg.what) {
 			case ConstantUtils.LOGIN_ERROR1:
 				closeDialog();
-				ToastUtils.showToast(LoginActivity.this, R.string.lab_login_error1,Gravity.BOTTOM,0,40);
+				ToastUtils.showToast(LoginActivity.this,
+						R.string.lab_login_error1, Gravity.BOTTOM, 0, 40);
+				break;
+			case ConstantUtils.LOGIN_ERROR2:
+				Bundle bundle=msg.getData();
+				closeDialog();
+				ToastUtils.showToast(LoginActivity.this,bundle.getString("fail_info"), Gravity.BOTTOM, 0, 40);
 				break;
 			case ConstantUtils.LOGIN_SUCCESS:
-				if(checkBox.isChecked()){
-					myPreference.setPrefString(ConstantUtils.LOGIN_ACCOUNT, edit_login_account.getText().toString());
-					myPreference.setPrefString(ConstantUtils.LOGIN_PASSWORD, SecurityUtils.encryptBASE64(edit_login_account.getText().toString()));
+				if (checkBox.isChecked()) {
+					myPreference.setPrefString(ConstantUtils.LOGIN_ACCOUNT,
+							edit_login_account.getText().toString());
+					myPreference.setPrefString(ConstantUtils.LOGIN_PASSWORD,
+							SecurityUtils.encryptBASE64(edit_login_account
+									.getText().toString()));
 				}
 				closeDialog();
-				ToastUtils.showToast(LoginActivity.this, R.string.lab_login_success,Gravity.BOTTOM,0,40);
-				jumpToActivity(MainActivity.class);
+				ToastUtils.showToast(LoginActivity.this,
+						R.string.lab_login_success, Gravity.BOTTOM, 0, 40);
+				jumpToActivity(InfoFirstActivity.class);
 				finish();
 				break;
 			default:
@@ -242,15 +287,16 @@ public class LoginActivity extends BaseMonitorActivity {
 			}
 		}
 	};
-	 /**
-	  * @Title: 关闭diaglog
-	  * @Description: TODO
-	  * @param     设定文件
-	  * @return void    返回类型
-	  * @throws
-	  */
-	private void closeDialog(){
-		if(dialog!=null&&dialog.isShowing()){
+
+	/**
+	 * @Title: 关闭diaglog
+	 * @Description: TODO
+	 * @param 设定文件
+	 * @return void 返回类型
+	 * @throws
+	 */
+	private void closeDialog() {
+		if (dialog != null && dialog.isShowing()) {
 			dialog.dismiss();
 		}
 	}

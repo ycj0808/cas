@@ -1,5 +1,6 @@
 package com.neusoft.cas.widget;
 
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.neusoft.cas.receiver.BroadcastReceiverHelper;
 import com.neusoft.cas.util.ConstantUtils;
 import com.ycj.android.common.utils.LogUtils;
@@ -19,7 +20,7 @@ import android.widget.Toast;
  * @author yangchj
  * @date 2014-1-7 上午11:40:17
  */
-public class BaseMonitorActivity extends Activity {
+public class BaseMonitorActivity extends SherlockFragmentActivity {
 
 	private BroadcastReceiverHelper receiver;//监听广播
 	@Override
