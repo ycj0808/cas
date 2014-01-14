@@ -20,7 +20,7 @@ public class WelcomeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		ImageView iv = new ImageView(this);
-		iv.setBackgroundResource(R.drawable.start);
+		iv.setBackgroundResource(R.drawable.default_wallpaper);
 	    iv.setLayoutParams(new LayoutParams(getWindowManager().getDefaultDisplay().getWidth(), getWindowManager().getDefaultDisplay().getHeight()));
 		setContentView(iv);
 		mContext=this;
