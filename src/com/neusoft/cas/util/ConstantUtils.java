@@ -28,13 +28,13 @@ public class ConstantUtils {
 //	public static String STR_LOGIN_URL="http://10.4.127.65:8080/framework/techcomp/ria/commonProcessor!login.action";
 //	public static String STR_BASE_URL="http://10.4.127.65:8080/framework/";
 	
-//	public static String STR_COMMON_URL="http://10.4.120.103:8080/cas/unieapServices/rest/";
-//	public static String STR_LOGIN_URL="http://10.4.120.103:8080/cas/techcomp/ria/commonProcessor!login.action";
-//	public static String STR_BASE_URL="http://10.4.120.103:8080/cas/";
+	public static String STR_COMMON_URL="http://10.4.120.103:8080/cas/unieapServices/rest/";
+	public static String STR_LOGIN_URL="http://10.4.120.103:8080/cas/techcomp/ria/commonProcessor!login.action";
+	public static String STR_BASE_URL="http://10.4.120.103:8080/cas/";
 	
-	public static String STR_COMMON_URL="http://10.4.126.145:8080/cas/unieapServices/rest/";
-	public static String STR_LOGIN_URL="http://10.4.126.145:8080/cas/techcomp/ria/commonProcessor!login.action";
-	public static String STR_BASE_URL="http://10.4.126.145:8080/cas/";
+//	public static String STR_COMMON_URL="http://10.4.126.145:8080/cas/unieapServices/rest/";
+//	public static String STR_LOGIN_URL="http://10.4.126.145:8080/cas/techcomp/ria/commonProcessor!login.action";
+//	public static String STR_BASE_URL="http://10.4.126.145:8080/cas/";
 	/********************用于监听网络连接的常量-end********************/
 	
 	/********************注册加载数据常量-start********************/
