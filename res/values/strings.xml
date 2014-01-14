@@ -42,7 +42,10 @@
     <string name="lab_login_error2">网络出错</string>
     <string name="lab_edit_person_info">修改个人资料</string>
     <string name="lab_info_first">信息首页</string>
-  
+    <string name="lab_busi_info">业务信息</string>
+    <string name="lab_quality_report">质量通报</string>
+    <string name="lab_common_fault">常见故障</string>
+    
     <string name="btn_login">登陆</string>
     <string name="btn_register">注册</string>
     <string name="btn_submit">确认</string>

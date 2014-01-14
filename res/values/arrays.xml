@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="infotype">
+        <item>全部</item>
+        <item>业务信息</item>
+        <item>质量通报</item>
+        <item>常见故障</item>
+    </string-array>
+</resources>

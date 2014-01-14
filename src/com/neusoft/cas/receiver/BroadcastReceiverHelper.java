@@ -3,14 +3,12 @@ package com.neusoft.cas.receiver;
 import com.neusoft.cas.util.ConstantUtils;
 import com.ycj.android.common.utils.LogUtils;
 import com.ycj.android.common.utils.NetUtils;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Handler;
-import android.util.Log;
  /**
    * 监听网络的广播
    * @ClassName: BroadcastReceiverHelper

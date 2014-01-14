@@ -1,6 +1,10 @@
 package com.neusoft.cas.widget;
 
+import java.util.HashMap;
 import java.util.Map;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import net.simonvt.menudrawer.MenuDrawer;
 
@@ -147,9 +151,50 @@ public class LoginActivity extends BaseMonitorActivity {
 				String result=map.get("result").toString();
 				if (!TextUtils.isEmpty(result)&&result.equals("success")) {
 					if (stop) {
-						myPreference.setPrefString(ConstantUtils.SESSION_ID,
-								map.get("jsessionid").toString());
-						myHandler.sendEmptyMessage(ConstantUtils.LOGIN_SUCCESS);
+						myPreference.setPrefString(ConstantUtils.SESSION_ID,map.get("jsessionid").toString());
+						Map<String,String> paramMap=new HashMap<String, String>();
+						paramMap.put("boId", "common_CommonUserBO_bo");
+						paramMap.put("methodName", "getUserDetailByUserAccountPhone");
+						paramMap.put("returnType", "json");
+						StringBuilder sb=new StringBuilder();
+						sb.append("[{String:'").append(login_account).append("'}]");
+						paramMap.put("parameters", sb.toString());
+//						paramMap.put("JSESSIONID", map.get("jsessionid").toString());
+						paramMap.put("eap_username", login_account);
+						paramMap.put("eap_password", login_password);
+
+						result=HttpUtils.sendPostRequest(ConstantUtils.STR_COMMON_URL, paramMap);
+						
+						//String param="boId=common_CommonUserBO_bo&methodName=getUserDetailByUserAccountPhone";
+//						StringBuilder sbStr=new StringBuilder();
+//						sbStr.append("boId=common_CommonUserBO_bo&methodName=getUserDetailByUserAccountPhone");
+//						sbStr.append("&returnType=json").append("&jsessionid=").append(sb.toString());
+//						result=HttpUtils.sendPost(url, sbStr.toString());
+						try {
+							JSONObject obj=new JSONObject(result);
+							JSONObject jsonObject=obj.getJSONObject("response");
+							if(jsonObject!=null){
+								myPreference.setPrefString(ConstantUtils.QQ, jsonObject.getString("qq"));
+								myPreference.setPrefString(ConstantUtils.USER_ID, jsonObject.getString("userId"));
+								myPreference.setPrefString(ConstantUtils.USER_ACCOUNT, jsonObject.getString("userAccount"));
+								myPreference.setPrefString(ConstantUtils.USER_NAME, jsonObject.getString("userName"));
+								myPreference.setPrefString(ConstantUtils.USER_EMAIL, jsonObject.getString("userEmail"));
+								myPreference.setPrefString(ConstantUtils.USER_MOBILE_TELEPHONE, jsonObject.getString("userMobileTelephone"));
+								myPreference.setPrefString(ConstantUtils.USER_OFFICE_TELEPHONE, jsonObject.getString("userOfficeTelephone"));
+								myPreference.setPrefString(ConstantUtils.ROLE_ID, jsonObject.getString("role_id"));
+								myPreference.setPrefString(ConstantUtils.UNIT_ID1, jsonObject.getString("unit1_id"));
+								myPreference.setPrefString(ConstantUtils.UNIT_ID2, jsonObject.getString("unit2_id"));
+								myPreference.setPrefString(ConstantUtils.UNIT_ID3, jsonObject.getString("unit3_id"));								
+								myPreference.setPrefString(ConstantUtils.S_USERNAME,login_account);
+								myPreference.setPrefString(ConstantUtils.S_USERPASSWORD,login_password);
+								myHandler.sendEmptyMessage(ConstantUtils.LOGIN_SUCCESS);
+							}else{
+								myHandler.sendEmptyMessage(ConstantUtils.LOGIN_ERROR3);
+							}
+						} catch (JSONException e) {
+							myHandler.sendEmptyMessage(ConstantUtils.LOGIN_ERROR3);
+							e.printStackTrace();
+						}
 					} else {
 						stop = true;
 					}
@@ -258,6 +303,7 @@ public class LoginActivity extends BaseMonitorActivity {
 		@Override
 		public void handleMessage(android.os.Message msg) {
 			super.handleMessage(msg);
+			Bundle bundle=new Bundle();
 			switch (msg.what) {
 			case ConstantUtils.LOGIN_ERROR1:
 				closeDialog();
@@ -265,16 +311,20 @@ public class LoginActivity extends BaseMonitorActivity {
 						R.string.lab_login_error1, Gravity.BOTTOM, 0, 40);
 				break;
 			case ConstantUtils.LOGIN_ERROR2:
-				Bundle bundle=msg.getData();
+				bundle=msg.getData();
 				closeDialog();
 				ToastUtils.showToast(LoginActivity.this,bundle.getString("fail_info"), Gravity.BOTTOM, 0, 40);
+				break;
+			case ConstantUtils.LOGIN_ERROR3:
+				closeDialog();
+				ToastUtils.showToast(LoginActivity.this,"解析数据出错", Gravity.BOTTOM, 0, 40);
 				break;
 			case ConstantUtils.LOGIN_SUCCESS:
 				if (checkBox.isChecked()) {
 					myPreference.setPrefString(ConstantUtils.LOGIN_ACCOUNT,
 							edit_login_account.getText().toString());
 					myPreference.setPrefString(ConstantUtils.LOGIN_PASSWORD,
-							SecurityUtils.encryptBASE64(edit_login_account
+							SecurityUtils.encryptBASE64(edit_login_password
 									.getText().toString()));
 				}
 				closeDialog();

@@ -56,16 +56,64 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}finally{
-								//jumpToActivity(RegisterActivity.class);
+								Bundle bundle=new Bundle();
+								bundle.putString("typeId", "");
+								jumpToActivity(InfoFirstActivity.class, bundle);
+								finish();
 							}
 						}
 					}).start();
 					break;
 				case 2:
+					new Thread(new Runnable(){
+						@Override
+						public void run() {
+							try {
+								Thread.sleep(250);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}finally{
+								Bundle bundle=new Bundle();
+								bundle.putString("typeId", "1");
+								jumpToActivity(InfoFirstActivity.class, bundle);
+								finish();
+							}
+						}
+					}).start();
 					break;
 				case 3:
+					new Thread(new Runnable(){
+						@Override
+						public void run() {
+							try {
+								Thread.sleep(250);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}finally{
+								Bundle bundle=new Bundle();
+								bundle.putString("typeId", "2");
+								jumpToActivity(InfoFirstActivity.class, bundle);
+								finish();
+							}
+						}
+					}).start();
 					break;
 				case 4:	
+					new Thread(new Runnable(){
+						@Override
+						public void run() {
+							try {
+								Thread.sleep(250);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}finally{
+								Bundle bundle=new Bundle();
+								bundle.putString("typeId", "3");
+								jumpToActivity(InfoFirstActivity.class, bundle);
+								finish();
+							}
+						}
+					}).start();
 				    break;
 				case 6:	
 				    break; 
@@ -78,7 +126,7 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}finally{
-								jumpToActivity(EditPersonInfoActivity.class);
+								jumpToActivity(EditPersonInfoActivity.class,null);
 							}
 						}
 					}).start();
@@ -92,7 +140,7 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}finally{
-								jumpToActivity(ForgotPasswordActivity.class);
+								jumpToActivity(ForgotPasswordActivity.class,null);
 							}
 						}
 					}).start();
@@ -220,8 +268,11 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 	  * @return void    返回类型
 	  * @throws
 	 */
-	protected void jumpToActivity(Class cls){
+	protected void jumpToActivity(Class cls,Bundle bundle){
 		Intent intent=new Intent(BaseActivity.this,cls);
+		if(bundle!=null){
+			intent.putExtras(bundle);
+		}
 		startActivity(intent);
 	}
 }

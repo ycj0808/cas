@@ -72,6 +72,9 @@
         <activity
             android:name="com.neusoft.cas.widget.EditPersonInfoActivity"
             android:theme="@style/CasTheme.Sherlock" />
+         <activity
+            android:name="com.neusoft.cas.widget.InfoDetailActivity"
+            android:theme="@style/CasTheme.Sherlock" />
     </application>
 
 </manifest>

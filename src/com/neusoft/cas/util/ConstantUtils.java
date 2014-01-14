@@ -31,6 +31,7 @@ public class ConstantUtils {
 //	public static String STR_COMMON_URL="http://10.4.120.103:8080/cas/unieapServices/rest/";
 //	public static String STR_LOGIN_URL="http://10.4.120.103:8080/cas/techcomp/ria/commonProcessor!login.action";
 //	public static String STR_BASE_URL="http://10.4.120.103:8080/cas/";
+	
 	public static String STR_COMMON_URL="http://10.4.126.145:8080/cas/unieapServices/rest/";
 	public static String STR_LOGIN_URL="http://10.4.126.145:8080/cas/techcomp/ria/commonProcessor!login.action";
 	public static String STR_BASE_URL="http://10.4.126.145:8080/cas/";
@@ -44,7 +45,25 @@ public class ConstantUtils {
 	/********************注册加载数据常量-start********************/
 	public final static int LOGIN_ERROR1=2001;//用户名或密码为空
 	public final static int LOGIN_ERROR2=2002;//用户名或密码不正确
-	public final static int LOGIN_ERROR3=2003;//无网络
+	public final static int LOGIN_ERROR3=2003;//解析数据出错
+	
 	public final static int LOGIN_SUCCESS=2004;//登陆成功
 	/********************注册加载数据常量-end********************/
+	
+	
+	/********************用户常量********************/
+	 public final static String QQ="qq";
+	 public final static String USER_ID="userId";
+	 public final static String USER_ACCOUNT="userAccount";
+	 public final static String USER_NAME="userName";
+	 public final static String USER_EMAIL="userEmail";
+	 public final static String USER_MOBILE_TELEPHONE="userMobileTelephone";
+	 public final static String USER_OFFICE_TELEPHONE="userOfficeTelephone";
+	 public final static String ROLE_ID="role_id";
+	 public final static String UNIT_ID1="unit1_id";
+	 public final static String UNIT_ID2="unit2_id";
+	 public final static String UNIT_ID3="unit3_id";
+	 public final static String S_USERNAME="s_userName";
+	 public final static String S_USERPASSWORD="s_userPassword";
+	/********************用户常量********************/
 }
