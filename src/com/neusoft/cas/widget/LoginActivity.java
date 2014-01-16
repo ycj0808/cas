@@ -159,17 +159,16 @@ public class LoginActivity extends BaseMonitorActivity {
 						StringBuilder sb=new StringBuilder();
 						sb.append("[{String:'").append(login_account).append("'}]");
 						paramMap.put("parameters", sb.toString());
-//						paramMap.put("JSESSIONID", map.get("jsessionid").toString());
+						paramMap.put("jsessionid", map.get("jsessionid").toString());
 						paramMap.put("eap_username", login_account);
 						paramMap.put("eap_password", login_password);
-
 						result=HttpUtils.sendPostRequest(ConstantUtils.STR_COMMON_URL, paramMap);
 						
-						//String param="boId=common_CommonUserBO_bo&methodName=getUserDetailByUserAccountPhone";
-//						StringBuilder sbStr=new StringBuilder();
-//						sbStr.append("boId=common_CommonUserBO_bo&methodName=getUserDetailByUserAccountPhone");
-//						sbStr.append("&returnType=json").append("&jsessionid=").append(sb.toString());
+						StringBuilder sbStr=new StringBuilder();
+						sbStr.append("boId=common_CommonUserBO_bo&methodName=getUserDetailByUserAccountPhone");
+						sbStr.append("&returnType=json").append("&parameters=").append(sb.toString()).append("&jsessionid=").append(map.get("jsessionid").toString());
 //						result=HttpUtils.sendPost(url, sbStr.toString());
+//						result=HttpUtils.sendGet(ConstantUtils.STR_COMMON_URL, sbStr.toString());
 						try {
 							JSONObject obj=new JSONObject(result);
 							JSONObject jsonObject=obj.getJSONObject("response");
@@ -327,6 +326,7 @@ public class LoginActivity extends BaseMonitorActivity {
 							SecurityUtils.encryptBASE64(edit_login_password
 									.getText().toString()));
 				}
+				ConstantUtils.isLogin=true;
 				closeDialog();
 				ToastUtils.showToast(LoginActivity.this,
 						R.string.lab_login_success, Gravity.BOTTOM, 0, 40);

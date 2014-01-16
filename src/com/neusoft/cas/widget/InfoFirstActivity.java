@@ -101,9 +101,9 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 		paramMap.put("methodName", "getInfo2Phone");   
 		paramMap.put("returnType", "json");
 		paramMap.put("parameters", getParams(sb, typeId));
-//		paramMap.put("jsessionid", jsessionid);
-		paramMap.put("eap_username", myPreference.getPrefString(ConstantUtils.S_USERNAME, ""));
-		paramMap.put("eap_password", myPreference.getPrefString(ConstantUtils.S_USERPASSWORD, ""));
+		paramMap.put("jsessionid", jsessionid);
+//		paramMap.put("eap_username", myPreference.getPrefString(ConstantUtils.S_USERNAME, ""));
+//		paramMap.put("eap_password", myPreference.getPrefString(ConstantUtils.S_USERPASSWORD, ""));
 		new PullToRefreshDataTask().execute(paramMap);
 	}
 	 /**
