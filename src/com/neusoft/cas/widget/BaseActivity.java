@@ -122,7 +122,7 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 						@Override
 						public void run() {
 							try {
-								Thread.sleep(250);
+								Thread.sleep(200);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}finally{

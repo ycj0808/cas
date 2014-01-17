@@ -1,6 +1,8 @@
 package com.neusoft.cas.widget;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,9 +12,11 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.AdapterView.OnItemClickListener;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.OnNavigationListener;
@@ -27,6 +31,7 @@ import com.ycj.android.common.utils.JsonUtils;
 import com.ycj.android.common.utils.LogUtils;
 import com.ycj.android.ui.utils.ToastUtils;
 import com.ycj.android.widget.pulltorefresh.PullAndLoadListView;
+import com.ycj.android.widget.pulltorefresh.PullAndLoadListView.OnLoadMoreListener;
 //import com.ycj.android.widget.pulltorefresh.PullAndLoadListView.OnLoadMoreListener;
 import com.ycj.android.widget.pulltorefresh.PullToRefreshListView.OnRefreshListener;
 
@@ -42,6 +47,10 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 	private String [] infotypes;
 	private String typeId="";
 	private StringBuilder sb=new StringBuilder();	
+	private LinearLayout loading_Indicator;
+	private String pageNumber="1";
+	private String pageSize="15";
+	private int dataSize=0; 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -67,9 +76,13 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 //		actionBar.setDisplayHomeAsUpEnabled(true);
 //		// 不显示Logo
 //		actionBar.setDisplayShowHomeEnabled(true);
+		loading_Indicator = (LinearLayout) findViewById(R.id.placeholder_loading);
 		listView=(PullAndLoadListView) findViewById(R.id.list_info_first);
 		adapter=new InfoFirstAdapter(mContext);
 		listView.setAdapter(adapter);
+
+		showLoading();
+		
 		Bundle bundle=getIntent().getExtras();
 		if(bundle!=null){
 			typeId=bundle.getString("typeId");
@@ -100,10 +113,10 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 		paramMap.put("boId", "infoManager_infoReleaseBO_bo");
 		paramMap.put("methodName", "getInfo2Phone");   
 		paramMap.put("returnType", "json");
-		paramMap.put("parameters", getParams(sb, typeId));
-		paramMap.put("jsessionid", jsessionid);
-//		paramMap.put("eap_username", myPreference.getPrefString(ConstantUtils.S_USERNAME, ""));
-//		paramMap.put("eap_password", myPreference.getPrefString(ConstantUtils.S_USERPASSWORD, ""));
+		paramMap.put("parameters", getParams(sb, typeId,pageNumber,pageSize));
+//		paramMap.put("jsessionid", jsessionid);
+		paramMap.put("eap_username", myPreference.getPrefString(ConstantUtils.S_USERNAME, ""));
+		paramMap.put("eap_password", myPreference.getPrefString(ConstantUtils.S_USERPASSWORD, ""));
 		new PullToRefreshDataTask().execute(paramMap);
 	}
 	 /**
@@ -123,12 +136,19 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 			}
 		});
 		//加载更多的监听事件
-//		listView.setOnLoadMoreListener(new OnLoadMoreListener() {
-//			@Override
-//			public void onLoadMore() {
-//				new LoadMoreDataTask().execute();
-//			}
-//		});
+		listView.setOnLoadMoreListener(new OnLoadMoreListener() {
+			@SuppressWarnings("unchecked")
+			@Override
+			public void onLoadMore() {
+				if(CasData.list_info.size()<dataSize){
+					pageNumber=String.valueOf(Integer.valueOf(pageNumber)+1);
+					paramMap.put("parameters", getParams(sb, typeId,pageNumber,pageSize));
+					new LoadMoreDataTask().execute(paramMap);
+				}else{
+					ToastUtils.showToast(InfoFirstActivity.this, "数据已加载完成", Gravity.BOTTOM, 0, 40);
+				}
+			}
+		});
 		//单击事件
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@SuppressWarnings("unchecked")
@@ -180,8 +200,10 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 			if(!TextUtils.isEmpty(result)){
 				try {
 					JSONObject jsonObject=new JSONObject(result);
-//					tmp=JsonUtils.getListMaps(jsonObject);
-					CasData.list_info=JsonUtils.getListMaps(jsonObject);
+					JSONObject obj=jsonObject.getJSONObject("response");
+					CasData.list_info.clear();
+					CasData.list_info=JsonUtils.getListMaps(obj,"infos");
+					dataSize=Integer.valueOf(obj.getString("info_count"));
 					LogUtils.i(String.valueOf(CasData.list_info.size()));
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -192,6 +214,7 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 		//后台程序运行结束后的操作
 		@Override
 		protected void onPostExecute(Void result) {
+			closeLoading();
 			//通知数据变化了
 			adapter.notifyDataSetChanged();
 			//下拉刷新完成
@@ -206,19 +229,41 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 			super.onCancelled();
 			//通知刷新完成
 			listView.onRefreshComplete();
+			closeLoading();
 		}
 	}
 	
-	private class LoadMoreDataTask extends AsyncTask<Void, Void, Void>{
+	private class LoadMoreDataTask extends AsyncTask<Map<String,String>, Void, Void>{
 
 		//后台运行前的操作
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
+			LogUtils.i("**********************************************");
 		}
 		//后台运行
 		@Override
-		protected Void doInBackground(Void... params) {
+		protected Void doInBackground(Map<String,String>... params) {
+			if (isCancelled()) {
+				return null;
+			}
+			String url=ConstantUtils.STR_COMMON_URL;
+			String result=HttpUtils.sendPostRequest(url, params[0]);
+			LogUtils.i(result);
+			if(!TextUtils.isEmpty(result)){
+				try {
+					List<Map<String, Object>> list=new ArrayList<Map<String, Object>>();
+					JSONObject jsonObject=new JSONObject(result);
+					JSONObject obj=jsonObject.getJSONObject("response");
+					list=JsonUtils.getListMaps(obj,"infos");
+					for(int i=0;i<list.size();i++){
+						CasData.list_info.add((Map<String, Object>) list.get(i));
+					}
+					LogUtils.i(String.valueOf(CasData.list_info.size()));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
 			return null;
 		}
 		//后台程序运行结束后的操作
@@ -241,27 +286,40 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean onNavigationItemSelected(int itemPosition, long itemId) {
 		switch (itemPosition) {
 		case 0:
 			typeId="";
-			paramMap.put("parameters", getParams(sb, typeId));
+			pageNumber="1";
+			paramMap.put("parameters", getParams(sb, typeId,pageNumber,pageSize));
+			showLoading();
+			new PullToRefreshDataTask().execute(paramMap);
 			LogUtils.i(typeId);
 			break;
 		case 1:
 			typeId="1";
-			paramMap.put("parameters", getParams(sb, typeId));
+			pageNumber="1";
+			paramMap.put("parameters", getParams(sb, typeId,pageNumber,pageSize));
+			showLoading();
+			new PullToRefreshDataTask().execute(paramMap);
 			LogUtils.i(typeId);
 			break;
 		case 2:
 			typeId="2";
-			paramMap.put("parameters", getParams(sb, typeId));
+			pageNumber="1";
+			paramMap.put("parameters", getParams(sb, typeId,pageNumber,pageSize));
+			showLoading();
+			new PullToRefreshDataTask().execute(paramMap);
 			LogUtils.i(typeId);
 			break;
 		case 3:
 			typeId="3";
-			paramMap.put("parameters", getParams(sb, typeId));
+			pageNumber="1";
+			paramMap.put("parameters", getParams(sb, typeId,pageNumber,pageSize));
+			showLoading();
+			new PullToRefreshDataTask().execute(paramMap);
 			LogUtils.i(typeId);
 			break;
 		}
@@ -277,10 +335,34 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 	  * @return void    返回类型
 	  * @throws
 	 */
-	public String getParams(StringBuilder sb,String typeId){
+	public String getParams(StringBuilder sb,String typeId,String pageNumber,String pageSize){
 		sb.delete( 0, sb.length() );
 		sb.append("[{'String':'").append(myPreference.getPrefString(ConstantUtils.ROLE_ID, "")).append("'},");
-		sb.append("{'String':'2'},").append("{'String':'").append(typeId).append("'},").append("{'String':''},").append("{'String':'1'},").append("{'String':'20'}]");
+		sb.append("{'String':'2'},").append("{'String':'").append(typeId).append("'},");
+		sb.append("{'String':''},").append("{'String':'").append(pageNumber).append("'},").append("{'String':'").append(pageSize).append("'}]");
 		return sb.toString();
+	}
+	
+	/**
+	  * @Title: 显示进度条
+	  * @Description: TODO
+	  * @param     设定文件
+	  * @return void    返回类型
+	  * @throws
+	  */
+	public void showLoading(){
+		listView.setVisibility(View.GONE);
+		loading_Indicator.setVisibility(View.VISIBLE);
+	}
+	/**
+	  * @Title: 关闭进度条
+	  * @Description: TODO
+	  * @param     设定文件
+	  * @return void    返回类型
+	  * @throws
+	  */
+	public void closeLoading(){
+		listView.setVisibility(View.VISIBLE);
+		loading_Indicator.setVisibility(View.GONE);
 	}
 }

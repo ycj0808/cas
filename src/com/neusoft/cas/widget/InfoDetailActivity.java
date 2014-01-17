@@ -20,7 +20,7 @@ public class InfoDetailActivity extends BaseMonitorActivity {
 //		if(savedInstanceState!=null){
 //			infoUrl=ConstantUtils.STR_BASE_URL+savedInstanceState.getString("infoUrl");
 //		}
-		infoUrl=ConstantUtils.STR_BASE_URL+"/upload/infomanage/3d2c9372b25b4e5e84173c852e26abb2.jsp";
+		infoUrl=ConstantUtils.STR_BASE_URL+"/upload/infomanage/055aed411ea3450a89a566bf057d15f6.jsp";
 		webView.loadUrl(infoUrl);
 	}
 	/**

@@ -327,9 +327,9 @@ public class LoginActivity extends BaseMonitorActivity {
 									.getText().toString()));
 				}
 				ConstantUtils.isLogin=true;
-				closeDialog();
 				ToastUtils.showToast(LoginActivity.this,
 						R.string.lab_login_success, Gravity.BOTTOM, 0, 40);
+				closeDialog();
 				jumpToActivity(InfoFirstActivity.class);
 				finish();
 				break;

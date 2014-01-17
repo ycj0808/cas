@@ -43,12 +43,18 @@ public class ConstantUtils {
 	public final static int REGISTER_SUCCESS=1003;//注册成功
 	/********************注册加载数据常量-end********************/
 	
-	/********************注册加载数据常量-start********************/
+	/********************登陆加载数据常量-start********************/
 	public final static int LOGIN_ERROR1=2001;//用户名或密码为空
 	public final static int LOGIN_ERROR2=2002;//用户名或密码不正确
 	public final static int LOGIN_ERROR3=2003;//解析数据出错
 	public final static int LOGIN_SUCCESS=2004;//登陆成功
-	/********************注册加载数据常量-end********************/
+	/********************登陆加载数据常量-end********************/
+	
+	/********************修改用户信息加载数据常量-start********************/
+	public final static int EDIT_LOADING_DATA=3001;//加载数据
+	public final static int EDIT_ERROR1=3002;//编辑错误
+	public final static int EDIT_SUCCESS=3003;//修改信息成功
+	/********************修改用户信息加载数据常量-end********************/
 	
 	/********************登陆常量-start********************/
 	public static boolean isLogin=false;
