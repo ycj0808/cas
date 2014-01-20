@@ -140,7 +140,7 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}finally{
-								jumpToActivity(ForgotPasswordActivity.class,null);
+								jumpToActivity(EditPasswordActivity.class,null);
 							}
 						}
 					}).start();

@@ -50,7 +50,8 @@
     <string name="lab_register_error2">邮箱格式不正确</string>
     <string name="lab_register_error3">手机格式不正确</string> 
     <string name="lab_register_error4">一级或二级部门为必选项</string>
-    <string name="lab_register_error5">角色为必选项</string>     
+    <string name="lab_register_error5">角色为必选项</string>    
+    <string name="lab_edit_password">修改密码</string>
      
     <string name="btn_login">登陆</string>
     <string name="btn_register">注册</string>

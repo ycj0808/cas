@@ -29,6 +29,7 @@ import com.ycj.android.common.utils.DateUtils;
 import com.ycj.android.common.utils.HttpUtils;
 import com.ycj.android.common.utils.JsonUtils;
 import com.ycj.android.common.utils.LogUtils;
+import com.ycj.android.common.utils.SecurityUtils;
 import com.ycj.android.ui.utils.ToastUtils;
 import com.ycj.android.widget.pulltorefresh.PullAndLoadListView;
 import com.ycj.android.widget.pulltorefresh.PullAndLoadListView.OnLoadMoreListener;
@@ -51,6 +52,9 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 	private String pageNumber="1";
 	private String pageSize="15";
 	private int dataSize=0; 
+	private PullToRefreshDataTask pullToRefresh;
+	private LoadMoreDataTask loadMore;
+	private String login_pwd="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -116,8 +120,10 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 		paramMap.put("parameters", getParams(sb, typeId,pageNumber,pageSize));
 //		paramMap.put("jsessionid", jsessionid);
 		paramMap.put("eap_username", myPreference.getPrefString(ConstantUtils.S_USERNAME, ""));
-		paramMap.put("eap_password", myPreference.getPrefString(ConstantUtils.S_USERPASSWORD, ""));
-		new PullToRefreshDataTask().execute(paramMap);
+		login_pwd=myPreference.getPrefString(ConstantUtils.S_USERPASSWORD, "");
+		paramMap.put("eap_password",SecurityUtils.decryptBASE64(login_pwd));
+		pullToRefresh=new PullToRefreshDataTask();
+		pullToRefresh.execute(paramMap);
 	}
 	 /**
 	  * @Title: 设置监听事件
@@ -132,7 +138,10 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 			@SuppressWarnings("unchecked")
 			@Override
 			public void onRefresh() {
-				new PullToRefreshDataTask().execute(paramMap);
+				pageNumber="1";
+				paramMap.put("parameters", getParams(sb, typeId,pageNumber,pageSize));
+				pullToRefresh=new PullToRefreshDataTask();
+				pullToRefresh.execute(paramMap);
 			}
 		});
 		//加载更多的监听事件
@@ -140,11 +149,18 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 			@SuppressWarnings("unchecked")
 			@Override
 			public void onLoadMore() {
-				if(CasData.list_info.size()<dataSize){
+				if(CasData.list_info.size()<dataSize-1){
 					pageNumber=String.valueOf(Integer.valueOf(pageNumber)+1);
 					paramMap.put("parameters", getParams(sb, typeId,pageNumber,pageSize));
-					new LoadMoreDataTask().execute(paramMap);
+					loadMore=new LoadMoreDataTask();
+					loadMore.execute(paramMap);
 				}else{
+					//通知数据变化了
+					adapter.notifyDataSetChanged();
+					//加载更多
+					listView.onLoadMoreComplete();
+					listView.setSelection(listView.selectId);
+					LogUtils.i(String.valueOf(listView.selectId));
 					ToastUtils.showToast(InfoFirstActivity.this, "数据已加载完成", Gravity.BOTTOM, 0, 40);
 				}
 			}
@@ -256,6 +272,7 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 					JSONObject jsonObject=new JSONObject(result);
 					JSONObject obj=jsonObject.getJSONObject("response");
 					list=JsonUtils.getListMaps(obj,"infos");
+					dataSize=Integer.valueOf(obj.getString("info_count"));
 					for(int i=0;i<list.size();i++){
 						CasData.list_info.add((Map<String, Object>) list.get(i));
 					}
@@ -295,7 +312,8 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 			pageNumber="1";
 			paramMap.put("parameters", getParams(sb, typeId,pageNumber,pageSize));
 			showLoading();
-			new PullToRefreshDataTask().execute(paramMap);
+			pullToRefresh=new PullToRefreshDataTask();
+			pullToRefresh.execute(paramMap);
 			LogUtils.i(typeId);
 			break;
 		case 1:
@@ -303,7 +321,8 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 			pageNumber="1";
 			paramMap.put("parameters", getParams(sb, typeId,pageNumber,pageSize));
 			showLoading();
-			new PullToRefreshDataTask().execute(paramMap);
+			pullToRefresh=new PullToRefreshDataTask();
+			pullToRefresh.execute(paramMap);
 			LogUtils.i(typeId);
 			break;
 		case 2:
@@ -311,7 +330,8 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 			pageNumber="1";
 			paramMap.put("parameters", getParams(sb, typeId,pageNumber,pageSize));
 			showLoading();
-			new PullToRefreshDataTask().execute(paramMap);
+			pullToRefresh=new PullToRefreshDataTask();
+			pullToRefresh.execute(paramMap);
 			LogUtils.i(typeId);
 			break;
 		case 3:
@@ -319,7 +339,8 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 			pageNumber="1";
 			paramMap.put("parameters", getParams(sb, typeId,pageNumber,pageSize));
 			showLoading();
-			new PullToRefreshDataTask().execute(paramMap);
+			pullToRefresh=new PullToRefreshDataTask();
+			pullToRefresh.execute(paramMap);
 			LogUtils.i(typeId);
 			break;
 		}

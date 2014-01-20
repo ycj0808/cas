@@ -185,8 +185,8 @@ public class LoginActivity extends BaseMonitorActivity {
 								myPreference.setPrefString(ConstantUtils.UNIT_ID2, jsonObject.getString("unit2_id"));
 								myPreference.setPrefString(ConstantUtils.UNIT_ID3, jsonObject.getString("unit3_id"));								
 								myPreference.setPrefString(ConstantUtils.S_USERNAME,login_account);
-								myPreference.setPrefString(ConstantUtils.S_USERPASSWORD,login_password);
-								myHandler.sendEmptyMessage(ConstantUtils.LOGIN_SUCCESS);
+								myPreference.setPrefString(ConstantUtils.S_USERPASSWORD,SecurityUtils.encryptBASE64(login_password));
+								myHandler.sendEmptyMessage(ConstantUtils.LOGIN_SUCCESS); 
 							}else{
 								myHandler.sendEmptyMessage(ConstantUtils.LOGIN_ERROR3);
 							}

@@ -12,6 +12,7 @@ import com.neusoft.cas.util.SharedPreferencesUtils;
 import com.ycj.android.common.utils.HttpUtils;
 import com.ycj.android.common.utils.LogUtils;
 import com.ycj.android.common.utils.RegexUtils;
+import com.ycj.android.common.utils.SecurityUtils;
 import com.ycj.android.ui.utils.DialogUtils;
 import com.ycj.android.ui.utils.ToastUtils;
 import com.ycj.android.widget.pulltorefresh.PullAndLoadListView;
@@ -57,7 +58,7 @@ public class EditPersonInfoActivity extends BaseActivity {
 	private boolean isPhone=true;
 	private boolean isTel=true;
 	private boolean isNameNull=false;
-
+	private String login_pwd="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -239,7 +240,8 @@ public class EditPersonInfoActivity extends BaseActivity {
 					map.put("parameters", sb.toString());
 //					paramMap.put("jsessionid", jsessionid);
 					map.put("eap_username", myPreference.getPrefString(ConstantUtils.S_USERNAME, ""));
-					map.put("eap_password", myPreference.getPrefString(ConstantUtils.S_USERPASSWORD, ""));
+					login_pwd=myPreference.getPrefString(ConstantUtils.S_USERPASSWORD, "");
+					map.put("eap_password",SecurityUtils.decryptBASE64(login_pwd));
 					String result=HttpUtils.sendPostRequest(ConstantUtils.STR_COMMON_URL, map);
 					if(TextUtils.isEmpty(result)){
 						myPreference.setPrefString(ConstantUtils.USER_NAME, userName);
