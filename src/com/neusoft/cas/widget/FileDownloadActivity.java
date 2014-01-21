@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import com.actionbarsherlock.app.ActionBar;
 import com.neusoft.cas.adapter.InfoDownloadAdapter;
 import com.neusoft.cas.domain.CasData;
+import com.neusoft.cas.util.CommonUtils;
 import com.neusoft.cas.util.ConstantUtils;
 import com.neusoft.cas.util.SharedPreferencesUtils;
 import com.ycj.android.common.utils.DateUtils;
@@ -25,6 +28,7 @@ import com.ycj.android.widget.pulltorefresh.PullToRefreshListView.OnRefreshListe
 import net.simonvt.menudrawer.MenuDrawer;
 import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.http.AjaxCallBack;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -57,6 +61,9 @@ public class FileDownloadActivity extends BaseActivity {
 	private int dataSize=0;
 	private AjaxCallBack<File> callBack;//回调函数
 	private long progress;
+	private ProgressDialog m_pDialog;//进度条对话框
+	private String storeDir="";
+	private String filePath="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -93,6 +100,7 @@ public class FileDownloadActivity extends BaseActivity {
 		showLoading();
 		pullToRefresh=new PullToRefreshDataTask();
 		pullToRefresh.execute(paramMap);
+		storeDir=CommonUtils.getStorePath();
 	}
 	/**
 	  * @Title: 设置监听事件
@@ -142,20 +150,12 @@ public class FileDownloadActivity extends BaseActivity {
 			@SuppressWarnings("unchecked")
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-				String path= Environment.getExternalStorageDirectory().getPath();
-				LogUtils.i(path);
-				
+				showProgressDialog();
 				Map<String,Object> map=(Map<String, Object>) listView.getItemAtPosition(position);
 				try {
 					JSONObject obj=new JSONObject(map.get("csfilet").toString());
 					String fileUrl=obj.getString("fileUrl");
-//				    LogUtils.i(fileUrl);
 				    downloadFile(fileUrl);
-//					Bundle bundle=new Bundle();
-//					bundle.putString("fileUrl", obj.getString("fileUrl"));
-//					Intent intent=new Intent(FileDownloadActivity.this,InfoDetailActivity.class);
-//					intent.putExtra("url", bundle);
-//					startActivity(intent);
 				} catch (JSONException e) {
 					e.printStackTrace();
 					ToastUtils.showToast(FileDownloadActivity.this, "解析数据出错");
@@ -167,16 +167,27 @@ public class FileDownloadActivity extends BaseActivity {
 			@Override
 			public void onLoading(long count, long current) {
 				super.onLoading(count, current);
+				LogUtils.i("progress = " + progress);
+				if (current != count && current != 0) {
+					progress = (int) (current / (float) count * 100);
+				} else {
+					progress = 100;
+				}
+				m_pDialog.setProgress((int)progress);
 			}
 			@Override
 			public void onSuccess(File t) {
 				super.onSuccess(t);
 				LogUtils.i("下载完成...");
+				m_pDialog.dismiss();
+				ToastUtils.showToast(FileDownloadActivity.this, "文件已保存于 : "+filePath, Gravity.BOTTOM, 0, 40);
 			}
 			@Override
 			public void onFailure(Throwable t, int errorNo, String strMsg) {
 				super.onFailure(t, errorNo, strMsg);
 				LogUtils.i("下载失败..."+strMsg, t);
+				m_pDialog.dismiss();
+				ToastUtils.showToast(FileDownloadActivity.this, "文件下载失败", Gravity.BOTTOM, 0, 40);
 			}
 			@Override
 			public void onStart() {
@@ -338,6 +349,7 @@ public class FileDownloadActivity extends BaseActivity {
 		super.onResume();
 		login_pwd=myPreference.getPrefString(ConstantUtils.S_USERPASSWORD, "");
 		paramMap.put("eap_password",SecurityUtils.decryptBASE64(login_pwd));
+		storeDir=CommonUtils.getStorePath();
 	}
 	
 	
@@ -349,12 +361,26 @@ public class FileDownloadActivity extends BaseActivity {
 	  * @throws
 	 */
 	protected void downloadFile(String fileUrl){
-		FinalHttp fh = new FinalHttp();  
-		String path= Environment.getExternalStorageDirectory().getPath();
-		String fileName=fileUrl.substring(fileUrl.lastIndexOf("/"), fileUrl.length());
-		fileUrl=ConstantUtils.STR_BASE_URL+fileUrl;
-		path=path+"/cas"+fileName;
-		LogUtils.i(path);
-		fh.download(fileUrl, path,callBack);
+		if(TextUtils.isEmpty(storeDir)){
+			ToastUtils.showToast(FileDownloadActivity.this, "请检查是否已插入内存卡");
+		}else{
+			FinalHttp fh = new FinalHttp();  
+			fileUrl=ConstantUtils.STR_BASE_URL+fileUrl;
+			filePath=storeDir+fileUrl.subSequence(fileUrl.lastIndexOf("/"), fileUrl.length());
+			LogUtils.i(filePath);
+			fh.download(fileUrl, filePath,callBack);
+		}
+	}
+	/**
+	 * 显示进度条对话框
+	 */
+	protected void showProgressDialog(){
+		m_pDialog = new ProgressDialog(FileDownloadActivity.this);
+		m_pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		m_pDialog.setMessage("正在下载文件，请稍候...");
+		m_pDialog.setProgress(100);
+		m_pDialog.setIndeterminate(false);
+		m_pDialog.setCancelable(false);
+		m_pDialog.show();
 	}
 }
