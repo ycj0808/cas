@@ -1,25 +1,27 @@
 package com.neusoft.cas.widget;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.actionbarsherlock.app.ActionBar;
 import com.neusoft.cas.util.ConstantUtils;
 import com.neusoft.cas.util.SharedPreferencesUtils;
-import com.ycj.android.common.utils.HttpUtils;
 import com.ycj.android.common.utils.LogUtils;
 import com.ycj.android.ui.utils.DialogUtils;
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class RequirementsWorkListActivity extends BaseMonitorActivity {
 
 	private Context mContext;
+	private Dialog dialog;
 	private SharedPreferencesUtils myPreference;
 	private EditText edit_requirements_content;
 	private Button btn_submit;
@@ -30,6 +32,8 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 	private String deptId="";//部门ID
 	private String userPhone="";
 	private String userEmail="";
+	private static final int SUCCESS=101;
+	private static final int FAIL=102;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -66,6 +70,9 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 				userPhone=myPreference.getPrefString(ConstantUtils.USER_MOBILE_TELEPHONE, "");
 				deptId=myPreference.getPrefString(ConstantUtils.UNIT_ID3, "");
 				deptName=myPreference.getPrefString(ConstantUtils.UNIT_NAME3, "");
+				LogUtils.i("userId: "+userId+"    "+"userName: "+userName);
+				LogUtils.i("userEmail: "+userEmail+"    "+"userPhone: "+userPhone);
+				LogUtils.i("userPhone: "+userPhone+"    "+"deptId: "+deptId+" "+"deptName: "+deptName);
 			}
 		}).start();
 	}
@@ -86,18 +93,7 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 				if(TextUtils.isEmpty(content)){
 					DialogUtils.showAlertDialog(mContext, "需求工单内容不能为空", "信息提示", "确认");
 				}else{
-					//createWorkList();
-					new Thread(new Runnable() {
-						@Override
-						public void run() {
-							LogUtils.i("**********");
-							Map<String,String> map=new HashMap<String, String>();
-							map.put("name", "hh");
-							String result=HttpUtils.sendPostRequestByJson("http://10.4.126.161:8080/ns/sum.do", map);
-							LogUtils.i(result);
-						}
-					}).start();
-					
+					createWorkList();
 				}
 			}
 		});
@@ -111,7 +107,14 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 	 * @throws
 	 */
 	protected void createWorkList() {
-		getParam(content,userId,userName,deptName,deptId,userPhone,userEmail);
+		//getParam(content,userId,userName,deptName,deptId,userPhone,userEmail);
+		showDialog("正在创建工单，请稍候...");
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				
+			}
+		}).start();
 	}
 	/**
 	  * @Title: 
@@ -129,6 +132,49 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 		LogUtils.i(sb.toString());
 		return sb.toString();
 	}
+	
+	/**
+	 * @Title: 显示对话框
+	 * @Description: TODO
+	 * @param 设定文件
+	 * @return void 返回类型
+	 * @throws
+	 */
+	protected void showDialog(String msg) {
+		View view = View.inflate(mContext, R.layout.layout_progress, null);
+		TextView dialog_content = (TextView) view.findViewById(R.id.message);
+		dialog_content.setText(msg);
+		dialog = DialogUtils.showProgressBar(mContext, view);
+	}
+	
+	/**
+	 * @Title: 关闭对话框
+	 * @Description: TODO
+	 * @param 设定文件
+	 * @return void 返回类型
+	 * @throws
+	 */
+	protected void closeDialog() {
+		if (dialog != null & dialog.isShowing()) {
+			dialog.dismiss();
+		}
+	}
+	
+	@SuppressLint("HandlerLeak")
+	private Handler handler=new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			switch (msg.what) {
+			case SUCCESS:
+				closeDialog();
+				break;
+			case FAIL:
+				closeDialog();
+				break;
+			}
+		}
+	};
 }
 
 
