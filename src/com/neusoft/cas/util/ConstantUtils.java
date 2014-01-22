@@ -74,6 +74,9 @@ public class ConstantUtils {
 	 public final static String UNIT_ID1="unit1_id";
 	 public final static String UNIT_ID2="unit2_id";
 	 public final static String UNIT_ID3="unit3_id";
+	 public final static String UNIT_NAME1="unit1_name";
+	 public final static String UNIT_NAME2="unit2_name";
+	 public final static String UNIT_NAME3="unit3_name";
 	 public final static String S_USERNAME="s_userName";
 	 public final static String S_USERPASSWORD="s_userPassword";
 	/********************用户常量********************/

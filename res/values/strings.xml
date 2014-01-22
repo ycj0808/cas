@@ -20,6 +20,11 @@
     <string name="hint_edit_old_password">当前密码</string>
     <string name="hint_edit_new_password">新密码</string>  
     <string name="hint_edit_new_password1">新密码确认</string>  
+    <string name="hint_card_num">请输入问题卡数量</string>
+    <string name="hint_card_no">请输入问题卡号</string>
+    <string name="hint_complaint_content">请输入投诉内容</string>
+    <string name="hint_requirements_content">请输入需求内容</string>
+    <string name="hint_inside_content">请输入内部工单内容</string>
       
     <string name="lab_account">账户名</string>
     <string name="lab_password">密码</string>
@@ -56,6 +61,13 @@
     <string name="lab_info_msg">确认要退出该账号吗?</string>
     <string name="lab_file_download">文件下载</string>
     <string name="lab_info_detail">信息详情</string>
+    <string name="lab_card_num">问题卡数量</string>
+    <string name="lab_card_no">问题卡号</string>
+    <string name="lab_complaint_content">投诉内容</string>
+    <string name="lab_worklist_type">工单类型</string>
+    <string name="lab_create_worklist">创建投诉工单</string>
+    <string name="lab_requirement_worklist">创建需求工单</string>
+    <string name="lab_inside_worklist">创建内部工单</string>
      
     <string name="btn_login">登陆</string>
     <string name="btn_register">注册</string>
@@ -63,5 +75,5 @@
     <string name="btn_exit">退出</string>
     <string name="btn_close">关闭</string>
     <string name="btn_edit">确认修改</string>
-   
+    <string name="btn_complaint_submit">提交</string>   
 </resources>

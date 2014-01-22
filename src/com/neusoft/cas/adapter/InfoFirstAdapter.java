@@ -73,7 +73,7 @@ public class InfoFirstAdapter extends BaseAdapter {
 		}else{
 			viewHolder=(ViewHolder) convertView.getTag();
 		}
-		if(CasData.list_info!=null){
+		if(CasData.list_info!=null&&CasData.list_info.size()>0){
 			Map<String,Object> map=CasData.list_info.get(position);
 			String jsonStr=map.get("csinfot").toString();
 			try {

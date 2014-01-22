@@ -1,6 +1,7 @@
 package com.neusoft.cas.widget;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.MenuItem;
 import com.neusoft.cas.receiver.BroadcastReceiverHelper;
 import com.neusoft.cas.util.ConstantUtils;
 import com.ycj.android.common.utils.LogUtils;
@@ -117,4 +118,13 @@ public class BaseMonitorActivity extends SherlockFragmentActivity {
 		LogUtils.i(String.valueOf(ConstantUtils.IS_MOBILE));
 	}
 	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			finish();
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 }

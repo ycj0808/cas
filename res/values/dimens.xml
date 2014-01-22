@@ -21,4 +21,5 @@
     <dimen name="register_layout_layout_margin_top">3dp</dimen>
     
     <dimen name="login_forgot_pwd_size">15sp</dimen>
+    
 </resources>

@@ -6,4 +6,9 @@
         <item>质量通报</item>
         <item>常见故障</item>
     </string-array>
+    
+    <string-array name="worklisttype">
+        <item>智能卡</item>
+        <item>一卡充</item>
+    </string-array>
 </resources>

@@ -216,15 +216,7 @@ public class EditPasswordActivity extends BaseMonitorActivity {
 			}
 		}).start();
 	}
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			finish();
-			break;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+	
 	/**
 	  * @Title:显示提示对话框 
 	  * @Description: TODO

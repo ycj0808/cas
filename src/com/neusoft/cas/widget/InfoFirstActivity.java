@@ -35,7 +35,13 @@ import com.ycj.android.widget.pulltorefresh.PullAndLoadListView;
 import com.ycj.android.widget.pulltorefresh.PullAndLoadListView.OnLoadMoreListener;
 //import com.ycj.android.widget.pulltorefresh.PullAndLoadListView.OnLoadMoreListener;
 import com.ycj.android.widget.pulltorefresh.PullToRefreshListView.OnRefreshListener;
-
+ /**
+   * 信息首页
+   * @ClassName: InfoFirstActivity
+   * @Description: TODO
+   * @author yangchj
+   * @date 2014-1-22 下午3:52:28
+   */
 public class InfoFirstActivity extends BaseActivity implements OnNavigationListener {
 
 	private Context mContext;

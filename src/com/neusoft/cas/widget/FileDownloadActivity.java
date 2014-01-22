@@ -163,6 +163,7 @@ public class FileDownloadActivity extends BaseActivity {
 			}
 		});
 		
+		//下载回调函数
 		callBack=new AjaxCallBack<File>() {
 			@Override
 			public void onLoading(long count, long current) {
@@ -179,14 +180,14 @@ public class FileDownloadActivity extends BaseActivity {
 			public void onSuccess(File t) {
 				super.onSuccess(t);
 				LogUtils.i("下载完成...");
-				m_pDialog.dismiss();
+				closeProgressDialog();
 				ToastUtils.showToast(FileDownloadActivity.this, "文件已保存于 : "+filePath, Gravity.BOTTOM, 0, 40);
 			}
 			@Override
 			public void onFailure(Throwable t, int errorNo, String strMsg) {
 				super.onFailure(t, errorNo, strMsg);
 				LogUtils.i("下载失败..."+strMsg, t);
-				m_pDialog.dismiss();
+				closeProgressDialog();
 				ToastUtils.showToast(FileDownloadActivity.this, "文件下载失败", Gravity.BOTTOM, 0, 40);
 			}
 			@Override
@@ -382,5 +383,17 @@ public class FileDownloadActivity extends BaseActivity {
 		m_pDialog.setIndeterminate(false);
 		m_pDialog.setCancelable(false);
 		m_pDialog.show();
+	}
+	/**
+	  * @Title: 关闭水平进度条
+	  * @Description: TODO
+	  * @param     设定文件
+	  * @return void    返回类型
+	  * @throws
+	 */
+	protected void closeProgressDialog(){
+		if(m_pDialog!=null&&m_pDialog.isShowing()){
+			m_pDialog.dismiss();
+		}
 	}
 }

@@ -21,7 +21,9 @@ public class MenuFragment extends SherlockListFragment {
 		listItems.add(new Category("质量通报"));
 		listItems.add(new Category("常见故障"));
 		listItems.add(new Item("发起工单", 0));
-		listItems.add(new Category("发起工单"));
+		listItems.add(new Category("创建投诉工单"));
+		listItems.add(new Category("创建需求工单"));
+		listItems.add(new Category("创建内部工单"));
 		listItems.add(new Item("个人中心", 0));
 		listItems.add(new Category("修改个人资料"));
 		listItems.add(new Category("修改登录密码"));

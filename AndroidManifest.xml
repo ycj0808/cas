@@ -80,6 +80,12 @@
             android:theme="@style/CasTheme.Sherlock" />
         <activity android:name="com.neusoft.cas.widget.FileDownloadActivity"
             android:theme="@style/CasTheme.Sherlock"/>
+        <activity android:name="com.neusoft.cas.widget.ComplaintManagerActivity"
+            android:theme="@style/CasTheme.Sherlock"/>
+        <activity android:name="com.neusoft.cas.widget.RequirementsWorkListActivity"
+            android:theme="@style/CasTheme.Sherlock"/>
+         <activity android:name="com.neusoft.cas.widget.InsideWorkListActivity"
+            android:theme="@style/CasTheme.Sherlock"/>
     </application>
 
 </manifest>

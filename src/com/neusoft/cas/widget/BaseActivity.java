@@ -1,6 +1,8 @@
 package com.neusoft.cas.widget;
 
 
+import java.util.Date;
+
 import net.simonvt.menudrawer.MenuDrawer;
 import net.simonvt.menudrawer.Position;
 import android.content.Context;
@@ -11,6 +13,7 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,6 +38,8 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 	private BroadcastReceiverHelper receiver;
 	private Context mContext;
 	private SharedPreferencesUtils myPreference;
+	private long preTime;
+	public static final long TWO_SECOND = 2 * 1000;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -125,8 +130,48 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 					}).start();
 				    break;
 				case 6:	
+					new Thread(new Runnable(){
+						@Override
+						public void run() {
+							try {
+								Thread.sleep(250);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}finally{
+								jumpToActivity(ComplaintManagerActivity.class, null);
+							}
+						}
+					}).start();
 				    break; 
-				case 8:
+				case 7:	
+					new Thread(new Runnable(){
+						@Override
+						public void run() {
+							try {
+								Thread.sleep(250);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}finally{
+								jumpToActivity(RequirementsWorkListActivity.class, null);
+							}
+						}
+					}).start();
+				    break; 
+				case 8:	
+					new Thread(new Runnable(){
+						@Override
+						public void run() {
+							try {
+								Thread.sleep(250);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}finally{
+								jumpToActivity(InsideWorkListActivity.class, null);
+							}
+						}
+					}).start();
+				    break; 
+				case 10:
 					new Thread(new Runnable(){
 						@Override
 						public void run() {
@@ -140,7 +185,7 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 						}
 					}).start();
 					break;
-				case 9:
+				case 11:
 					new Thread(new Runnable(){
 						@Override
 						public void run() {
@@ -154,7 +199,7 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 						}
 					}).start();
 					break;	
-				case 11:
+				case 13:
 					new Thread(new Runnable(){
 						@Override
 						public void run() {
@@ -168,8 +213,7 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 						}
 					}).start();
 				    break;
-				case 13:	
-					//Toast.makeText(getApplicationContext(), "退出",Toast.LENGTH_SHORT).show();
+				case 15:	
 					DialogUtils.showAlert(mContext, R.string.lab_info_tip, R.string.lab_info_msg, "确认", positiveListener, "取消", negativeListener);
 				    break;
 				}
@@ -321,4 +365,25 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 			dialog.dismiss();
 		}
 	};
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// 截获后退键
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			long currentTime = new Date().getTime();
+			// 如果时间间隔大于2秒, 不处理
+			if ((currentTime - preTime) > TWO_SECOND) {
+				// 显示消息
+				ToastUtils.showToast(BaseActivity.this, "再按一次退出.", Gravity.BOTTOM, 0, 40);
+				// 更新时间
+				preTime = currentTime;
+				// 截获事件,不再处理
+				return true;
+			} else {
+				finish();
+				System.exit(0);
+			}
+		}
+		return false;
+	}
 }
