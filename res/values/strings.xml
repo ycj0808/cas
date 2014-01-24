@@ -75,8 +75,8 @@
     <string name="lab_setting">设置</string>
     <string name="lab_tip">温馨提示:</string>
     <string name="lab_tip_content">请正确的设置服务器地址,否则您无法正常使用该应用\n 如:http://10.4.126.145:8080/cas/</string> 
-    <string name="btn_login">登陆</string>
-    <string name="btn_register">注册</string>
+    <string name="btn_login">登   陆</string>
+    <string name="btn_register">注   册</string>
     <string name="btn_submit">确认</string>
     <string name="btn_exit">退出</string>
     <string name="btn_close">关闭</string>
