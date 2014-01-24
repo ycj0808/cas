@@ -25,6 +25,7 @@
     <string name="hint_complaint_content">请输入投诉内容</string>
     <string name="hint_requirements_content">请输入需求内容</string>
     <string name="hint_inside_content">请输入内部工单内容</string>
+    <string name="hint_service_addr">请输入服务器网址</string>
       
     <string name="lab_account">账户名</string>
     <string name="lab_password">密码</string>
@@ -68,7 +69,12 @@
     <string name="lab_create_worklist">创建投诉工单</string>
     <string name="lab_requirement_worklist">创建需求工单</string>
     <string name="lab_inside_worklist">创建内部工单</string>
-     
+    
+    <string name="lab_service_addr">服务器网址</string>
+    <string name="lab_service_setting">服务器设置</string>
+    <string name="lab_setting">设置</string>
+    <string name="lab_tip">温馨提示:</string>
+    <string name="lab_tip_content">请正确的设置服务器地址,否则您无法正常使用该应用\n 如:http://10.4.126.145:8080/cas/</string> 
     <string name="btn_login">登陆</string>
     <string name="btn_register">注册</string>
     <string name="btn_submit">确认</string>

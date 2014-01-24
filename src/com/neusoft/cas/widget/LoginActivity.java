@@ -15,6 +15,7 @@ import com.ycj.android.common.utils.LogUtils;
 import com.ycj.android.common.utils.SecurityUtils;
 import com.ycj.android.ui.utils.ToastUtils;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -36,6 +37,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -64,7 +66,8 @@ public class LoginActivity extends BaseMonitorActivity {
 	private EditText edit_login_account;
 	private EditText edit_login_password;
 	private boolean stop = true;// 登陆开关,if true,则正常,if false,则停止
-
+	private ImageView img_right;
+	private String service_url="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -84,6 +87,7 @@ public class LoginActivity extends BaseMonitorActivity {
 	protected void initView() {
 		mContext = this;
 		myPreference = SharedPreferencesUtils.getInstance(mContext);
+		service_url=myPreference.getPrefString(ConstantUtils.SERVICE_ADDR, ConstantUtils.STR_BASE_URL);
 		rem_password = myPreference.getPrefBoolean(
 				ConstantUtils.REMEMBER_PASSWORD, false);
 		login_account = myPreference.getPrefString(ConstantUtils.LOGIN_ACCOUNT,
@@ -94,6 +98,8 @@ public class LoginActivity extends BaseMonitorActivity {
 		navBar_title.setText(R.string.login_title);
 		btn_login = (Button) findViewById(R.id.btn_login);
 		btn_register = (Button) findViewById(R.id.btn_register);
+		img_right=(ImageView) findViewById(R.id.navbar_img_right);
+		img_right.setVisibility(View.VISIBLE);
 		checkBox = (CheckBox) findViewById(R.id.rem_password);
 		checkBox.setChecked(rem_password);
 		edit_login_account = (EditText) findViewById(R.id.edit_login_account);
@@ -138,12 +144,7 @@ public class LoginActivity extends BaseMonitorActivity {
 					|| TextUtils.isEmpty(login_password)) {
 				myHandler.sendEmptyMessage(ConstantUtils.LOGIN_ERROR1);
 			} else {
-				// try {
-				// Thread.sleep(3000);
-				// } catch (InterruptedException e) {
-				// e.printStackTrace();
-				// }
-				String url = ConstantUtils.STR_LOGIN_URL;
+				String url = service_url+ConstantUtils.LOGIN_URL_SUFFIX;
 				String params = "eap_username=" + login_account
 						+ "&eap_password=" + login_password
 						+ "&eap_authentication=true";
@@ -162,13 +163,11 @@ public class LoginActivity extends BaseMonitorActivity {
 						paramMap.put("jsessionid", map.get("jsessionid").toString());
 						paramMap.put("eap_username", login_account);
 						paramMap.put("eap_password", login_password);
-						result=HttpUtils.sendPostRequest(ConstantUtils.STR_COMMON_URL, paramMap);
+						result=HttpUtils.sendPostRequest(service_url+ConstantUtils.COMMON_URL_SUFFIX, paramMap);
 						LogUtils.i(result);
 						StringBuilder sbStr=new StringBuilder();
 						sbStr.append("boId=common_CommonUserBO_bo&methodName=getUserDetailByUserAccountPhone");
 						sbStr.append("&returnType=json").append("&parameters=").append(sb.toString()).append("&jsessionid=").append(map.get("jsessionid").toString());
-//						result=HttpUtils.sendPost(url, sbStr.toString());
-//						result=HttpUtils.sendGet(ConstantUtils.STR_COMMON_URL, sbStr.toString());
 						try {
 							JSONObject obj=new JSONObject(result);
 							JSONObject jsonObject=obj.getJSONObject("response");
@@ -181,12 +180,18 @@ public class LoginActivity extends BaseMonitorActivity {
 								myPreference.setPrefString(ConstantUtils.USER_MOBILE_TELEPHONE, jsonObject.getString("userMobileTelephone"));
 								myPreference.setPrefString(ConstantUtils.USER_OFFICE_TELEPHONE, jsonObject.getString("userOfficeTelephone"));
 								myPreference.setPrefString(ConstantUtils.ROLE_ID, jsonObject.getString("role_id"));
-								myPreference.setPrefString(ConstantUtils.UNIT_ID1, jsonObject.getString("unit1_id"));
-								myPreference.setPrefString(ConstantUtils.UNIT_ID2, jsonObject.getString("unit2_id"));
-								myPreference.setPrefString(ConstantUtils.UNIT_ID3, jsonObject.getString("unit3_id"));
+								String deptId=jsonObject.getString("unit_id").replace("dimension", "");
+								String deptId1=jsonObject.getString("unit1_id").replace("dimension", "");
+								String deptId2=jsonObject.getString("unit2_id").replace("dimension", "");
+								String deptId3=jsonObject.getString("unit3_id").replace("dimension", "");
+								myPreference.setPrefString(ConstantUtils.UNIT_ID1, deptId1);
+								myPreference.setPrefString(ConstantUtils.UNIT_ID2, deptId2);
+								myPreference.setPrefString(ConstantUtils.UNIT_ID3, deptId3);
+								myPreference.setPrefString(ConstantUtils.UNIT_ID, deptId);
 								myPreference.setPrefString(ConstantUtils.UNIT_NAME1, jsonObject.getString("unit1_name"));
 								myPreference.setPrefString(ConstantUtils.UNIT_NAME2, jsonObject.getString("unit2_name"));
 								myPreference.setPrefString(ConstantUtils.UNIT_NAME3, jsonObject.getString("unit3_name"));
+								myPreference.setPrefString(ConstantUtils.UNIT_NAME, jsonObject.getString("unit_name"));
 								myPreference.setPrefString(ConstantUtils.S_USERNAME,login_account);
 								myPreference.setPrefString(ConstantUtils.S_USERPASSWORD,SecurityUtils.encryptBASE64(login_password));
 								myHandler.sendEmptyMessage(ConstantUtils.LOGIN_SUCCESS); 
@@ -287,6 +292,15 @@ public class LoginActivity extends BaseMonitorActivity {
 			public void afterTextChanged(Editable s) {
 			}
 		});
+		/**
+		 * 设置按钮监听事件
+		 */
+		img_right.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				jumpToActivity(ServiceSettingActivity.class);
+			}
+		});
 	}
 
 	/**
@@ -296,11 +310,13 @@ public class LoginActivity extends BaseMonitorActivity {
 	 * @return void 返回类型
 	 * @throws
 	 */
+	@SuppressWarnings("rawtypes")
 	protected void jumpToActivity(Class cls) {
 		Intent intent = new Intent(LoginActivity.this, cls);
 		startActivity(intent);
 	}
 
+	@SuppressLint("HandlerLeak")
 	private Handler myHandler = new Handler() {
 		@Override
 		public void handleMessage(android.os.Message msg) {

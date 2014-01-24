@@ -48,6 +48,7 @@ public class EditPasswordActivity extends BaseMonitorActivity {
 	private Dialog dialog;
 	private View view;
 	private TextView dialog_content;
+	private String service_url="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -77,6 +78,7 @@ public class EditPasswordActivity extends BaseMonitorActivity {
 		btn_edit_password=(Button) findViewById(R.id.btn_edit_password);
 		myPreference=SharedPreferencesUtils.getInstance(mContext);
 		old_pwd=myPreference.getPrefString(ConstantUtils.S_USERPASSWORD, "");
+		service_url=myPreference.getPrefString(ConstantUtils.SERVICE_ADDR, ConstantUtils.STR_BASE_URL);
 		paramMap.put("boId", "common_CommonUserBO_bo");
 		paramMap.put("methodName", "updateUserPwd");
 		paramMap.put("returnType", "Json");
@@ -198,7 +200,7 @@ public class EditPasswordActivity extends BaseMonitorActivity {
 				paramMap.put("parameters", sb.toString());
 //				paramMap.put("jsessionid", "");
 				LogUtils.i(paramMap.toString());
-				String result=HttpUtils.sendPostRequest(ConstantUtils.STR_COMMON_URL, paramMap);
+				String result=HttpUtils.sendPostRequest(service_url+ConstantUtils.COMMON_URL_SUFFIX, paramMap);
 				if(result.equals("success")){
 					myPreference.setPrefString(ConstantUtils.S_USERPASSWORD, SecurityUtils.encryptBASE64(new_pwd));
 					myPreference.setPrefBoolean(ConstantUtils.REMEMBER_PASSWORD, false);

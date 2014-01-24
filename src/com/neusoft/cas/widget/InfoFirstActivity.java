@@ -23,6 +23,7 @@ import com.actionbarsherlock.app.ActionBar.OnNavigationListener;
 //import com.actionbarsherlock.view.MenuItem;
 import com.neusoft.cas.adapter.InfoFirstAdapter;
 import com.neusoft.cas.domain.CasData;
+import com.neusoft.cas.util.CommonUtils;
 import com.neusoft.cas.util.ConstantUtils;
 import com.neusoft.cas.util.SharedPreferencesUtils;
 import com.ycj.android.common.utils.DateUtils;
@@ -61,6 +62,7 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 	private PullToRefreshDataTask pullToRefresh;
 	private LoadMoreDataTask loadMore;
 	private String login_pwd="";
+	private String service_url="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -127,6 +129,7 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 //		paramMap.put("jsessionid", jsessionid);
 		paramMap.put("eap_username", myPreference.getPrefString(ConstantUtils.S_USERNAME, ""));
 		login_pwd=myPreference.getPrefString(ConstantUtils.S_USERPASSWORD, "");
+		service_url=myPreference.getPrefString(ConstantUtils.SERVICE_ADDR, ConstantUtils.STR_BASE_URL);
 		paramMap.put("eap_password",SecurityUtils.decryptBASE64(login_pwd));
 		pullToRefresh=new PullToRefreshDataTask();
 		pullToRefresh.execute(paramMap);
@@ -214,9 +217,7 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 			if (isCancelled()) {
 				return null;
 			}
-			
-			String url=ConstantUtils.STR_COMMON_URL;
-			String result=HttpUtils.sendPostRequest(url, params[0]);
+			String result=HttpUtils.sendPostRequest(service_url+ConstantUtils.COMMON_URL_SUFFIX, params[0]);
 //			List<Map<String,Object>> tmp=new ArrayList<Map<String,Object>>();
 			LogUtils.i(result);
 			if(!TextUtils.isEmpty(result)){
@@ -269,8 +270,7 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 			if (isCancelled()) {
 				return null;
 			}
-			String url=ConstantUtils.STR_COMMON_URL;
-			String result=HttpUtils.sendPostRequest(url, params[0]);
+			String result=HttpUtils.sendPostRequest(service_url+ConstantUtils.COMMON_URL_SUFFIX, params[0]);
 			LogUtils.i(result);
 			if(!TextUtils.isEmpty(result)){
 				try {

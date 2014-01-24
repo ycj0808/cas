@@ -213,6 +213,21 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 						}
 					}).start();
 				    break;
+				/*case 15:
+					new Thread(new Runnable(){
+						@Override
+						public void run() {
+							try {
+								Thread.sleep(250);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}finally{
+								jumpToActivity(ServiceSettingActivity.class,null);
+							}
+						}
+					}).start();
+				    break;*/
+				    
 				case 15:	
 					DialogUtils.showAlert(mContext, R.string.lab_info_tip, R.string.lab_info_msg, "确认", positiveListener, "取消", negativeListener);
 				    break;

@@ -30,6 +30,7 @@ public class MenuFragment extends SherlockListFragment {
 		listItems.add(new Item("下载中心", 0));
 		listItems.add(new Category("下载中心"));
 		listItems.add(new Item("设置", 0));
+		//listItems.add(new Category("服务器地址设置"));
 		listItems.add(new Category("退出账号"));
 		MenuAdapter menuAdapter=new MenuAdapter(getActivity(), listItems);
 		setListAdapter(menuAdapter);

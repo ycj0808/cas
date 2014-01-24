@@ -36,6 +36,17 @@
        android:visibility="gone" 
        android:background="@drawable/navbar_btn_right_bg"
        />
+   <ImageView 
+       android:id="@+id/navbar_img_right"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentRight="true"
+       android:layout_centerVertical="true"
+       android:padding="3dp"
+       android:layout_margin="5dp"
+       android:visibility="gone" 
+       android:background="@drawable/ic_setting_selector"
+       android:contentDescription="@string/lab_setting"/>
 </RelativeLayout>
 
 

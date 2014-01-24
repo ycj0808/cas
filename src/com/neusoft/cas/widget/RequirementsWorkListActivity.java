@@ -1,10 +1,20 @@
 package com.neusoft.cas.widget;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.actionbarsherlock.app.ActionBar;
 import com.neusoft.cas.util.ConstantUtils;
 import com.neusoft.cas.util.SharedPreferencesUtils;
+import com.ycj.android.common.utils.HttpUtils;
 import com.ycj.android.common.utils.LogUtils;
+import com.ycj.android.common.utils.SecurityUtils;
 import com.ycj.android.ui.utils.DialogUtils;
+import com.ycj.android.ui.utils.ToastUtils;
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
@@ -23,6 +33,7 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 	private Context mContext;
 	private Dialog dialog;
 	private SharedPreferencesUtils myPreference;
+	private Map<String, String> paramMap = new HashMap<String, String>();
 	private EditText edit_requirements_content;
 	private Button btn_submit;
 	private String content="";//工单内容
@@ -32,8 +43,11 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 	private String deptId="";//部门ID
 	private String userPhone="";
 	private String userEmail="";
+	private String login_pwd = "";
+	private String login_name = "";
 	private static final int SUCCESS=101;
 	private static final int FAIL=102;
+	private String service_url="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,6 +73,7 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 		actionBar.setDisplayShowHomeEnabled(false);
 		actionBar.setTitle(R.string.lab_requirement_worklist);
 		myPreference = SharedPreferencesUtils.getInstance(mContext);
+		service_url=myPreference.getPrefString(ConstantUtils.SERVICE_ADDR, ConstantUtils.STR_BASE_URL);
 		edit_requirements_content = (EditText) findViewById(R.id.edit_requirements_content);
 		btn_submit=(Button) findViewById(R.id.btn_requirements_submit);
 		new Thread(new Runnable() {
@@ -68,13 +83,16 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 				userName=myPreference.getPrefString(ConstantUtils.USER_NAME, "");
 				userEmail=myPreference.getPrefString(ConstantUtils.USER_EMAIL, "");
 				userPhone=myPreference.getPrefString(ConstantUtils.USER_MOBILE_TELEPHONE, "");
-				deptId=myPreference.getPrefString(ConstantUtils.UNIT_ID3, "");
-				deptName=myPreference.getPrefString(ConstantUtils.UNIT_NAME3, "");
+				deptId=myPreference.getPrefString(ConstantUtils.UNIT_ID, "");
+				deptName=myPreference.getPrefString(ConstantUtils.UNIT_NAME, "");
 				LogUtils.i("userId: "+userId+"    "+"userName: "+userName);
 				LogUtils.i("userEmail: "+userEmail+"    "+"userPhone: "+userPhone);
 				LogUtils.i("userPhone: "+userPhone+"    "+"deptId: "+deptId+" "+"deptName: "+deptName);
 			}
 		}).start();
+		paramMap.put("boId", "workOrder_csRequirementsWorklistBO_bo");
+		paramMap.put("methodName", "doCommitRequirementsWorklistPhone");
+		paramMap.put("returnType", "json");
 	}
 
 	/**
@@ -112,7 +130,34 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				
+				login_pwd = myPreference.getPrefString(ConstantUtils.S_USERPASSWORD, "");
+				login_pwd = SecurityUtils.decryptBASE64(login_pwd);
+				login_name = myPreference.getPrefString(ConstantUtils.S_USERNAME, "");
+				paramMap.put("parameters",getParam(content, userId, userName, deptName, deptId,userPhone, userEmail));
+				paramMap.put("eap_username", login_name);
+				paramMap.put("eap_password", login_pwd);
+				String result = HttpUtils.sendPostRequest(
+						service_url+ConstantUtils.COMMON_URL_SUFFIX, paramMap);
+				Bundle bundle = new Bundle();
+				Message msg = new Message();
+				try {
+					JSONObject jsonObj = new JSONObject(result);
+					JSONObject obj = jsonObj.getJSONObject("response");
+					if (obj != null && obj.getString("rtnCode").equals("00000")) {
+						handler.sendEmptyMessage(SUCCESS);
+					} else {
+						msg.what = FAIL;
+						bundle.putString("fail_info", "创建失败");
+						msg.setData(bundle);
+						handler.sendMessage(msg);
+					}
+				} catch (JSONException e) {
+					msg.what = FAIL;
+					bundle.putString("fail_info", "网络访问,返回数据出错");
+					msg.setData(bundle);
+					handler.sendMessage(msg);
+					e.printStackTrace();
+				}
 			}
 		}).start();
 	}
@@ -165,12 +210,17 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 		@Override
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
+			Bundle bundle=new Bundle();
 			switch (msg.what) {
 			case SUCCESS:
 				closeDialog();
+				ToastUtils.showToast(RequirementsWorkListActivity.this, "创建工单成功");
+				finish();
 				break;
 			case FAIL:
+				bundle=msg.getData();
 				closeDialog();
+				ToastUtils.showToast(RequirementsWorkListActivity.this, bundle.getString("fail_info"));				
 				break;
 			}
 		}

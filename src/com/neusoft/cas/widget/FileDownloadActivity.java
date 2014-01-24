@@ -64,6 +64,7 @@ public class FileDownloadActivity extends BaseActivity {
 	private ProgressDialog m_pDialog;//进度条对话框
 	private String storeDir="";
 	private String filePath="";
+	private String service_url="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -96,6 +97,7 @@ public class FileDownloadActivity extends BaseActivity {
 		paramMap.put("parameters",getParams(sb, fileName, keyWord, pageNumber, pageSize));
 		paramMap.put("eap_username", myPreference.getPrefString(ConstantUtils.S_USERNAME, ""));
 		login_pwd=myPreference.getPrefString(ConstantUtils.S_USERPASSWORD, "");
+		service_url=myPreference.getPrefString(ConstantUtils.SERVICE_ADDR, ConstantUtils.STR_BASE_URL);
 		paramMap.put("eap_password",SecurityUtils.decryptBASE64(login_pwd));
 		showLoading();
 		pullToRefresh=new PullToRefreshDataTask();
@@ -218,7 +220,7 @@ public class FileDownloadActivity extends BaseActivity {
 			if (isCancelled()) {
 				return null;
 			}
-			String result=HttpUtils.sendPostRequest(ConstantUtils.STR_COMMON_URL, params[0]);
+			String result=HttpUtils.sendPostRequest(service_url+ConstantUtils.COMMON_URL_SUFFIX, params[0]);
 			LogUtils.i(result);
 			if(!TextUtils.isEmpty(result)){
 				try {
@@ -266,9 +268,7 @@ public class FileDownloadActivity extends BaseActivity {
 			if (isCancelled()) {
 				return null;
 			}
-			
-			String url=ConstantUtils.STR_COMMON_URL;
-			String result=HttpUtils.sendPostRequest(url, params[0]);
+			String result=HttpUtils.sendPostRequest(service_url+ConstantUtils.COMMON_URL_SUFFIX, params[0]);
 			LogUtils.i(result);
 			if(!TextUtils.isEmpty(result)){
 				try {

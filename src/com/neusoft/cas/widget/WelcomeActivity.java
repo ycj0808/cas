@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 
@@ -20,7 +21,7 @@ public class WelcomeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		ImageView iv = new ImageView(this);
-		iv.setBackgroundResource(R.drawable.default_wallpaper);
+		iv.setBackgroundResource(R.drawable.login_loading_bg);
 	    iv.setLayoutParams(new LayoutParams(getWindowManager().getDefaultDisplay().getWidth(), getWindowManager().getDefaultDisplay().getHeight()));
 		setContentView(iv);
 		mContext=this;
@@ -37,13 +38,17 @@ public class WelcomeActivity extends Activity {
 				}finally{
 					if (firstBoot) {
 						myPreference.setPrefBoolean(ConstantUtils.FIRST_LOGIN, false);
-						System.out.println(myPreference.getPrefBoolean(ConstantUtils.FIRST_LOGIN, true));
+						myPreference.setPrefString(ConstantUtils.SERVICE_ADDR, ConstantUtils.STR_BASE_URL);
 						//第一次使用
-						JumpToActivity(GuideActivity.class);
+						//JumpToActivity(GuideActivity.class);
 						
 					}else{
-						JumpToActivity(LoginActivity.class);
+						String service_addr=myPreference.getPrefString(ConstantUtils.SERVICE_ADDR,"");
+						if(TextUtils.isEmpty(service_addr)){
+							myPreference.setPrefString(ConstantUtils.SERVICE_ADDR, ConstantUtils.STR_BASE_URL);
+						}
 					}
+					JumpToActivity(LoginActivity.class);
 				}
 				
 			}

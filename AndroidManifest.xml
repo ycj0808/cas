@@ -86,6 +86,8 @@
             android:theme="@style/CasTheme.Sherlock"/>
          <activity android:name="com.neusoft.cas.widget.InsideWorkListActivity"
             android:theme="@style/CasTheme.Sherlock"/>
+         <activity android:name="com.neusoft.cas.widget.ServiceSettingActivity"
+             android:theme="@style/CasTheme.Sherlock"/>
     </application>
 
 </manifest>

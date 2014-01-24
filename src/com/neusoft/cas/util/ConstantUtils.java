@@ -14,6 +14,7 @@ public class ConstantUtils {
 	public final static String LOGIN_ACCOUNT="login_account";
 	public final static String LOGIN_PASSWORD="login_password";
 	
+	public final static String SERVICE_ADDR="service_addr";
 	/********************用于sharePreference的常量-end********************/
 	
 	/********************用于监听网络连接的常量-start********************/
@@ -26,15 +27,18 @@ public class ConstantUtils {
 	
 //	public static String STR_COMMON_URL="http://10.4.127.65:8080/framework/unieapServices/rest/";
 //	public static String STR_LOGIN_URL="http://10.4.127.65:8080/framework/techcomp/ria/commonProcessor!login.action";
-//	public static String STR_BASE_URL="http://10.4.127.65:8080/framework/";
+	public static String STR_BASE_URL="http://10.4.127.65:8080/framework/";
 	
 //	public static String STR_COMMON_URL="http://10.4.120.103:8080/cas/unieapServices/rest/";
 //	public static String STR_LOGIN_URL="http://10.4.120.103:8080/cas/techcomp/ria/commonProcessor!login.action";
 //	public static String STR_BASE_URL="http://10.4.120.103:8080/cas/";
 	
-	public static String STR_COMMON_URL="http://10.4.126.145:8080/cas/unieapServices/rest/";
-	public static String STR_LOGIN_URL="http://10.4.126.145:8080/cas/techcomp/ria/commonProcessor!login.action";
-	public static String STR_BASE_URL="http://10.4.126.145:8080/cas/";
+//	public static String STR_COMMON_URL="http://10.4.126.145:8080/cas/unieapServices/rest/";
+//	public static String STR_LOGIN_URL="http://10.4.126.145:8080/cas/techcomp/ria/commonProcessor!login.action";
+//	public static String STR_BASE_URL="http://10.4.126.145:8080/cas/";
+	
+	public static String LOGIN_URL_SUFFIX="techcomp/ria/commonProcessor!login.action";
+	public static String COMMON_URL_SUFFIX="unieapServices/rest/";
 	/********************用于监听网络连接的常量-end********************/
 	
 	/********************注册加载数据常量-start********************/
@@ -74,6 +78,8 @@ public class ConstantUtils {
 	 public final static String UNIT_ID1="unit1_id";
 	 public final static String UNIT_ID2="unit2_id";
 	 public final static String UNIT_ID3="unit3_id";
+	 public final static String UNIT_ID="unit_id";
+	 public final static String UNIT_NAME="unit_name";
 	 public final static String UNIT_NAME1="unit1_name";
 	 public final static String UNIT_NAME2="unit2_name";
 	 public final static String UNIT_NAME3="unit3_name";

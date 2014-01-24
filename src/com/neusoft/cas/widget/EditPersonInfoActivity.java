@@ -59,6 +59,7 @@ public class EditPersonInfoActivity extends BaseMonitorActivity {
 	private boolean isTel=true;
 	private boolean isNameNull=false;
 	private String login_pwd="";
+	private String service_url="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -91,6 +92,7 @@ public class EditPersonInfoActivity extends BaseMonitorActivity {
 		edit_userQq = (EditText) findViewById(R.id.edit_person_info_qq);
 		showDialog(getResources().getString(R.string.lab_loading_data));
 		myPreference = SharedPreferencesUtils.getInstance(mContext);
+		service_url=myPreference.getPrefString(ConstantUtils.SERVICE_ADDR, ConstantUtils.STR_BASE_URL);
 		loadUserInfo();
 	}
 
@@ -242,7 +244,7 @@ public class EditPersonInfoActivity extends BaseMonitorActivity {
 					map.put("eap_username", myPreference.getPrefString(ConstantUtils.S_USERNAME, ""));
 					login_pwd=myPreference.getPrefString(ConstantUtils.S_USERPASSWORD, "");
 					map.put("eap_password",SecurityUtils.decryptBASE64(login_pwd));
-					String result=HttpUtils.sendPostRequest(ConstantUtils.STR_COMMON_URL, map);
+					String result=HttpUtils.sendPostRequest(service_url+ConstantUtils.COMMON_URL_SUFFIX, map);
 					if(TextUtils.isEmpty(result)){
 						myPreference.setPrefString(ConstantUtils.USER_NAME, userName);
 						myPreference.setPrefString(ConstantUtils.USER_EMAIL, userEmail);
