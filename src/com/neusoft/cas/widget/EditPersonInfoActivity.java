@@ -37,7 +37,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class EditPersonInfoActivity extends BaseActivity {
+public class EditPersonInfoActivity extends BaseMonitorActivity {
 
 	private Context mContext;
 	private Button btn_edit;

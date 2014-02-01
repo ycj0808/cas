@@ -163,7 +163,7 @@ public class LoginActivity extends BaseMonitorActivity {
 						paramMap.put("eap_username", login_account);
 						paramMap.put("eap_password", login_password);
 						result=HttpUtils.sendPostRequest(ConstantUtils.STR_COMMON_URL, paramMap);
-						
+						LogUtils.i(result);
 						StringBuilder sbStr=new StringBuilder();
 						sbStr.append("boId=common_CommonUserBO_bo&methodName=getUserDetailByUserAccountPhone");
 						sbStr.append("&returnType=json").append("&parameters=").append(sb.toString()).append("&jsessionid=").append(map.get("jsessionid").toString());

@@ -41,6 +41,7 @@ public class InfoDetailActivity extends BaseMonitorActivity {
 		// 设置是否显示返回按钮
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setTitle(R.string.lab_info_detail);
 		webView = (WebView) findViewById(R.id.webView1);
 	}
 

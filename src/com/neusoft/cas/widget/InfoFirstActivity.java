@@ -149,7 +149,7 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 			@SuppressWarnings("unchecked")
 			@Override
 			public void onLoadMore() {
-				if(CasData.list_info.size()<dataSize-1){
+				if(CasData.list_info.size()<dataSize){
 					pageNumber=String.valueOf(Integer.valueOf(pageNumber)+1);
 					paramMap.put("parameters", getParams(sb, typeId,pageNumber,pageSize));
 					loadMore=new LoadMoreDataTask();
@@ -385,5 +385,12 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 	public void closeLoading(){
 		listView.setVisibility(View.VISIBLE);
 		loading_Indicator.setVisibility(View.GONE);
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		login_pwd=myPreference.getPrefString(ConstantUtils.S_USERPASSWORD, "");
+		paramMap.put("eap_password",SecurityUtils.decryptBASE64(login_pwd));
 	}
 }

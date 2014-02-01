@@ -3,6 +3,9 @@ package com.neusoft.cas.widget;
 
 import net.simonvt.menudrawer.MenuDrawer;
 import net.simonvt.menudrawer.Position;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
@@ -20,7 +23,9 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.neusoft.cas.receiver.BroadcastReceiverHelper;
 import com.neusoft.cas.util.ConstantUtils;
+import com.neusoft.cas.util.SharedPreferencesUtils;
 import com.ycj.android.common.utils.LogUtils;
+import com.ycj.android.ui.utils.DialogUtils;
 import com.ycj.android.ui.utils.ToastUtils;
 
 public abstract class BaseActivity extends SherlockFragmentActivity {
@@ -28,9 +33,13 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 	private MenuDrawer mDrawer;
 	private LayoutInflater mInflater;
 	private BroadcastReceiverHelper receiver;
+	private Context mContext;
+	private SharedPreferencesUtils myPreference;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		mContext=this;
+		myPreference=SharedPreferencesUtils.getInstance(mContext);
 		mInflater=LayoutInflater.from(this);
 		// 获取actionBar,并设置相关特性
 		ActionBar actionBar = getSupportActionBar();
@@ -146,9 +155,22 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 					}).start();
 					break;	
 				case 11:
+					new Thread(new Runnable(){
+						@Override
+						public void run() {
+							try {
+								Thread.sleep(250);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}finally{
+								jumpToActivity(FileDownloadActivity.class,null);
+							}
+						}
+					}).start();
 				    break;
 				case 13:	
-					Toast.makeText(getApplicationContext(), "退出",Toast.LENGTH_SHORT).show();
+					//Toast.makeText(getApplicationContext(), "退出",Toast.LENGTH_SHORT).show();
+					DialogUtils.showAlert(mContext, R.string.lab_info_tip, R.string.lab_info_msg, "确认", positiveListener, "取消", negativeListener);
 				    break;
 				}
 			}
@@ -275,4 +297,28 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 		}
 		startActivity(intent);
 	}
+	
+	/**
+	 * 对话框确认按钮的监听事件
+	 */
+	protected DialogInterface.OnClickListener positiveListener=new OnClickListener() {
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			dialog.dismiss();
+			myPreference.setPrefBoolean(ConstantUtils.REMEMBER_PASSWORD, false);
+			myPreference.removeShare(ConstantUtils.LOGIN_ACCOUNT);
+			myPreference.removeShare(ConstantUtils.LOGIN_PASSWORD);
+			BaseActivity.this.finish();
+			
+		}
+	};
+	/**
+	 * 对话框取消按钮的监听事件
+	 */
+	protected DialogInterface.OnClickListener negativeListener=new OnClickListener() {
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			dialog.dismiss();
+		}
+	};
 }

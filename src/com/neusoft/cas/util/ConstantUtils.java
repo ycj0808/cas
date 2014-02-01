@@ -77,4 +77,10 @@ public class ConstantUtils {
 	 public final static String S_USERNAME="s_userName";
 	 public final static String S_USERPASSWORD="s_userPassword";
 	/********************用户常量********************/
+	 
+	/********************密码修改常量********************/
+	 public final static int EDIT_PASSWORD_SUCCESS=4001;
+	 public final static int EDIT_PASSWORD_FAIL=4002;
+	/********************密码修改常量********************/ 
+	 
 }
