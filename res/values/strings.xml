@@ -69,6 +69,7 @@
     <string name="lab_create_worklist">创建投诉工单</string>
     <string name="lab_requirement_worklist">创建需求工单</string>
     <string name="lab_inside_worklist">创建内部工单</string>
+    <string name="lab_attachment">附件</string>
     
     <string name="lab_service_addr">服务器网址</string>
     <string name="lab_service_setting">服务器设置</string>

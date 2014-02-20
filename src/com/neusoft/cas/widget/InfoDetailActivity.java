@@ -19,11 +19,11 @@ public class InfoDetailActivity extends BaseMonitorActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_info_detail);
 		initView();
-		// if(savedInstanceState!=null){
-		// infoUrl=ConstantUtils.STR_BASE_URL+savedInstanceState.getString("infoUrl");
-		// }
-		infoUrl = ConstantUtils.STR_BASE_URL
-				+ "/upload/infomanage/055aed411ea3450a89a566bf057d15f6.jsp";
+		 if(savedInstanceState!=null){
+			 infoUrl=ConstantUtils.STR_BASE_URL+savedInstanceState.getString("infoUrl");
+		 }
+//		infoUrl = ConstantUtils.STR_BASE_URL
+//				+ "/upload/infomanage/055aed411ea3450a89a566bf057d15f6.jsp";
 		webView.loadUrl(infoUrl);
 	}
 

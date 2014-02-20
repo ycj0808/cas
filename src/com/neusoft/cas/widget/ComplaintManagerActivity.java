@@ -1,13 +1,17 @@
 package com.neusoft.cas.widget;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.neusoft.cas.util.ConstantUtils;
+import com.neusoft.cas.util.ImageUtils;
 import com.neusoft.cas.util.SharedPreferencesUtils;
 import com.ycj.android.common.utils.HttpUtils;
 import com.ycj.android.common.utils.LogUtils;
@@ -21,16 +25,24 @@ import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ComplaintManagerActivity extends BaseMonitorActivity {
 
@@ -60,6 +72,16 @@ public class ComplaintManagerActivity extends BaseMonitorActivity {
 	private static final int SUCCESS = 101;
 	private static final int FAIL = 102;
 	private Map<String, String> paramMap = new HashMap<String, String>();
+	private ImageView image_attachment;
+	// 图片转化为Base64字符串
+	private String base64Str = "";
+	// 照相机拍照得到的图片
+	private File mCurrentPhotoFile;
+	private String mFileName = "";
+	/* 拍照的照片存储位置 */
+	private File PHOTO_DIR = null;
+	/* 用来标识请求照相功能的activity */
+	private static final int CAMERA_WITH_DATA = 3023;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +98,7 @@ public class ComplaintManagerActivity extends BaseMonitorActivity {
 	 * @return void 返回类型
 	 * @throws
 	 */
+	@SuppressLint("NewApi")
 	protected void initView() {
 		mContext = this;
 		// 获取actionBar,并设置相关特性
@@ -91,7 +114,17 @@ public class ComplaintManagerActivity extends BaseMonitorActivity {
 		edit_complaint_content = (EditText) findViewById(R.id.edit_complaint_content);
 		btn_worklist_type = (Button) findViewById(R.id.btn_worklist_type);
 		btn_complaint_submit = (Button) findViewById(R.id.btn_complaint_submit);
-		service_url=myPreference.getPrefString(ConstantUtils.SERVICE_ADDR, ConstantUtils.STR_BASE_URL);
+		service_url = myPreference.getPrefString(ConstantUtils.SERVICE_ADDR,
+				ConstantUtils.STR_BASE_URL);
+
+		// 初始化图片保存路径
+		String photo_dir = ImageUtils.getFullImageDownPathDir();
+		if (photo_dir.isEmpty() || photo_dir.length() == 0) {
+			Toast.makeText(mContext, "存储卡不存在", Toast.LENGTH_LONG).show();
+		} else {
+			PHOTO_DIR = new File(photo_dir);
+		}
+		image_attachment = (ImageView) findViewById(R.id.img_attachment);
 		paramMap.put("boId", "workOrder_complaintManager_complaintManagerBO_bo");
 		paramMap.put("methodName", "doSaveAndStartPhone");
 		paramMap.put("returnType", "json");
@@ -166,6 +199,14 @@ public class ComplaintManagerActivity extends BaseMonitorActivity {
 				}
 			}
 		});
+
+		// 拍照
+		image_attachment.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				doPickPhotoAction();
+			}
+		});
 	}
 
 	/**
@@ -185,12 +226,15 @@ public class ComplaintManagerActivity extends BaseMonitorActivity {
 				login_pwd = SecurityUtils.decryptBASE64(login_pwd);
 				login_name = myPreference.getPrefString(
 						ConstantUtils.S_USERNAME, "");
-				paramMap.put("parameters", getParam(card_num, card_no, complaint_content, worklistType));
+				paramMap.put(
+						"parameters",
+						getParam(card_num, card_no, complaint_content,
+								worklistType));
 				paramMap.put("eap_username", login_name);
 				paramMap.put("eap_password", login_pwd);
 				LogUtils.i(paramMap.toString());
-				String result = HttpUtils.sendPostRequest(
-						service_url+ConstantUtils.COMMON_URL_SUFFIX, paramMap);
+				String result = HttpUtils.sendPostRequest(service_url
+						+ ConstantUtils.COMMON_URL_SUFFIX, paramMap);
 				Bundle bundle = new Bundle();
 				Message msg = new Message();
 				try {
@@ -231,7 +275,7 @@ public class ComplaintManagerActivity extends BaseMonitorActivity {
 				bundle = msg.getData();
 				closeDialog();
 				ToastUtils.showToast(ComplaintManagerActivity.this,
-						bundle.getString("fail_info"),Gravity.BOTTOM,0,40);
+						bundle.getString("fail_info"), Gravity.BOTTOM, 0, 40);
 				break;
 			}
 		}
@@ -244,7 +288,8 @@ public class ComplaintManagerActivity extends BaseMonitorActivity {
 	 * @return String 返回类型
 	 * @throws
 	 */
-	protected String getParam(String card_num, String card_no, String content,String worklistType) {
+	protected String getParam(String card_num, String card_no, String content,
+			String worklistType) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("[{'String':'").append(userId).append("'},{'String':'")
 				.append(deptId).append("'},");
@@ -256,9 +301,13 @@ public class ComplaintManagerActivity extends BaseMonitorActivity {
 				.append(userEmail).append("'},");
 		sb.append("{'String':'").append(userPhone).append("'},{'String':'")
 				.append(userTel).append("'},");
-		sb.append("{'String':'phone'},{'String':'").append(worklistType).append("'}]");
-		LogUtils.i(sb.toString());
-		return sb.toString();
+		sb.append("{'String':'phone'},{'String':'").append(worklistType)
+				.append("'}");
+		sb.append(",{'String':'").append(base64Str).append("'},{'String':'")
+				.append(mFileName).append("'}]");
+		Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+		Matcher m = p.matcher(sb.toString());
+		return m.replaceAll("");
 	}
 
 	/**
@@ -336,6 +385,59 @@ public class ComplaintManagerActivity extends BaseMonitorActivity {
 	protected void closeDialog() {
 		if (dialog != null & dialog.isShowing()) {
 			dialog.dismiss();
+		}
+	}
+
+	/**
+	 * @Title: 照相
+	 * @Description: TODO
+	 * @param 设定文件
+	 * @return void 返回类型
+	 * @throws
+	 */
+	private void doPickPhotoAction() {
+		String status = Environment.getExternalStorageState();
+		// 判断是否有SD卡,如果有sd卡存入sd卡在说，没有sd卡直接转换为图片
+		if (status.equals(Environment.MEDIA_MOUNTED)) {
+			doTakePhoto();
+		} else {
+			Toast.makeText(mContext, "没有可用的存储卡", Toast.LENGTH_LONG).show();
+		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode != RESULT_OK) {
+			return;
+		}
+		switch (requestCode) {
+		case CAMERA_WITH_DATA:
+			Log.i("TAG", "图片路径:" + mCurrentPhotoFile.getPath());
+			Bitmap bitmap = ImageUtils.getBitmapFromSD(mCurrentPhotoFile,
+					ImageUtils.SCALEIMG, 400, 40);
+			image_attachment.setImageBitmap(bitmap);
+			base64Str = ImageUtils.bitmapToBase64(bitmap);
+			break;
+		}
+	}
+
+	/**
+	 * @Title:拍照
+	 * @Description: TODO
+	 * @param 设定文件
+	 * @return void 返回类型
+	 * @throws
+	 */
+	protected void doTakePhoto() {
+		try {
+			mFileName = System.currentTimeMillis() + ".jpg";
+			mCurrentPhotoFile = new File(PHOTO_DIR, mFileName);
+			Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE, null);
+			intent.putExtra(MediaStore.EXTRA_OUTPUT,
+					Uri.fromFile(mCurrentPhotoFile));
+			startActivityForResult(intent, CAMERA_WITH_DATA);
+		} catch (Exception e) {
+			Toast.makeText(mContext, "未找到系统相机程序", Toast.LENGTH_LONG).show();
 		}
 	}
 }

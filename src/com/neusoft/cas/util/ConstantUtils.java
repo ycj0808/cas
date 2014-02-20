@@ -29,6 +29,8 @@ public class ConstantUtils {
 //	public static String STR_LOGIN_URL="http://10.4.127.65:8080/framework/techcomp/ria/commonProcessor!login.action";
 //	public static String STR_BASE_URL="http://10.4.127.65:8080/framework/";
 	
+//	public static String STR_BASE_URL="http://10.122.201.20:8080/cas";
+	
 //	public static String STR_COMMON_URL="http://10.4.120.103:8080/cas/unieapServices/rest/";
 //	public static String STR_LOGIN_URL="http://10.4.120.103:8080/cas/techcomp/ria/commonProcessor!login.action";
 //	public static String STR_BASE_URL="http://10.4.120.103:8080/cas/";

@@ -1,14 +1,19 @@
 package com.neusoft.cas.widget;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.neusoft.cas.util.ConstantUtils;
+import com.neusoft.cas.util.ImageUtils;
 import com.neusoft.cas.util.SharedPreferencesUtils;
+import com.neusoft.cas.widget.R.string;
 import com.ycj.android.common.utils.HttpUtils;
 import com.ycj.android.common.utils.LogUtils;
 import com.ycj.android.common.utils.SecurityUtils;
@@ -18,16 +23,24 @@ import com.ycj.android.ui.utils.ToastUtils;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 创建内部工单
@@ -54,10 +67,21 @@ public class InsideWorkListActivity extends BaseMonitorActivity {
 	private String userEmail = "";
 	private String login_pwd = "";
 	private String login_name = "";
-	private String service_url="";
+	private String service_url = "";
 	private static final int SUCCESS = 101;
 	private static final int FAIL = 102;
-
+	private ImageView image_attachment;
+	// 图片转化为Base64字符串
+	private String base64Str = "";
+	// 照相机拍照得到的图片
+	private File mCurrentPhotoFile;
+	private String mFileName = "";
+	/* 拍照的照片存储位置 */
+	private File PHOTO_DIR = null;
+	/* 用来标识请求照相功能的activity */
+	private static final int CAMERA_WITH_DATA = 3023;
+	StringBuilder sbStr=new StringBuilder();
+	StringBuilder sb = new StringBuilder();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -73,7 +97,9 @@ public class InsideWorkListActivity extends BaseMonitorActivity {
 	 * @return void 返回类型
 	 * @throws
 	 */
+	@SuppressLint("NewApi")
 	protected void initView() {
+		sbStr.append("");
 		mContext = this;
 		// 获取actionBar,并设置相关特性
 		ActionBar actionBar = getSupportActionBar();
@@ -85,7 +111,16 @@ public class InsideWorkListActivity extends BaseMonitorActivity {
 		myPreference = SharedPreferencesUtils.getInstance(mContext);
 		edit_insideworklist_content = (EditText) findViewById(R.id.edit_insideworklist_content);
 		btn_insideworklist_submit = (Button) findViewById(R.id.btn_insideworklist_submit);
-		service_url=myPreference.getPrefString(ConstantUtils.SERVICE_ADDR, ConstantUtils.STR_BASE_URL);
+		service_url = myPreference.getPrefString(ConstantUtils.SERVICE_ADDR,
+				ConstantUtils.STR_BASE_URL);
+		image_attachment = (ImageView) findViewById(R.id.img_attachment);
+		// 初始化图片保存路径
+		String photo_dir = ImageUtils.getFullImageDownPathDir();
+		if (photo_dir.isEmpty() || photo_dir.length() == 0) {
+			Toast.makeText(mContext, "存储卡不存在", Toast.LENGTH_LONG).show();
+		} else {
+			PHOTO_DIR = new File(photo_dir);
+		}
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -109,6 +144,7 @@ public class InsideWorkListActivity extends BaseMonitorActivity {
 		}).start();
 		paramMap.put("boId", "workOrder_CsInsideWorklistBO_bo");
 		paramMap.put("methodName", "doCommitCsInsideWorklistByPhone");
+//		paramMap.put("methodName","doUpLoadImage");
 		paramMap.put("returnType", "json");
 	}
 
@@ -133,7 +169,66 @@ public class InsideWorkListActivity extends BaseMonitorActivity {
 				}
 			}
 		});
+		// 拍照
+		image_attachment.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				doPickPhotoAction();
+			}
+		});
+	}
 
+	/**
+	 * @Title: 照相
+	 * @Description: TODO
+	 * @param 设定文件
+	 * @return void 返回类型
+	 * @throws
+	 */
+	private void doPickPhotoAction() {
+		String status = Environment.getExternalStorageState();
+		// 判断是否有SD卡,如果有sd卡存入sd卡在说，没有sd卡直接转换为图片
+		if (status.equals(Environment.MEDIA_MOUNTED)) {
+			doTakePhoto();
+		} else {
+			Toast.makeText(mContext, "没有可用的存储卡", Toast.LENGTH_LONG).show();
+		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode != RESULT_OK) {
+			return;
+		}
+		switch (requestCode) {
+		case CAMERA_WITH_DATA:
+			Log.i("TAG", "图片路径:" + mCurrentPhotoFile.getPath());
+			Bitmap bitmap = ImageUtils.getBitmapFromSD(mCurrentPhotoFile,
+					ImageUtils.SCALEIMG, 400, 40);
+			image_attachment.setImageBitmap(bitmap);
+			base64Str=ImageUtils.bitmapToBase64(bitmap);
+			break;
+		}
+	}
+
+	/**
+	 * @Title:拍照
+	 * @Description: TODO
+	 * @param 设定文件
+	 * @return void 返回类型
+	 * @throws
+	 */
+	protected void doTakePhoto() {
+		try {
+			mFileName = System.currentTimeMillis() + ".jpg";
+			mCurrentPhotoFile = new File(PHOTO_DIR, mFileName);
+			Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE, null);
+			intent.putExtra(MediaStore.EXTRA_OUTPUT,
+					Uri.fromFile(mCurrentPhotoFile));
+			startActivityForResult(intent, CAMERA_WITH_DATA);
+		} catch (Exception e) {
+			Toast.makeText(mContext, "未找到系统相机程序", Toast.LENGTH_LONG).show();
+		}
 	}
 
 	/**
@@ -153,17 +248,17 @@ public class InsideWorkListActivity extends BaseMonitorActivity {
 				login_pwd = SecurityUtils.decryptBASE64(login_pwd);
 				login_name = myPreference.getPrefString(
 						ConstantUtils.S_USERNAME, "");
-				paramMap.put(
-						"parameters",
-						getParam(content, userId, userName, deptName, deptId,
-								userPhone, userEmail));
+				paramMap.put("parameters", getParam(content, userId,
+						  userName, deptName, deptId, userPhone, userEmail,base64Str));
 				paramMap.put("eap_username", login_name);
 				paramMap.put("eap_password", login_pwd);
-				String result = HttpUtils.sendPostRequest(
-						service_url+ConstantUtils.COMMON_URL_SUFFIX, paramMap);
+				String result = HttpUtils.sendPostRequest(service_url
+						+ ConstantUtils.COMMON_URL_SUFFIX, paramMap);
+				LogUtils.i(result);
 				Bundle bundle = new Bundle();
 				Message msg = new Message();
 				try {
+					LogUtils.i(result);
 					JSONObject jsonObj = new JSONObject(result);
 					JSONObject obj = jsonObj.getJSONObject("response");
 					if (obj != null && obj.getString("rtnCode").equals("00000")) {
@@ -192,17 +287,21 @@ public class InsideWorkListActivity extends BaseMonitorActivity {
 	 * @return void 返回类型
 	 * @throws
 	 */
-	protected String getParam(String content, String userId, String userName,
-			String deptName, String deptId, String phone, String email) {
+	protected String getParam(String content, String userId,
+			String userName, String deptName, String deptId, String phone,
+			String email,String base64) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("[{'String':'").append(content).append("'},{'String':'")
 				.append(userId).append("'},{'String':'");
 		sb.append(userName).append("'},{'String':'").append(deptName)
 				.append("'},{'String':'").append(deptId);
 		sb.append("'},{'String':'").append(userPhone).append("'},{'String':'")
-				.append(userEmail).append("'},{'String':''}]");
-		LogUtils.i(sb.toString());
-		return sb.toString();
+				.append(userEmail).append("'},{'String':''}");
+		sb.append(",{'String':'").append(base64).append("'},{'String':'")
+				.append(mFileName).append("'}]");
+		Pattern p=Pattern.compile("\\s*|\t|\r|\n");
+		Matcher m=p.matcher(sb.toString());
+		return m.replaceAll("");
 	}
 
 	/**
@@ -230,7 +329,7 @@ public class InsideWorkListActivity extends BaseMonitorActivity {
 		if (dialog != null & dialog.isShowing()) {
 			dialog.dismiss();
 		}
-	} 
+	}
 
 	/**
 	 * 消息处理
@@ -251,7 +350,7 @@ public class InsideWorkListActivity extends BaseMonitorActivity {
 				bundle = msg.getData();
 				closeDialog();
 				ToastUtils.showToast(InsideWorkListActivity.this,
-						bundle.getString("fail_info"),Gravity.BOTTOM,0,40);
+						bundle.getString("fail_info"), Gravity.BOTTOM, 0, 40);
 				break;
 			}
 		}
