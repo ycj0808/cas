@@ -414,7 +414,7 @@ public class ComplaintManagerActivity extends BaseMonitorActivity {
 		case CAMERA_WITH_DATA:
 			Log.i("TAG", "图片路径:" + mCurrentPhotoFile.getPath());
 			Bitmap bitmap = ImageUtils.getBitmapFromSD(mCurrentPhotoFile,
-					ImageUtils.SCALEIMG, 400, 40);
+					ImageUtils.SCALEIMG, 800, 80);
 			image_attachment.setImageBitmap(bitmap);
 			base64Str = ImageUtils.bitmapToBase64(bitmap);
 			break;
