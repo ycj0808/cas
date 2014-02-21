@@ -209,7 +209,11 @@ public class LoginActivity extends BaseMonitorActivity {
 					Message msg=new Message();
 					msg.what=ConstantUtils.LOGIN_ERROR2;
 					Bundle bundle=new Bundle();
-					bundle.putString("fail_info", map.get("fail_info").toString());
+					if(TextUtils.isEmpty(map.get("fail_info").toString())){
+						bundle.putString("fail_info", "连接服务器出错");
+					}else{
+						bundle.putString("fail_info", map.get("fail_info").toString());
+					}
 					msg.setData(bundle);
 					myHandler.sendMessage(msg);
 				}
@@ -369,6 +373,12 @@ public class LoginActivity extends BaseMonitorActivity {
 		if (dialog != null && dialog.isShowing()) {
 			dialog.dismiss();
 		}
+	}
+	
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		service_url=myPreference.getPrefString(ConstantUtils.SERVICE_ADDR, ConstantUtils.STR_BASE_URL);
 	}
 
 }
