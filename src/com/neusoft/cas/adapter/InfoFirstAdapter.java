@@ -78,8 +78,8 @@ public class InfoFirstAdapter extends BaseAdapter {
 			String jsonStr=map.get("csinfot").toString();
 			try {
 				JSONObject obj=new JSONObject(jsonStr);
-				viewHolder.Item_info_title.setText(obj.getString("keywords"));
-				viewHolder.Item_info_time.setText(DateUtils.getDateFromLongTime(Long.valueOf(obj.getLong("publishTime"))));
+				viewHolder.Item_info_title.setText(obj.getString("infoTitle"));
+				//viewHolder.Item_info_time.setText(DateUtils.getDateFromLongTime(Long.valueOf(obj.getLong("publishTime"))));
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}

@@ -70,6 +70,7 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 	private ImageView image_attachment;
 	// 图片转化为Base64字符串
 	private String base64Str = "";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -85,6 +86,7 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 	 * @return void 返回类型
 	 * @throws
 	 */
+	@SuppressLint("NewApi")
 	protected void initView() {
 		mContext = this;
 		// 获取actionBar,并设置相关特性
@@ -99,7 +101,14 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 				ConstantUtils.STR_BASE_URL);
 		edit_requirements_content = (EditText) findViewById(R.id.edit_requirements_content);
 		btn_submit = (Button) findViewById(R.id.btn_requirements_submit);
-		image_attachment=(ImageView) findViewById(R.id.img_attachment);
+		image_attachment = (ImageView) findViewById(R.id.img_attachment);
+		// 初始化图片保存路径
+		String photo_dir = ImageUtils.getFullImageDownPathDir();
+		if (photo_dir.isEmpty() || photo_dir.length() == 0) {
+			Toast.makeText(mContext, "存储卡不存在", Toast.LENGTH_LONG).show();
+		} else {
+			PHOTO_DIR = new File(photo_dir);
+		}
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -147,7 +156,7 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 				}
 			}
 		});
-		//拍照
+		// 拍照
 		image_attachment.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -174,10 +183,11 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 				login_pwd = SecurityUtils.decryptBASE64(login_pwd);
 				login_name = myPreference.getPrefString(
 						ConstantUtils.S_USERNAME, "");
+				String param=getParam(content, userId, userName, deptName, deptId,
+						userPhone, userEmail);
+				LogUtils.i(param);
 				paramMap.put(
-						"parameters",
-						getParam(content, userId, userName, deptName, deptId,
-								userPhone, userEmail));
+						"parameters",param);
 				paramMap.put("eap_username", login_name);
 				paramMap.put("eap_password", login_pwd);
 				String result = HttpUtils.sendPostRequest(service_url
@@ -221,12 +231,13 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 		sb.append(userName).append("'},{'String':'").append(deptName)
 				.append("'},{'String':'").append(deptId);
 		sb.append("'},{'String':'").append(userPhone).append("'},{'String':'")
-				.append(userEmail).append("'},{'String':''}]");
+				.append(userEmail).append("'},{'String':''}");
 		sb.append(",{'String':'").append(base64Str).append("'},{'String':'")
-		.append(mFileName).append("'}]");
-		Pattern p=Pattern.compile("\\s*|\t|\r|\n");
-		Matcher m=p.matcher(sb.toString());
-		return m.replaceAll("");	}
+				.append(mFileName).append("'}]");
+		Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+		Matcher m = p.matcher(sb.toString());
+		return m.replaceAll("");
+	}
 
 	/**
 	 * @Title: 显示对话框
@@ -266,7 +277,7 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 		String status = Environment.getExternalStorageState();
 		// 判断是否有SD卡,如果有sd卡存入sd卡在说，没有sd卡直接转换为图片
 		if (status.equals(Environment.MEDIA_MOUNTED)) {
-			// doTakePhoto();
+			doTakePhoto();
 		} else {
 			Toast.makeText(mContext, "没有可用的存储卡", Toast.LENGTH_LONG).show();
 		}
@@ -291,7 +302,7 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 			Toast.makeText(mContext, "未找到系统相机程序", Toast.LENGTH_LONG).show();
 		}
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode != RESULT_OK) {
@@ -303,10 +314,11 @@ public class RequirementsWorkListActivity extends BaseMonitorActivity {
 			Bitmap bitmap = ImageUtils.getBitmapFromSD(mCurrentPhotoFile,
 					ImageUtils.SCALEIMG, 800, 80);
 			image_attachment.setImageBitmap(bitmap);
-			base64Str=ImageUtils.bitmapToBase64(bitmap);
+			base64Str = ImageUtils.bitmapToBase64(bitmap);
 			break;
 		}
 	}
+
 	@SuppressLint("HandlerLeak")
 	private Handler handler = new Handler() {
 		@Override

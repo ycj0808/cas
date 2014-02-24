@@ -184,6 +184,9 @@ public class InfoFirstActivity extends BaseActivity implements OnNavigationListe
 					JSONObject obj=new JSONObject(map.get("csinfot").toString());
 					Bundle bundle=new Bundle();
 					bundle.putString("infoUrl", obj.getString("infoUrl"));
+					bundle.putString("title", obj.getString("infoTitle"));
+					bundle.putString("time", DateUtils.getDateFromLongTime(Long.valueOf(obj.getLong("publishTime"))));
+					bundle.putString("type", obj.getString("infoType"));
 					Intent intent=new Intent(InfoFirstActivity.this,InfoDetailActivity.class);
 					intent.putExtra("url", bundle);
 					startActivity(intent);
