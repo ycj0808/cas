@@ -98,7 +98,7 @@ public class FileDownloadActivity extends BaseActivity {
 		paramMap.put("eap_username", myPreference.getPrefString(ConstantUtils.S_USERNAME, ""));
 		login_pwd=myPreference.getPrefString(ConstantUtils.S_USERPASSWORD, "");
 		service_url=myPreference.getPrefString(ConstantUtils.SERVICE_ADDR, ConstantUtils.STR_BASE_URL);
-		paramMap.put("eap_password",SecurityUtils.decryptBASE64(login_pwd));
+		paramMap.put("eap_password",login_pwd);
 		showLoading();
 		pullToRefresh=new PullToRefreshDataTask();
 		pullToRefresh.execute(paramMap);
@@ -349,7 +349,7 @@ public class FileDownloadActivity extends BaseActivity {
 	protected void onResume() {
 		super.onResume();
 		login_pwd=myPreference.getPrefString(ConstantUtils.S_USERPASSWORD, "");
-		paramMap.put("eap_password",SecurityUtils.decryptBASE64(login_pwd));
+		paramMap.put("eap_password",login_pwd);
 		storeDir=CommonUtils.getStorePath();
 	}
 	

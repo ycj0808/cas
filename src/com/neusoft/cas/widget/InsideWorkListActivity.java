@@ -245,7 +245,7 @@ public class InsideWorkListActivity extends BaseMonitorActivity {
 			public void run() {
 				login_pwd = myPreference.getPrefString(
 						ConstantUtils.S_USERPASSWORD, "");
-				login_pwd = SecurityUtils.decryptBASE64(login_pwd);
+//				login_pwd = SecurityUtils.decryptBASE64(login_pwd);
 				login_name = myPreference.getPrefString(
 						ConstantUtils.S_USERNAME, "");
 				paramMap.put("parameters", getParam(content, userId,

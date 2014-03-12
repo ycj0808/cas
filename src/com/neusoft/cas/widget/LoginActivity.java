@@ -122,7 +122,7 @@ public class LoginActivity extends BaseMonitorActivity {
 	public void autoLogin() {
 		if (!TextUtils.isEmpty(login_account)
 				&& !TextUtils.isEmpty(login_password)) {
-			login_password = SecurityUtils.decryptBASE64(login_password);
+			//login_password = SecurityUtils.decryptBASE64(login_password);
 			LogUtils.i(login_password);
 			edit_login_account.setText(login_account);
 			edit_login_password.setText(login_password);
@@ -140,13 +140,12 @@ public class LoginActivity extends BaseMonitorActivity {
 		public void run() {
 			login_account = edit_login_account.getText().toString();
 			login_password = edit_login_password.getText().toString();
-			if (TextUtils.isEmpty(login_account)
-					|| TextUtils.isEmpty(login_password)) {
+			if (TextUtils.isEmpty(login_account)|| TextUtils.isEmpty(login_password)) {
 				myHandler.sendEmptyMessage(ConstantUtils.LOGIN_ERROR1);
 			} else {
 				String url = service_url+ConstantUtils.LOGIN_URL_SUFFIX;
-				String params = "eap_username=" + login_account
-						+ "&eap_password=" + login_password
+				String params = "eap_username=" + SecurityUtils.getBase64(login_account)
+						+ "&eap_password=" + SecurityUtils.getBase64(login_password)
 						+ "&eap_authentication=true";
 				Map<String,Object> map= HttpUtils.sendLoginGet(url, params);
 				String result=map.get("result").toString();
@@ -161,13 +160,13 @@ public class LoginActivity extends BaseMonitorActivity {
 						sb.append("[{String:'").append(login_account).append("'}]");
 						paramMap.put("parameters", sb.toString());
 						paramMap.put("jsessionid", map.get("jsessionid").toString());
-						paramMap.put("eap_username", login_account);
-						paramMap.put("eap_password", login_password);
+						paramMap.put("eap_username", SecurityUtils.getBase64(login_account));
+						paramMap.put("eap_password", SecurityUtils.getBase64(login_password));
 						result=HttpUtils.sendPostRequest(service_url+ConstantUtils.COMMON_URL_SUFFIX, paramMap);
 						LogUtils.i(result);
-						StringBuilder sbStr=new StringBuilder();
-						sbStr.append("boId=common_CommonUserBO_bo&methodName=getUserDetailByUserAccountPhone");
-						sbStr.append("&returnType=json").append("&parameters=").append(sb.toString()).append("&jsessionid=").append(map.get("jsessionid").toString());
+//						StringBuilder sbStr=new StringBuilder();
+//						sbStr.append("boId=common_CommonUserBO_bo&methodName=getUserDetailByUserAccountPhone");
+//						sbStr.append("&returnType=json").append("&parameters=").append(sb.toString()).append("&jsessionid=").append(map.get("jsessionid").toString());
 						try {
 							JSONObject obj=new JSONObject(result);
 							JSONObject jsonObject=obj.getJSONObject("response");
@@ -192,8 +191,8 @@ public class LoginActivity extends BaseMonitorActivity {
 								myPreference.setPrefString(ConstantUtils.UNIT_NAME2, jsonObject.getString("unit2_name"));
 								myPreference.setPrefString(ConstantUtils.UNIT_NAME3, jsonObject.getString("unit3_name"));
 								myPreference.setPrefString(ConstantUtils.UNIT_NAME, jsonObject.getString("unit_name"));
-								myPreference.setPrefString(ConstantUtils.S_USERNAME,login_account);
-								myPreference.setPrefString(ConstantUtils.S_USERPASSWORD,SecurityUtils.encryptBASE64(login_password));
+								myPreference.setPrefString(ConstantUtils.S_USERNAME,SecurityUtils.getBase64(login_account));
+								myPreference.setPrefString(ConstantUtils.S_USERPASSWORD,SecurityUtils.getBase64(login_password));
 								myHandler.sendEmptyMessage(ConstantUtils.LOGIN_SUCCESS); 
 							}else{
 								myHandler.sendEmptyMessage(ConstantUtils.LOGIN_ERROR3);
@@ -344,10 +343,9 @@ public class LoginActivity extends BaseMonitorActivity {
 			case ConstantUtils.LOGIN_SUCCESS:
 				if (checkBox.isChecked()) {
 					myPreference.setPrefString(ConstantUtils.LOGIN_ACCOUNT,
-							edit_login_account.getText().toString());
+							SecurityUtils.getBase64(edit_login_account.getText().toString()));
 					myPreference.setPrefString(ConstantUtils.LOGIN_PASSWORD,
-							SecurityUtils.encryptBASE64(edit_login_password
-									.getText().toString()));
+							SecurityUtils.getBase64(login_password));
 				}
 				ConstantUtils.isLogin=true;
 				ToastUtils.showToast(LoginActivity.this,

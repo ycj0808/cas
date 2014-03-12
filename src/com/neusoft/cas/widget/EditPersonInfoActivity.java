@@ -243,7 +243,7 @@ public class EditPersonInfoActivity extends BaseMonitorActivity {
 //					paramMap.put("jsessionid", jsessionid);
 					map.put("eap_username", myPreference.getPrefString(ConstantUtils.S_USERNAME, ""));
 					login_pwd=myPreference.getPrefString(ConstantUtils.S_USERPASSWORD, "");
-					map.put("eap_password",SecurityUtils.decryptBASE64(login_pwd));
+					map.put("eap_password",login_pwd);
 					String result=HttpUtils.sendPostRequest(service_url+ConstantUtils.COMMON_URL_SUFFIX, map);
 					if(TextUtils.isEmpty(result)){
 						myPreference.setPrefString(ConstantUtils.USER_NAME, userName);

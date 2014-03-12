@@ -83,7 +83,7 @@ public class EditPasswordActivity extends BaseMonitorActivity {
 		paramMap.put("methodName", "updateUserPwd");
 		paramMap.put("returnType", "Json");
 		paramMap.put("eap_username", myPreference.getPrefString(ConstantUtils.S_USERNAME, ""));
-		paramMap.put("eap_password",SecurityUtils.decryptBASE64(old_pwd));
+		paramMap.put("eap_password",old_pwd);
 		view = View.inflate(mContext, R.layout.layout_progress, null);
 		dialog_content = (TextView) view.findViewById(R.id.message);
 		dialog_content.setText(R.string.lab_logining);
